@@ -76,9 +76,9 @@ WSGI_APPLICATION = 'CourseCenter.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'USER': 'root',
-        'PASSWORD': '1',
-        'NAME': 'mydatabase',
+        'USER': 'yf520103',
+        'PASSWORD': 'yf520103',
+        'NAME': 'test',
     }
 }
 

@@ -1,3 +1,6 @@
+import json
+
+from django.contrib.sessions.backends.db import SessionStore
 from django.http import HttpResponse, HttpRequest
 
 
@@ -15,3 +18,14 @@ def upload(request):
     with open("test.jpg", "w+b") as fd:
         fd.write(request.body)
     return HttpResponse("OK")
+
+
+def login(request):
+    assert isinstance(request, HttpRequest)
+    print(request.body)
+    s = SessionStore()
+    s.set_expiry(60)
+    s.save()
+    print(s.session_key)
+    s.clear_expired()
+    return HttpResponse("hello")

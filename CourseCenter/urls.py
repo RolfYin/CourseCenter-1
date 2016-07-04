@@ -23,5 +23,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^download/', views.download),
     url(r'^upload/', views.upload),
-    url(r'^www(?P<path>.*)$', serve, ),
+    url(r'^login', views.login),
+    url(r'^(?P<path>.*\.[\w]*)$', serve),
 ]
