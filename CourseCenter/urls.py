@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.contrib.staticfiles.views import serve
 
 from Center import views
 
@@ -22,5 +23,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^download/', views.download),
     url(r'^upload/', views.upload),
-    url(r'^fileview/(?P<path>.*)$', 'django.views.static.serve', ),
+    url(r'^www(?P<path>.*)$', serve, ),
 ]
