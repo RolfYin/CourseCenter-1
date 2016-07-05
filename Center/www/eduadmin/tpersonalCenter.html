@@ -1,19 +1,14 @@
-
 <!doctype html>
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>布置作业</title>
-	<meta name="keywords" content="课程作业 所有课程 我的课程"/>
-	<meta name="description" content="布置课程作业。"/>
+	<title>教师个人中心</title>
+	<meta name="keywords" content="教师个人中心"/>
+	<meta name="description" content="我的中心。"/>
 	<meta name="author" content="ljc"/>
 	<meta name="robots" content="all"/>
-	<link href="/bootstrapdist/css/bootstrap.min.css" rel="stylesheet">
-	<script src="/bootstrapdist/js/bootstrap.min.js"></script>
-	<script language="javascript" type="text/javascript" src="/jquery.min.js"></script>
-	<script src="/UploadiFive/jquery.uploadifive.js" type="text/javascript"></script>
-	<link rel="stylesheet" type="text/css" href="/UploadiFive/uploadifive.css">
 
+	<link href="/bootstrapdist/css/bootstrap.min.css" rel="stylesheet">
 	<style type="text/css">
 	body
 	{
@@ -65,38 +60,19 @@
 			border-bottom-color: red;
 		}
 		#menu li p:hover{
-			color: red;
+			color: black;
 		}
 		#menu li p.active:hover{
 			color: red;
 		}
-	p.workName:hover{
+	
+	.blue{
 		color: blue;
 	}
-	p.courseCenter:hover,p.courseSource:hover{
-		color: red;
+	p.personalInfo{
+		font-size: 28px;
 	}
-	p.red{
-		color: red;
-	}
-	
-	div div.course{
-		font-size: 20px;
-	}
-	#setNewWork{
-		width: 250px;
-		background-color: orange !important;
-		margin-left: 50px;
-	}
-	div div div div.col-xs-2.col-md-2.left{
-		height: 500px;
-		font-size: 20px;
-	}
-	div div div div.col-xs-8.right p{
-		margin: 0px 0px 5px 0px;
-	}
-	#workDes{
-		width: 800px;
+	div.col-xs-12.col-md-12{
 		font-size: 20px;
 	}
 	div.lastPart{
@@ -107,7 +83,7 @@
 	}
 	div.footer{
 		text-align: center;
-
+		margin-top: 200px;
 	}
 	p.allRights{
 		margin-top: 10px;
@@ -118,24 +94,17 @@
 	}
 	
 </style>
-
+	<script type="text/javascript" src="/jquery.min.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function(){
     $("#myCourses").click(function(){
     window.location.href="/eduadmin/tmyCourses.html";
   });
-    $(".courseSource").click(function(){
-    window.location.href="/eduadmin/upload.html";
-  });
-    $(".courseCenter").click(function(){
-    window.location.href="/eduadmin/tcourseCenter.html";
-  });
-    $("#personalCenter").click(function(){
-    window.location.href="/eduadmin/tpersonalCenter.html";
-  });
     $("#myTeams").click(function(){
     window.location.href="/eduadmin/tmyTeams.html";
   });
+    
+
 });
 	</script>
 </head>
@@ -159,7 +128,7 @@
 					<p id="myCourses" >我的课程</p>
 				</li>
 				<li >
-					<p id="personalCenter" >个人中心</p>
+					<p id="personalCenter" class="active">个人中心</p>
 				</li>
 				<li >
 					<p id="myTeams">我的团队</p>
@@ -172,49 +141,21 @@
 		</div>
 	</div>
 	<div class="container">
-		<div class="course">
-			<div class="row">
-				<div class="col-xs-2 col-md-2 left">
-					<p class="courseCenter">软件工程过程</p>
-					<p class="red">布置作业</p>
-					<P class="courseSource">上传资源</P>
-				</div>
-				<div class="col-xs-8 col-md-8">
-
-					<form action="" method="get">
-						<p>作业描述：</p>
-						<p>
-							<textarea id="workDes" name="content" rows="6">
-								软件开发流程即软件设计思路和方法的一般过程，包括设计软件的功能和实现的算法和方法、软件的总体结构设计和模块设计、编程和调试、程序联调和测试以及编写、提交程序等一系列操作。
-							</textarea>
-						</p>
-						
-
-							<input id="file_upload" name="file_upload" type="file" multiple="true">
-
-							<script type="text/javascript">
-            $(function() {
-                $('#file_upload').uploadifive({
-                    'formData': {
-                        "key": "yufeng"
-                    },
-                    'uploadScript': '/upload/'
-
-                });
-            });
-        </script>
-							<br>
-							作业截止日期:
-							<input type="date" name="user_date" />
-							<input type="number" name="points" min="0" max="23" />点，
-							<input id="setNewWork" type="submit" value="确认发布新作业" />
-						</form>
-					</div>
-				
-
+		<div class="row">
+			<div class="col-xs-12 col-md-12">
+			<p class="personalInfo">个人信息</p>
+			<p>姓名：<span class="tecName">林广艳</span></p>
+			<p>性别：<span class="sex">女</span></p>
+			<p>教工号：<span class="tecNumber">21073174</span></p>
+			<p>学院：<span class="college">软件学院</span></p>
+			<p>手机号码：<span class="phoneNumber">18811055530</span></p>
+			<P>E-mail:&nbsp;&nbsp;&nbsp;&nbsp;<span class="email">lingy@buaa.edu.cn</span></P>
+			<p>籍贯：<span class="from">天津</span></p>
+			<p><a href="">修改密码？</a></p>
 			</div>
 		</div>
 	</div>
+
 
 	<div class="footer">
 		<div class="lastPart"></div>
@@ -251,4 +192,7 @@
 
 </body>
 
+	<script language="javascript" type="text/javascript" src="/jquery.min.js"></script>
+	<script src="/bootstrapdist/js/bootstrap.min.js"></script>
+</body>
 </html>
