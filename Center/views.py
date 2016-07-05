@@ -28,17 +28,21 @@ def upload(request):
 
 def login(request):
     assert isinstance(request, HttpRequest)
-    st = Student.objects.filter(sid=int(request.POST["ID"]), spassword=request.POST["Password"])
-    if len(st):
+    data = json.loads(request.body)
+    result = HttpResponse(json.dumps({}))
+    p = []
+    if int(data["type"]) == 3:
+        p = Student.objects.filter(sid=int(data["ID"]), spassword=data["Password"])
+    elif int(data["type"]) == 2:
+        p = Teacher.objects.filter(tid=data["ID"], tpassword=data["Password"])
+    if len(p):
         s = SessionStore()
         s.set_expiry(160)
-        s["ID"] = request.POST["ID"]
-        s["type"] = request.POST["type"]
+        s["ID"] = data["ID"]
+        s["type"] = data["type"]
         s.save()
         s.clear_expired()
         result = HttpResponse(json.dumps({"name": "sName", "key": s.session_key}))
-    else:
-        result = json.dumps({})
     return result
 
 
@@ -49,7 +53,8 @@ def logout(request):
 
 def view_course(request):
     assert isinstance(request, HttpRequest)
-    key = request.POST["key"]
+    data = json.loads(request.body)
+    key = data["key"]
     s = SessionStore(session_key=key)
     s.set_expiry(160)
     s.save()
