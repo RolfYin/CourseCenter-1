@@ -7,7 +7,8 @@
 	<meta name="description" content="学生个人界面。"/>
 	<meta name="author" content="ljc"/>
 	<meta name="robots" content="all"/>
-
+	<script src="/UploadiFive/jquery.uploadifive.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="/UploadiFive/uploadifive.css">
 	<link href="/bootstrapdist/css/bootstrap.min.css" rel="stylesheet">
 	<style type="text/css">
 	body
@@ -64,6 +65,24 @@
 	<div class="anotherline"></div>
 	<br>
 	<br>
+	
+	<div>
+        <form>
+            <input id="file_upload" name="file_upload" type="file" multiple="true">
+        </form>
+
+        <script type="text/javascript">
+            $(function() {
+                $('#file_upload').uploadifive({
+                    'formData': {
+                        'timestamp': '',
+                        'token': ''
+                    },
+                    'uploadScript': '/upload'
+                });
+            });
+        </script>
+    </div>
 	<div class="footer">
 		<div class="lastPart"></div>
 		<div class="anotherline"></div>
