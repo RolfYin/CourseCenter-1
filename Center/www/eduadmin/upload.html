@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script src="/jquery.min.js" type="text/javascript"></script>
+<script src="/UploadiFive/jquery.uploadifive.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="/UploadiFive/uploadifive.css">
+</head>
+
+<body>
+    <div>
+        <form>
+        <input id="file_upload" name="file_upload" type="file" multiple="true">
+    </form>
+
+    <script type="text/javascript">
+        $(function() {
+            $('#file_upload').uploadifive({
+                'formData'     : {
+                },
+                'uploadScript' : '/upload/'
+            });
+        });
+    </script>
+</div>
+</body>
+</html>

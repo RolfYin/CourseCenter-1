@@ -1,4 +1,4 @@
-import json
+import io
 
 from django.contrib.sessions.backends.db import SessionStore
 from django.http import HttpResponse, HttpRequest
@@ -15,8 +15,10 @@ def download(request):
 
 def upload(request):
     assert isinstance(request, HttpRequest)
-    with open("test.jpg", "w+b") as fd:
-        fd.write(request.body)
+    # with open("test.jpg", "w+b") as fd:
+    #     fd.write(request.body)
+    assert isinstance(request.FILES["Filedata"].file, io.BytesIO)
+    print(request.FILES["Filedata"].file.read())
     return HttpResponse("OK")
 
 
