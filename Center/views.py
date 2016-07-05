@@ -28,7 +28,7 @@ def upload(request):
 
 def login(request):
     assert isinstance(request, HttpRequest)
-    data = json.loads(request.body)
+    data = json.loads(request.body.decode())
     result = HttpResponse(json.dumps({}))
     p = []
     if int(data["type"]) == 3:
@@ -42,7 +42,7 @@ def login(request):
         s["type"] = data["type"]
         s.save()
         s.clear_expired()
-        result = HttpResponse(json.dumps({"name": "sName", "key": s.session_key}))
+        result = HttpResponse(json.dumps({"name": p[0]["sName"], "key": s.session_key}))
     return result
 
 
@@ -53,7 +53,7 @@ def logout(request):
 
 def view_course(request):
     assert isinstance(request, HttpRequest)
-    data = json.loads(request.body)
+    data = json.loads(request.body.decode())
     key = data["key"]
     s = SessionStore(session_key=key)
     s.set_expiry(160)
