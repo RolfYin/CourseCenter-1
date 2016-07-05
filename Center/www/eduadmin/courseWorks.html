@@ -2,9 +2,9 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>同学，你好</title>
-	<meta name="keywords" content="学生个人界面"/>
-	<meta name="description" content="学生个人界面。"/>
+	<title>课程作业</title>
+	<meta name="keywords" content="课程作业 所有课程 我的课程"/>
+	<meta name="description" content="我的课程作业。"/>
 	<meta name="author" content="ljc"/>
 	<meta name="robots" content="all"/>
 
@@ -15,7 +15,7 @@
 		font-family: "Microsoft YaHei",微软雅黑,"Microsoft JhengHei",华文细黑,STHeiti,MingLiu;
 	}
 	p.welcome{
-		position: fixed;
+		position: absolute;
 		top: 80px;
 		left: 1000px;
 		font-size: 20px;
@@ -60,16 +60,30 @@
 			border-bottom-color: red;
 		}
 		#menu li p:hover{
-			color: black;
+			color: red;
 		}
 		#menu li p.active:hover{
 			color: red;
 		}
-
-	div.allCourses{
+	p.workName:hover{
+		color: blue;
+	}
+	p.courseCenter:hover,p.courseSource:hover{
+		color: red;
+	}
+	p.red{
+		color: red;
+	}
+	div div.course{
 		font-size: 20px;
 	}
-
+	div div div div.col-xs-12.col-md-2.left{
+		height: 500px;
+		font-size: 20px;
+	}
+	div div div div.col-xs-12.right p{
+		margin: 0px 0px 15px 0px;
+	}
 	div.lastPart{
 		height: 5px;
 		margin-top: 50px;
@@ -90,14 +104,32 @@
 	
 </style>
 	<script type="text/javascript" src="/jquery.min.js"></script>
-	<script type="text/javascript"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+    $("#myCourses").click(function(){
+    window.location.href="/eduadmin/myCourses.html";
+  });
+    $(".courseSource").click(function(){
+    window.location.href="/eduadmin/courseSource.html";
+  });
+    $(".courseCenter").click(function(){
+    window.location.href="/eduadmin/courseCenter.html";
+  });
+    $("#personalCenter").click(function(){
+    window.location.href="/eduadmin/personalCenter.html";
+  });
+    $("#myTeams").click(function(){
+    window.location.href="/eduadmin/myTeams.html";
+  });
+});
+	</script>
 </head>
 <body>
 	<p class="welcome">
 		您好，
 		<span class="stuName">李甲辰</span>
 		&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="">登出</a>
+		<a href="/eduadmin/login.html">登出</a>
 	</p>
 	<div class="logo">
 		<img class="logojpg" src="images/logo.jpg"></div>
@@ -109,13 +141,13 @@
 		<div id="nav">
 			<ul id="menu">
 				<li >
-					<p id="courses" class="active">我的课程</p>
+					<p id="myCourses" >我的课程</p>
 				</li>
 				<li >
-					<p id="personal" >个人中心</p>
+					<p id="personalCenter" >个人中心</p>
 				</li>
 				<li >
-					<p id="teams">我的团队</p>
+					<p id="myTeams">我的团队</p>
 				</li>
 				<li >
 					<p id="messages">我的消息</p>
@@ -124,24 +156,53 @@
 			</ul>
 		</div>
 	</div>
-
-<div class="container allCourses">
-<div class="row">
-	<div class="col-xs-12 col-md-3">
-		<p><span >数据结构</span>(教师：<span>林广艳</span>)</p>
+	<div class="container">
+    <div class="course">
+		<div class="row">
+			<div class="col-xs-12 col-md-2 left">
+			<p class="courseCenter">软件工程过程</p>
+			<p class="red">课程作业</p>
+			<P class="courseSource">课程资源</P>
+			</div>
+			<div class="col-xs-12 col-md-4 right">
+			<p>作业名称：</p>
+			<p class="workName">用户故事提交</p>
+			<p class="workName">版本发布计划</p>
+			<p class="workName">用户故事提交</p>
+			<p class="workName">版本发布计划</p>
+			<p class="workName">用户故事提交</p>
+			<p class="workName">版本发布计划</p>
+			</div>
+			<div class="col-xs-12 col-md-2 right">
+			<p>状态：</p>
+			<p>进行中</p>
+			<p>已截止</p>
+			<p>进行中</p>
+			<p>已截止</p>
+			<p>进行中</p>
+			<p>已截止</p>
+			</div>
+			<div class="col-xs-12 col-md-2 right">
+			<p>开始时间：</p>
+			<p>2016.07.03 10:00</p>
+			<p>2016.07.03 15:00</p>
+			<p>2016.07.03 10:00</p>
+			<p>2016.07.03 15:00</p>
+			<p>2016.07.03 10:00</p>
+			<p>2016.07.03 15:00</p>
+			</div>
+			<div class="col-xs-12 col-md-2 right">
+			<p>截止时间：</p>
+			<p>2016.07.04 10:00</p>
+			<p>2016.07.04 15:00</p>
+			<p>2016.07.04 10:00</p>
+			<p>2016.07.04 15:00</p>
+			<p>2016.07.04 10:00</p>
+			<p>2016.07.04 15:00</p>
+			</div>
+		</div>
 	</div>
-	<div class="col-xs-12 col-md-3">
-		<P>操作系统</P>
 	</div>
-	<div class="col-xs-12 col-md-3">
-		<p>计算机网络</p>
-	</div>
-	<div class="col-xs-12 col-md-3">
-		<p>软件工程</p>
-	</div>
-</div>
-	
-</div>
 
 	<div class="footer">
 		<div class="lastPart"></div>
