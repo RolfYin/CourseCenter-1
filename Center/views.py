@@ -1,6 +1,7 @@
 import io
 import json
 
+import datetime
 from django.contrib.sessions.backends.db import SessionStore
 from django.http import HttpResponse, HttpRequest
 
@@ -30,11 +31,13 @@ def login(request):
     assert isinstance(request, HttpRequest)
     data = json.loads(request.body.decode())
     result = HttpResponse(json.dumps({}))
-    p = []
     if int(data["type"]) == 3:
         p = Student.objects.filter(sid=int(data["ID"]), spassword=data["Password"])
+        print(p)
+        name = p[0].sname
     elif int(data["type"]) == 2:
         p = Teacher.objects.filter(tid=data["ID"], tpassword=data["Password"])
+        name = p[0].tname
     if len(p):
         s = SessionStore()
         s.set_expiry(160)
@@ -42,7 +45,7 @@ def login(request):
         s["type"] = data["type"]
         s.save()
         s.clear_expired()
-        result = HttpResponse(json.dumps({"name": p[0]["sName"], "key": s.session_key}))
+        result = HttpResponse(json.dumps({"name": name, "key": s.session_key}))
     return result
 
 
@@ -53,16 +56,26 @@ def logout(request):
 
 def view_course(request):
     assert isinstance(request, HttpRequest)
-    data = json.loads(request.body.decode())
-    key = data["key"]
-    s = SessionStore(session_key=key)
-    s.set_expiry(160)
-    s.save()
-    courses = []
-    if int(s["type"]) == 3:
-        courses_id = Studentcourse.objects.filter(sid=s["ID"])
-        for course_id in courses_id:
-            courses.append(Course.objects.filter(cid=course_id))
-    elif int(s["type"]) == 2:
-        courses = Course.objects.filter(teacherid=s["ID"])
+    try:
+        data = json.loads(request.body.decode())
+        key = data["key"]
+        s = SessionStore(session_key=key)
+        s.set_expiry(160)
+        s.save()
+        courses = []
+        if int(s["type"]) == 3:
+            courses_id = Studentcourse.objects.filter(sid=int(s["ID"]))
+            for course_id in courses_id:
+                c = Course.objects.filter(cid=course_id.cid.cid).values()[0]
+                c["endday"]=  c["endday"].strftime("%Y-%m-%d-%H")
+                c["startday"] = c["startday"].strftime("%Y-%m-%d-%H")
+                print(c)
+                courses.append(c)
+        elif int(s["type"]) == 2:
+            courses = Course.objects.filter(teacherid=int(s["ID"])).values()
+    except Exception as er:
+        print(er.__class__,er)
+        print(request.body)
+        return HttpRequest("OO")
+
     return HttpResponse(json.dumps(courses))
