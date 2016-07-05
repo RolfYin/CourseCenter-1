@@ -108,10 +108,12 @@
 				$.post("/login", datastring, function(data) {
 					if (data) {
 						sessionStorage.setItem('key', JSON.parse(data).key);
-						sessionStorage.setItem('name', JSON.parse(data).username);
-						window.location.href = "/eduadmin/myCourses.html"
+						sessionStorage.setItem('username', JSON.parse(data).username);
+                        $.post()
+						window.location.href = "/eduadmin/myCourses.html";
 					} else alert("错误的用户名或密码！")
 				})
+
 			})
 		}
 	</script>
