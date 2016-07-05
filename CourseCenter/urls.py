@@ -19,10 +19,10 @@ from django.contrib.staticfiles.views import serve
 from Center import views
 
 urlpatterns = [
-    url(r'^download/', views.download),
-    url(r'^upload/', views.upload),
-    url(r'^login/', views.login),
-    url(r'^logout/', views.logout),
-    url(r'^course/view/', views.login),
+    url(r'^download', views.download),
+    url(r'^upload', views.upload),
+    url(r'^login', views.login),
+    url(r'^logout', views.logout),
+    url(r'^view/course', views.login),
     url(r'^(?P<path>.*\.[\w]*)$', serve),
 ]
