@@ -105,13 +105,13 @@
 					"Password": $("#password").val(),
 				};
 				var datastring = JSON.stringify(UserLogin);
-                alert(datastring);
+                //alert(datastring);
 				$.post("/login", datastring, function(data) {
 					if (data) {
+                        alert(data);
 						sessionStorage('usertype',i);
 						sessionStorage.setItem('key', JSON.parse(data).key);
-						sessionStorage.setItem('username', JSON.parse(data).username);
-                        //$.post()
+						sessionStorage.setItem('username', JSON.parse(data).name);
 						window.location.href = "/eduadmin/myCourses.html";
 					} else alert("错误的用户名或密码！")
 				})

@@ -28,7 +28,7 @@ def upload(request):
 
 def login(request):
     assert isinstance(request, HttpRequest)
-    data = json.loads(request.body)
+    data = json.loads(request.body.decode())
     result = HttpResponse(json.dumps({}))
     p = []
     if int(data["type"]) == 3:
