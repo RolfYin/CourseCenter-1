@@ -1,52 +1,60 @@
 <!doctype html>
 <html>
+
 <head>
 	<meta charset="UTF-8">
 	<title>课程中心</title>
-	<meta name="keywords" content="课程介绍 所有课程 我的课程"/>
-	<meta name="description" content="我的课程中心。"/>
-	<meta name="author" content="ljc"/>
-	<meta name="robots" content="all"/>
+	<meta name="keywords" content="课程介绍 所有课程 我的课程" />
+	<meta name="description" content="我的课程中心。" />
+	<meta name="author" content="ljc" />
+	<meta name="robots" content="all" />
 
 	<link href="/bootstrapdist/css/bootstrap.min.css" rel="stylesheet">
 	<style type="text/css">
-	body
-	{
-		font-family: "Microsoft YaHei",微软雅黑,"Microsoft JhengHei",华文细黑,STHeiti,MingLiu;
-	}
-	p.welcome{
-		position: absolute;
-		top: 80px;
-		left: 1000px;
-		font-size: 20px;
-	}
-	img.logojpg{
-		height: 100px;
-	}
-	div.firstPart{
-		height: 5px;
-		width: 70%;
-		margin-top: 10px;
-		background-color: #4286d8;
-	}
-	div.anotherline{
-		margin-left: 400px;
-		background-color: gray;
-		height: 3px;
-	}
-	div#nav{
-		margin-left: 400px;
-	}
-	ul.menu{
+		body {
+			font-family: "Microsoft YaHei", 微软雅黑, "Microsoft JhengHei", 华文细黑, STHeiti, MingLiu;
+		}
+		
+		p.welcome {
+			position: absolute;
+			top: 80px;
+			left: 1000px;
+			font-size: 20px;
+		}
+		
+		img.logojpg {
+			height: 100px;
+		}
+		
+		div.firstPart {
+			height: 5px;
+			width: 70%;
+			margin-top: 10px;
+			background-color: #4286d8;
+		}
+		
+		div.anotherline {
+			margin-left: 400px;
+			background-color: gray;
+			height: 3px;
+		}
+		
+		div#nav {
+			margin-left: 400px;
+		}
+		
+		ul.menu {
 			float: left;
 			padding-left: 0px;
 			margin: 0 0 0 58px;
 		}
-	#menu li{
+		
+		#menu li {
 			display: inline-block;
 			margin: 0 15px 0 15px;
 		}
-		#menu>li p{
+		
+		#menu>li p {
 			color: gray;
 			text-decoration: none;
 			font-size: 24px;
@@ -54,108 +62,125 @@
 			letter-spacing: 2px;
 			border-bottom: solid 2px transparent;
 		}
-		#menu li p.active{
+		
+		#menu li p.active {
 			color: red;
 			border-bottom: solid 2px;
 			border-bottom-color: red;
 		}
-		#menu li p:hover{
-			color: red;
-		}
-		#menu li p.active:hover{
-			color: red;
-		}
-	p.workName:hover{
-		color: blue;
-	}
-	p.courseSource:hover,p.courseWorks:hover{
-		color: red;
-	}
-	p.red{
-		color: red;
-	}
-	div.up{
-		border-bottom: 1px solid;
-		padding-bottom: 10px;
-	}
-	div.down{
-		margin-top: 20px;
-	}
-	div div.course{
-		font-size: 20px;
-	}
-	p.courseIntro,p.courseAr{
-		font-size: 28px;
-	}
-
-	div div div div.col-xs-12.col-md-2.left{
-		height: 500px;
-		font-size: 20px;
-	}
-	div div div div.col-xs-12.right p{
-		margin: 0px 0px 15px 0px;
-	}
-	#teachAr,#courseInfo{
-		width: 920px;
-		font-size: 20px;
-	}
-	#saveTeachAr{
-		width: 200px;
-		background-color: orange;
-	}
-	#saveCourseInfo{
-		width: 200px;
-		background-color: orange;
-	}
-	div.lastPart{
-		height: 5px;
-		margin-top: 50px;
-		width: 70%;
-		background-color: #4286d8;
-	}
-	div.footer{
-		text-align: center;
-
-	}
-	p.allRights{
-		margin-top: 10px;
-	}
-	div.container.ljc.last{
-		margin-top: 10px;
 		
-	}
-	
-</style>
+		#menu li p:hover {
+			color: red;
+		}
+		
+		#menu li p.active:hover {
+			color: red;
+		}
+		
+		p.workName:hover {
+			color: blue;
+		}
+		
+		p.courseSource:hover,
+		p.courseWorks:hover {
+			color: red;
+		}
+		
+		p.red {
+			color: red;
+		}
+		
+		div.up {
+			border-bottom: 1px solid;
+			padding-bottom: 10px;
+		}
+		
+		div.down {
+			margin-top: 20px;
+		}
+		
+		div div.course {
+			font-size: 20px;
+		}
+		
+		p.courseIntro,
+		p.courseAr {
+			font-size: 28px;
+		}
+		
+		div div div div.col-xs-12.col-md-2.left {
+			height: 500px;
+			font-size: 20px;
+		}
+		
+		div div div div.col-xs-12.right p {
+			margin: 0px 0px 15px 0px;
+		}
+		
+		#teachAr,
+		#courseInfo {
+			width: 920px;
+			font-size: 20px;
+		}
+		
+		#saveTeachAr {
+			width: 200px;
+			background-color: orange;
+		}
+		
+		#saveCourseInfo {
+			width: 200px;
+			background-color: orange;
+		}
+		
+		div.lastPart {
+			height: 5px;
+			margin-top: 50px;
+			width: 70%;
+			background-color: #4286d8;
+		}
+		
+		div.footer {
+			text-align: center;
+		}
+		
+		p.allRights {
+			margin-top: 10px;
+		}
+		
+		div.container.ljc.last {
+			margin-top: 10px;
+		}
+	</style>
 	<script type="text/javascript" src="/jquery.min.js"></script>
-	
-	<script type="text/javascript">
-	$(document).ready(function(){
-    $(".courseWorks").click(function(){
-    window.location.href="/eduadmin/setWorks.html";
-  });
-    $("#myCourses").click(function(){
-    window.location.href="/eduadmin/tmyCourses.html";
-  });
-	$(".courseSource").click(function(){
-    window.location.href="/eduadmin/upload.html";
-  });    
-	$("#personalCenter").click(function(){
-    window.location.href="/eduadmin/tpersonalCenter.html";
-  });
-	$("#myTeams").click(function(){
-    window.location.href="/eduadmin/tmyTeams.html";
-  });
-	
 
-});
-	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".courseWorks").click(function() {
+				window.location.href = "/eduadmin/setWorks.html";
+			});
+			$("#myCourses").click(function() {
+				window.location.href = "/eduadmin/tmyCourses.html";
+			});
+			$(".courseSource").click(function() {
+				window.location.href = "/eduadmin/upload.html";
+			});
+			$("#personalCenter").click(function() {
+				window.location.href = "/eduadmin/tpersonalCenter.html";
+			});
+			$("#myTeams").click(function() {
+				window.location.href = "/eduadmin/tmyTeams.html";
+			});
+
+
+		});
 	</script>
 </head>
+
 <body>
 	<p class="welcome">
 		您好，
-		<span class="tecName">林广艳</span>
-		&nbsp;&nbsp;老师&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+		<span class="tecName">林广艳</span> &nbsp;&nbsp;老师&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
 		<a href="/eduadmin/login.html">登出</a>
 	</p>
 	<div class="logo">
@@ -167,16 +192,16 @@
 	<div>
 		<div id="nav">
 			<ul id="menu">
-				<li >
-					<p id="myCourses" >我的课程</p>
+				<li>
+					<p id="myCourses">我的课程</p>
 				</li>
-				<li >
-					<p id="personalCenter" >个人中心</p>
+				<li>
+					<p id="personalCenter">个人中心</p>
 				</li>
-				<li >
+				<li>
 					<p id="myTeams">我的团队</p>
 				</li>
-				<li >
+				<li>
 					<p id="messages">我的消息</p>
 				</li>
 
@@ -184,50 +209,50 @@
 		</div>
 	</div>
 	<div class="container">
-    <div class="course">
-		<div class="row">
-			<div class="col-xs-12 col-md-2 left">
-			<p class="red">软件工程过程</p>
-			<p class="courseWorks">布置作业</p>
-			<P class="courseSource">上传资源</P>
-			</div>
-			<div class="col-xs-12 col-md-10 right">
-			<div class="up">
-				<p class="courseIntro">课程介绍</p>
-				<p>课程名称：<span class="courseName">软件工程过程</span></p>
-				<p>任课教师：<span class="teacherName">林广艳</span></p>
-				<p>上课地点：<span class="classPlace">主北-303</span></p>
-				<p>上课周次：第<span class="week1">2</span>周-第<span class="week2">16</span>周</p>
-				<p>上课时间：星期<span class="day">2</span>，第<span class="time">7,8</span>节</p>
-				<p>课程信息：</p>
-				<p>
-				<textarea id="courseInfo" rows="6">
-					软件开发流程即软件设计思路和方法的一般过程，包括设计软件的功能和实现的算法和方法、软件的总体结构设计和模块设计、编程和调试、程序联调和测试以及编写、提交程序等一系列操作。
-				</textarea>
-				</p>
-				<button id="saveCourseInfo">保存并发布</button>
-			</div>
-			<div class="down">
-				<p class="courseAr">课程安排</p>
+		<div class="course">
+			<div class="row">
+				<div class="col-xs-12 col-md-2 left">
+					<p class="red">软件工程过程</p>
+					<p class="courseWorks">布置作业</p>
+					<P class="courseSource">上传资源</P>
+				</div>
+				<div class="col-xs-12 col-md-10 right">
+					<div class="up">
+						<p class="courseIntro">课程介绍</p>
+						<p>课程名称：<span class="courseName">软件工程过程</span></p>
+						<p>任课教师：<span class="teacherName">林广艳</span></p>
+						<p>上课地点：<span class="classPlace">主北-303</span></p>
+						<p>上课周次：第<span class="week1">2</span>周-第<span class="week2">16</span>周</p>
+						<p>上课时间：星期<span class="day">2</span>，第<span class="time">7,8</span>节</p>
+						<p>课程信息：</p>
+						<p>
+							<textarea id="courseInfo" rows="6">
+								软件开发流程即软件设计思路和方法的一般过程，包括设计软件的功能和实现的算法和方法、软件的总体结构设计和模块设计、编程和调试、程序联调和测试以及编写、提交程序等一系列操作。
+							</textarea>
+						</p>
+						<button id="saveCourseInfo">保存并发布</button>
+					</div>
+					<div class="down">
+						<p class="courseAr">课程安排</p>
 
-			<p>
-				<textarea id="teachAr" name="content" rows="6">
-					软件开发流程即软件设计思路和方法的一般过程，包括设计软件的功能和实现的算法和方法、软件的总体结构设计和模块设计、编程和调试、程序联调和测试以及编写、提交程序等一系列操作。
-				</textarea>
-			</p>
-				<button id="saveTeachAr">保存并发布</button>
+						<p>
+							<textarea id="teachAr" name="content" rows="6">
+								软件开发流程即软件设计思路和方法的一般过程，包括设计软件的功能和实现的算法和方法、软件的总体结构设计和模块设计、编程和调试、程序联调和测试以及编写、提交程序等一系列操作。
+							</textarea>
+						</p>
+						<button id="saveTeachAr">保存并发布</button>
+
+					</div>
+				</div>
 
 			</div>
-			</div>
-			
 		</div>
-	</div>
 	</div>
 
 	<div class="footer">
 		<div class="lastPart"></div>
 		<div class="anotherline"></div>
-		<div class="container ljc last" >
+		<div class="container ljc last">
 			<div class="row">
 				<div class="col-xs-4">
 					<a>关于我们</a>
@@ -253,13 +278,13 @@
 		</div>
 
 		<p class="allRights">
-			版权所有@北京航空航天大学软件学院二元一次方程组，保留一切权利  地址：北京市海淀区学院路37号 邮编：100191 电话：18811055530
+			版权所有@北京航空航天大学软件学院二元一次方程组，保留一切权利 地址：北京市海淀区学院路37号 邮编：100191 电话：18811055530
 		</p>
 	</div>
 
 </body>
 
-	<script language="javascript" type="text/javascript" src="/jquery.min.js"></script>
-	<script src="/bootstrapdist/js/bootstrap.min.js"></script>
+<script language="javascript" type="text/javascript" src="/jquery.min.js"></script>
+<script src="/bootstrapdist/js/bootstrap.min.js"></script>
 
 </html>
