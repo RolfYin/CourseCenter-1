@@ -2,208 +2,328 @@
 <html>
 
 <head>
-	<meta charset="UTF-8">
-	<title>个人中心</title>
-	<meta name="keywords" content="个人中心" />
-	<meta name="description" content="我的中心。" />
-	<meta name="author" content="ljc" />
-	<meta name="robots" content="all" />
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+    <meta name="keywords" content="个人中心"/>
+    <meta name="description" content="我的中心。"/>
+    <meta name="author" content="ljc"/>
+    <meta name="robots" content="all"/>
 
-	<link href="/bootstrapdist/css/bootstrap.min.css" rel="stylesheet">
-	<style type="text/css">
-		body {
-			font-family: "Microsoft YaHei", 微软雅黑, "Microsoft JhengHei", 华文细黑, STHeiti, MingLiu;
-		}
-		
-		p.welcome {
-			position: absolute;
-			top: 80px;
-			left: 1000px;
-			font-size: 20px;
-		}
-		
-		img.logojpg {
-			height: 100px;
-		}
-		
-		div.firstPart {
-			height: 5px;
-			width: 70%;
-			margin-top: 10px;
-			background-color: #4286d8;
-		}
-		
-		div.anotherline {
-			margin-left: 400px;
-			background-color: gray;
-			height: 3px;
-		}
-		
-		div#nav {
-			margin-left: 400px;
-		}
-		
-		ul.menu {
-			float: left;
-			padding-left: 0px;
-			margin: 0 0 0 58px;
-		}
-		
-		#menu li {
-			display: inline-block;
-			margin: 0 15px 0 15px;
-		}
-		
-		#menu>li p {
-			color: gray;
-			text-decoration: none;
-			font-size: 24px;
-			padding: 0px 8px 4px 8px;
-			letter-spacing: 2px;
-			border-bottom: solid 2px transparent;
-		}
-		
-		#menu li p.active {
+    <link href="/bootstrapdist/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+        body {
+            font-family: "Microsoft YaHei", 微软雅黑, "Microsoft JhengHei", 华文细黑, STHeiti, MingLiu;
+        }
+
+        p.welcome {
+            position: absolute;
+            top: 80px;
+            left: 1000px;
+            font-size: 20px;
+        }
+
+        img.logojpg {
+            height: 100px;
+        }
+
+        div.firstPart {
+            height: 5px;
+            width: 70%;
+            margin-top: 10px;
+            background-color: #4286d8;
+        }
+
+        div.anotherline {
+            margin-left: 400px;
+            background-color: gray;
+            height: 3px;
+        }
+
+        div#nav {
+            margin-left: 400px;
+        }
+
+        ul.menu {
+            float: left;
+            padding-left: 0px;
+            margin: 0 0 0 58px;
+        }
+
+        #menu li {
+            display: inline-block;
+            margin: 0 15px 0 15px;
+        }
+
+        #menu > li p {
+            color: gray;
+            text-decoration: none;
+            font-size: 24px;
+            padding: 0px 8px 4px 8px;
+            letter-spacing: 2px;
+            border-bottom: solid 2px transparent;
+        }
+
+        #menu li p.active {
+            color: red;
+            border-bottom: solid 2px;
+            border-bottom-color: red;
+        }
+
+        #menu li p:hover {
+            color: black;
+        }
+
+        #menu li p.active:hover {
+            color: red;
+        }
+        p.courseSource:hover,
+        p.courseWorks:hover {
 			color: red;
-			border-bottom: solid 2px;
-			border-bottom-color: red;
 		}
-		
-		#menu li p:hover {
-			color: black;
+        div div div div.col-xs-12.right p {
+			margin: 0px 0px 15px 0px;
 		}
-		
-		#menu li p.active:hover {
-			color: red;
+        div.up {
+			border-bottom: 1px solid;
+			padding-bottom: 5px;
 		}
-		
-		.blue {
-			color: blue;
-		}
-		
-		p.personalInfo {
+        p.courseIntro,
+		p.courseAr {
 			font-size: 28px;
 		}
-		
-		div.col-xs-12.col-md-12 {
+        div.down {
+			margin-top: 20px;
+		}
+        p.red {
+			color: red;
+		}
+        div div div div.col-xs-12.col-md-2.left {
+			height: 500px;
 			font-size: 20px;
 		}
-		
-		div.lastPart {
-			height: 5px;
-			margin-top: 50px;
-			width: 70%;
-			background-color: #4286d8;
-		}
-		
-		div.footer {
-			text-align: center;
-			margin-top: 200px;
-		}
-		
-		p.allRights {
-			margin-top: 10px;
-		}
-		
-		div.container.ljc.last {
-			margin-top: 10px;
-		}
-	</style>
-	<script type="text/javascript" src="/jquery.min.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$("#myCourses").click(function() {
-				window.location.href = "/eduadmin/myCourses.html";
-			});
-			$("#myTeams").click(function() {
-				window.location.href = "/eduadmin/myTeams.html";
-			});
+        .blue {
+            color: blue;
+        }
 
+        p.personalInfo {
+            font-size: 28px;
+        }
 
-		});
-	</script>
+        span.courseName:hover {
+            color: blue;
+        }
+
+        div.col-xs-12.col-md-12 {
+            font-size: 20px;
+        }
+
+        div.col-xs-12.col-md-4 {
+            font-size: 20px;
+        }
+
+        div.lastPart {
+            height: 5px;
+            margin-top: 50px;
+            width: 70%;
+            background-color: #4286d8;
+        }
+
+        div.footer {
+            text-align: center;
+            margin-top: 200px;
+        }
+
+        p.allRights {
+            margin-top: 10px;
+        }
+
+        div.container.ljc.last {
+            margin-top: 10px;
+        }
+    </style>
+    <script type="text/javascript" src="/jquery.min.js"></script>
+    <script type="text/javascript">
+        var Course;var Json;var t;
+        $(document).ready(function () {
+            $("#myCourses").click(function () {
+                $("#personalCenter").attr("class", "");
+                $("#myCourses").attr("class", "active");
+                $("#myTeams").attr("class", "");
+                $("#messages").attr("class", "");
+                SetCourseList();
+
+            });
+            $("#myTeams").click(function () {
+                $("#personalCenter").attr("class", "");
+                $("#myCourses").attr("class", "");
+                $("#myTeams").attr("class", "active");
+                $("#messages").attr("class", "");
+                InitDivContent("");
+            });
+            $("#personalCenter").click(function () {
+                $("#personalCenter").attr("class", "active");
+                $("#myCourses").attr("class", "");
+                $("#myTeams").attr("class", "");
+                $("#messages").attr("class", "");
+                InitDivContent('<div class="container"><div class="row"><div class="col-xs-12 col-md-12"></div></div></div>');
+                SetPersonInfo();
+            });
+            $("#messages").click(function(){
+                $("#personalCenter").attr("class", "");
+                $("#myCourses").attr("class", "");
+                $("#myTeams").attr("class", "");
+                $("#messages").attr("class", "active");
+                InitDivContent("");
+            });
+            LoadName();
+            var t = '<div class="container"><div class="row"><div class="col-xs-12 col-md-12"></div></div></div>';
+            InitDivContent(t);
+            SetPersonInfo();
+        });
+        function LoadName() {
+            showName = sessionStorage.getItem("username");
+            if (showName) {
+                $(".stuName").text(showName);
+            }
+        }
+
+        function InitDivContent(t) {
+            $(".Forjs").html(t);
+        }
+        function SetPersonInfo() {
+            $("div.col-xs-12").append('<p class="personalInfo">个人信息</p><p>姓名：<span class="stuName">' + sessionStorage.getItem("username") + '</span></p>');
+        }
+        function SetCourseList() {
+            var datastring = JSON.stringify({"key": sessionStorage.getItem("key")});
+            $.post("/view/course", datastring, function (data) {
+                if (data) {
+                    InitDivContent('<div class="container myCourses"><div class="row"><div class="col-xs-12 col-md-4"><p><span class="blue">我的课程</span></p></div><div class="col-xs-12 col-md-4" id="CourseName"></div><div class="col-xs-12 col-md-4" id="CourseTeacher"></div>');
+
+                    Course = data;
+
+                    var JsonCourse = JSON.parse(Course);
+                    for (var i = 0; i < JsonCourse.length; i++) {
+                        var id = eval("'" + JsonCourse[i].cid + "'");
+                        $("#CourseName").append('<p><span class="courseName" id='+id+' onclick="chooseCourse(this)">' + JsonCourse[i].cname + '</span></p>');
+                        $("#CourseTeacher").append('<p>地点:<span>' + JsonCourse[i].location + '</span></p>');
+                    }
+
+                }
+            });
+        }
+        function chooseCourse(p)
+        {
+
+            var i =parseInt($(p).attr("id"));
+            Json=JSON.parse(Course);
+            t=0;
+            for(;i!=parseInt(Json[t].cid);t++)
+            {
+
+            }
+
+            InitDivContent('<div class="container"><div class="course"> <div class="row"> <div class="col-xs-12 col-md-2 left"> <p class="red"></p> <p class="courseWorks">课程作业</p> <P class="courseSource" onclick="SelectResource(Json[t].cid)">课程资源</P> </div> <div class="col-xs-12 col-md-10 right"> <div class="up"> <p class="courseIntro">课程介绍</p> <p>课程名称：<span class="courseName"></span></p> <p>任课教师：<span class="teacherName"></span></p> <p>课程信息：<span class="courseInfo"></span></p> </div> <div class="down"> <p class="courseAr">课程安排</p> </div> </div> </div> </div> </div>');
+            $("p.red").text(Json[t].cname);
+            $("span.courseName").text(Json[t].cname);
+            $("span.teacherName").text(Json[t].teacherid_id);
+            $("span.courseInfo").text(Json[t].descripition);
+        }
+       function  SelectResource(c)
+        {
+
+            $.post("/view/course_source",JSON.stringify({"key":sessionStorage.getItem("key"),"cID":c}),function (cdata) {
+                if(cdata)
+                {
+                    alert(cdata);
+                    sessionStorage.setItem("resource",eval("'"+cdata+"'"));
+                    window.open("/eduadmin/upload.html");
+                }
+            })
+        }
+    </script>
 </head>
 
 <body>
-	<p class="welcome">
-		您好，
-		<span class="stuName">李甲辰</span> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="/eduadmin/login.html">登出</a>
-	</p>
-	<div class="logo">
-		<img class="logojpg" src="images/logo.jpg"></div>
+<p class="welcome">
+    您好，
+    <span class="stuName">李甲辰</span> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="/eduadmin/login.html">登出</a>
+</p>
+<div class="logo">
+    <img class="logojpg" src="images/logo.jpg"></div>
 
-	<div class="firstPart"></div>
-	<div class="anotherline"></div>
-	<br>
-	<div>
-		<div id="nav">
-			<ul id="menu">
-				<li>
-					<p id="myCourses">我的课程</p>
-				</li>
-				<li>
-					<p id="personalCenter" class="active">个人中心</p>
-				</li>
-				<li>
-					<p id="myTeams">我的团队</p>
-				</li>
-				<li>
-					<p id="messages">我的消息</p>
-				</li>
+<div class="firstPart"></div>
+<div class="anotherline"></div>
+<br>
+<div>
+    <div id="nav">
+        <ul id="menu">
+            <li>
+                <p id="myCourses" class="">我的课程</p>
+            </li>
+            <li>
+                <p id="personalCenter" class="active">个人中心</p>
+            </li>
+            <li>
+                <p id="myTeams" class="">我的团队</p>
+            </li>
+            <li>
+                <p id="messages" class="">我的消息</p>
+            </li>
 
-			</ul>
-		</div>
-	</div>
-	<div class="container">
-		<div class="row">
-			<div class="col-xs-12 col-md-12">
-				<p class="personalInfo">个人信息</p>
-				<p>姓名：<span class="stuName">李甲辰</span></p>
-				<p>性别：<span class="sex">男</span></p>
-				<p>学号：<span class="stuNumber">13211070</span></p>
-				<p>班级：<span class="classNumber">132113</span>班</p>
-				<p>手机号码：<span class="phoneNumber">18811055530</span></p>
-				<P>E-mail:&nbsp;&nbsp;&nbsp;&nbsp;<span class="email">ljchenbuaa@163.com</span></P>
-				<p>籍贯：<span class="from">福建泉州</span></p>
-				<p><a href="">修改密码？</a></p>
-			</div>
-		</div>
-	</div>
+        </ul>
+    </div>
+</div>
+<div class="Forjs">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <p class="personalInfo">个人信息</p>
+                <p>姓名：<span class="stuName">李甲辰</span></p>
+                <p>性别：<span class="sex">男</span></p>
+                <p>学号：<span class="stuNumber">13211070</span></p>
+                <p>班级：<span class="classNumber">132113</span>班</p>
+                <p>手机号码：<span class="phoneNumber">18811055530</span></p>
+                <P>E-mail:&nbsp;&nbsp;&nbsp;&nbsp;<span class="email">ljchenbuaa@163.com</span></P>
+                <p>籍贯：<span class="from">福建泉州</span></p>
+                <p><a href="">修改密码？</a></p>
+            </div>
+        </div>
+    </div>
+</div>
 
+<div class="footer">
+    <div class="lastPart"></div>
+    <div class="anotherline"></div>
+    <div class="container ljc last">
+        <div class="row">
+            <div class="col-xs-4">
+                <a>关于我们</a>
+            </div>
+            <div class="col-xs-4">
+                <a>客服中心</a>
+            </div>
+            <div class="col-xs-4">
+                <a>友情链接</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4">
+                <a>版权声明</a>
+            </div>
+            <div class="col-xs-4">
+                <a>联系我们</a>
+            </div>
+            <div class="col-xs-4">
+                <a>新浪微博</a>
+            </div>
+        </div>
+    </div>
 
-	<div class="footer">
-		<div class="lastPart"></div>
-		<div class="anotherline"></div>
-		<div class="container ljc last">
-			<div class="row">
-				<div class="col-xs-4">
-					<a>关于我们</a>
-				</div>
-				<div class="col-xs-4">
-					<a>客服中心</a>
-				</div>
-				<div class="col-xs-4">
-					<a>友情链接</a>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-4">
-					<a>版权声明</a>
-				</div>
-				<div class="col-xs-4">
-					<a>联系我们</a>
-				</div>
-				<div class="col-xs-4">
-					<a>新浪微博</a>
-				</div>
-			</div>
-		</div>
-
-		<p class="allRights">
-			版权所有@北京航空航天大学软件学院二元一次方程组，保留一切权利 地址：北京市海淀区学院路37号 邮编：100191 电话：18811055530
-		</p>
-	</div>
+    <p class="allRights">
+        版权所有@北京航空航天大学软件学院二元一次方程组，保留一切权利 地址：北京市海淀区学院路37号 邮编：100191 电话：18811055530
+    </p>
+</div>
 
 </body>
 
