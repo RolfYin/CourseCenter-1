@@ -23,6 +23,6 @@ urlpatterns = [
     url(r'^upload', views.upload),
     url(r'^login', views.login),
     url(r'^logout', views.logout),
-    url(r'^view/course', views.login),
+    url(r'^view/course', views.view_course),
     url(r'^(?P<path>.*\.[\w]*)$', serve),
 ]

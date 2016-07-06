@@ -161,8 +161,8 @@ class Student(models.Model):
 
 
 class Studentcourse(models.Model):
-    sid = models.ForeignKey(Student, models.DO_NOTHING, db_column='sID')  # Field name made lowercase.
-    cid = models.ForeignKey(Course, models.DO_NOTHING, db_column='cID')  # Field name made lowercase.
+    sid = models.ForeignKey(Student, models.DO_NOTHING, db_column='sID',primary_key=True)  # Field name made lowercase.
+    cid = models.ForeignKey(Course, models.DO_NOTHING, db_column='cID',primary_key=True)  # Field name made lowercase.
 
     class Meta:
         managed = False

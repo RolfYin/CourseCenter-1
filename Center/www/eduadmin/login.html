@@ -100,17 +100,17 @@
 		function UserLogin(i) {
 			$(document).ready(function() {
 				var UserLogin = {
-					"UserType": i,
-					"idNumber": $("#idNumber").val(),
+					"type": i,
+					"ID": $("#idNumber").val(),
 					"Password": $("#password").val(),
 				};
 				var datastring = JSON.stringify(UserLogin);
 				$.post("/login", datastring, function(data) {
 					if (data) {
+						sessionStorage.setItem('usertype',i);
 						sessionStorage.setItem('key', JSON.parse(data).key);
-						sessionStorage.setItem('username', JSON.parse(data).username);
-                        $.post()
-						window.location.href = "/eduadmin/myCourses.html";
+						sessionStorage.setItem('username',eval("'"+JSON.parse(data).name+"'") );
+						window.location.href = "/eduadmin/personalCenter.html";
 					} else alert("错误的用户名或密码！")
 				})
 
@@ -181,7 +181,7 @@
 					<p class="small">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<span class="glyphicon glyphicon-user" aria-hidden="true"></span> &nbsp;&nbsp;&nbsp;&nbsp;
-						<input id="btn1" class="login" type="button" value="教务登录" onclick="UserLogin(1)" />
+						<input id="btn1" class="login" type="button" value="教务登录" />
 					</p>
 					<br>
 					<p class="small">
