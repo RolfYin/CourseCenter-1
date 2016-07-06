@@ -7,9 +7,13 @@
 	<meta name="keywords" content="课程作业 所有课程 我的课程" />
 	<meta name="description" content="我的课程作业。" />
 	<meta name="author" content="ljc" />
-	<meta name="robots" content="all" />
+	<meta name="robots" content="all" />	
 
-	<link href="/bootstrapdist/css/bootstrap.min.css" rel="stylesheet">
+	<script language="javascript" type="text/javascript" src="/jquery.min.js"></script>
+	<script src="/bootstrapdist/js/bootstrap.min.js"></script>
+	<link href="/bootstrapdist/css/bootstrap.min.css" rel="stylesheet">	
+	<script src="/UploadiFive/jquery.uploadifive.js" type="text/javascript"></script>
+	<link rel="stylesheet" type="text/css" href="/UploadiFive/uploadifive.css">	
 	<style type="text/css">
 		body {
 			font-family: "Microsoft YaHei", 微软雅黑, "Microsoft JhengHei", 华文细黑, STHeiti, MingLiu;
@@ -122,7 +126,7 @@
 			margin-top: 10px;
 		}
 	</style>
-	<script type="text/javascript" src="/jquery.min.js"></script>
+
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$("#myCourses").click(function() {
@@ -190,6 +194,21 @@
 					<p>作业描述：</p>
 					<p id="workDes">7月4日，网上流传的截图信息显示，百度已对刘超参与外部讲演的不当言论和内外部影响进行联合调查，刘超未事先向公司报备参会信息，同时其行为及演讲内容给公司品牌造成严重影响，百度已决定将刘超从百度管理团队除名。</p>
 					<p id="workFile"><a href="">作业附件1</a></p>
+					<br>
+					<p>提交作业：</p>
+						<input id="file_upload" name="file_upload" type="file" multiple="true">
+
+						<script type="text/javascript">
+							$(function() {
+								$('#file_upload').uploadifive({
+									'formData': {
+										"key": "yufeng"
+									},
+									'uploadScript': '/upload/'
+
+								});
+							});
+						</script>
 				</div>
 				
 			</div>
@@ -231,8 +250,5 @@
 
 </body>
 
-<script language="javascript" type="text/javascript" src="/jquery.min.js"></script>
-<script src="/bootstrapdist/js/bootstrap.min.js"></script>
-</body>
 
 </html>

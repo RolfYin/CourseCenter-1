@@ -3,6 +3,7 @@ import io
 import json
 
 from django.contrib.sessions.backends.db import SessionStore
+from django.core import serializers
 from django.http import HttpResponse, HttpRequest
 
 # Create your views here.
@@ -22,7 +23,7 @@ def download(request):
             data = fd.read()
         response = HttpResponse(data, content_type='application/octet-stream')
         response['Content-Disposition'] = 'attachment; filename="{0}"'.format(rc.filename)
-        return HttpResponse(json.dumps({}))
+        return response
     except Exception as er:
         print(er.__class__, er)
         print(request.body)
@@ -102,7 +103,10 @@ def view_course(request):
                 print(c)
                 courses.append(c)
         elif int(s["type"]) == 2:
-            courses = Course.objects.filter(teacherid=int(s["ID"])).values()
+            for course in Course.objects.filter(teacherid=int(s["ID"])).values():
+                course["endday"] = course["endday"].strftime("%Y-%m-%d-%H")
+                course["startday"] = course["startday"].strftime("%Y-%m-%d-%H")
+                courses.append(course)
     except Exception as er:
         print(er.__class__, er)
         print(request.body)
@@ -119,10 +123,8 @@ def view_course_source(request):
         s = SessionStore(session_key=key)
         s.set_expiry(160)
         s.save()
-        rcs = Resource.objects.filter(cid=int(data["cID"])).values()
-        return HttpResponse(json.dumps(rcs, skipkeys=True))
+        rcs = serializers.serialize("json", Resource.objects.filter(cid=int(data["cID"])))
+        return HttpResponse(rcs)
     except Exception as er:
         print(er.__class__, er)
-        print(request.body)
-        print(rcs)
         return HttpResponse("{}")
