@@ -1,104 +1,124 @@
 <!doctype html>
 <html>
+
 <head>
 	<meta charset="UTF-8">
 	<title>登录</title>
-	<meta name="keywords" content="登录"/>
-	<meta name="description" content="用户可以在此页面登录系统。"/>
-	<meta name="author" content="ljc"/>
-	<meta name="robots" content="all"/>
+	<meta name="keywords" content="登录" />
+	<meta name="description" content="用户可以在此页面登录系统。" />
+	<meta name="author" content="ljc" />
+	<meta name="robots" content="all" />
 
 	<link href="/bootstrapdist/css/bootstrap.min.css" rel="stylesheet">
 	<style type="text/css">
-		body
-	{
-		font-family: "Microsoft YaHei",微软雅黑,"Microsoft JhengHei",华文细黑,STHeiti,MingLiu;
-	}
-	img.logojpg{
-		height: 100px;
-	}
-	div.firstPart{
-		height: 5px;
-		width: 70%;
-		margin-top: 10px;
-		background-color: #4286d8;
-	}
-	div.anotherline{
-		margin-left: 400px;
-		background-color: gray;
-		height: 3px;
-	}
-	div div.row.ljc
-	{
-		height: 600px;
-	}
-	div div.row.ljc div.left
-	{
-		height: 600px;
-	}
-	div div div div.thumbnail
-	{
-		width: 730px;
-	}
-	div div.row.ljc div div img
-	{
-		width: 730px;
-		height: 600px;
-	}
-	#idNumber,#password
-	{
-		height: 40px;
-		width: 200px;
-	}
-	div div div div p
-	{
-		font-size: large;
-	}
-	.login
-	{
-		height: 40px;
-		width: 160px;
-		font-size: large;
-		background-color: #f98f27;
-	}
-	div div div div.caption a
-	{
-		font-size: small;
-	}
-	div div.right
-	{
-		border-left-color: #999 !important;
-		border-left: 1px solid;
-		padding-left: 50px;
-	}
-	div.lastPart{
-		height: 5px;
-		margin-top: 50px;
-		width: 70%;
-		background-color: #4286d8;
-	}
-	div.footer{
-		text-align: center;
-
-	}
-	p.allRights{
-		margin-top: 10px;
-	}
-	div.container.ljc.last{
-		margin-top: 10px;
+		body {
+			font-family: "Microsoft YaHei", 微软雅黑, "Microsoft JhengHei", 华文细黑, STHeiti, MingLiu;
+		}
 		
-	}
-	
-</style>
-<script type="text/javascript" src="/jquery.min.js"></script>
-<script type="text/javascript">
-	$(document).ready(function(){
-  $("#btn3").click(function(){
-    alert($("#idNumber").val());
-  });
-});
-</script>
+		img.logojpg {
+			height: 100px;
+		}
+		
+		div.firstPart {
+			height: 5px;
+			width: 70%;
+			margin-top: 10px;
+			background-color: #4286d8;
+		}
+		
+		div.anotherline {
+			margin-left: 400px;
+			background-color: gray;
+			height: 3px;
+		}
+		
+		div div.row.ljc {
+			height: 600px;
+		}
+		
+		div div.row.ljc div.left {
+			height: 600px;
+		}
+		
+		div div div div.thumbnail {
+			width: 730px;
+		}
+		
+		div div.row.ljc div div img {
+			width: 730px;
+			height: 600px;
+		}
+		
+		#idNumber,
+		#password {
+			height: 40px;
+			width: 200px;
+		}
+		
+		div div div div p {
+			font-size: large;
+		}
+		
+		.login {
+			height: 40px;
+			width: 160px;
+			font-size: large;
+			background-color: #f98f27;
+		}
+		
+		div div div div.caption a {
+			font-size: small;
+		}
+		
+		div div.right {
+			border-left-color: #999 !important;
+			border-left: 1px solid;
+			padding-left: 50px;
+		}
+		
+		div.lastPart {
+			height: 5px;
+			margin-top: 50px;
+			width: 70%;
+			background-color: #4286d8;
+		}
+		
+		div.footer {
+			text-align: center;
+		}
+		
+		p.allRights {
+			margin-top: 10px;
+		}
+		
+		div.container.ljc.last {
+			margin-top: 10px;
+		}
+	</style>
+	<script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+	<script>
+		function UserLogin(i) {
+			$(document).ready(function() {
+				var UserLogin = {
+					"type": i,
+					"ID": $("#idNumber").val(),
+					"Password": $("#password").val(),
+				};
+				var datastring = JSON.stringify(UserLogin);
+				$.post("/login", datastring, function(data) {
+					if (data) {
+						sessionStorage.setItem('usertype',i);
+						sessionStorage.setItem('key', JSON.parse(data).key);
+						sessionStorage.setItem('username',eval("'"+JSON.parse(data).name+"'") );
+						window.location.href = "/eduadmin/personalCenter.html";
+					} else alert("错误的用户名或密码！")
+				})
+
+			})
+		}
+	</script>
 </head>
+
 <body>
 	<div class="logo">
 		<img class="logojpg" src="images/logo.jpg"></div>
@@ -107,8 +127,8 @@
 	<div class="anotherline"></div>
 	<br>
 	<br>
-	<div class="container ljc" >
-		<div class="row ljc" >
+	<div class="container ljc">
+		<div class="row ljc">
 			<div class="col-xs-12 col-md-8 left">
 				<div class="thumbnail">
 					<div id="myCarousel" class="carousel slide">
@@ -128,10 +148,8 @@
 								<img src="images/slide3.jpg" alt="Third slide"></div>
 						</div>
 						<!-- 轮播（Carousel）导航 -->
-						<a class="carousel-control left" href="#myCarousel" 
-      data-slide="prev">&lsaquo;</a>
-						<a class="carousel-control right" href="#myCarousel" 
-      data-slide="next">&rsaquo;</a>
+						<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+						<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
 					</div>
 				</div>
 			</div>
@@ -142,11 +160,13 @@
 					<br>
 					<p>
 						账号：&nbsp;&nbsp;&nbsp;&nbsp;
-						<input id="idNumber" type="text"></p>
+						<input id="idNumber" type="text">
+					</p>
 					<br>
 					<p>
 						密码：&nbsp;&nbsp;&nbsp;&nbsp;
-						<input id="password" type="password"></p>
+						<input id="password" type="password">
+					</p>
 					<p>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<a href="">忘记密码？</a>
@@ -160,28 +180,26 @@
 					<br>
 					<p class="small">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-						&nbsp;&nbsp;&nbsp;&nbsp;
-						<input id="btn1" class="login" type="button" value="教务登录"></button>
+						<span class="glyphicon glyphicon-user" aria-hidden="true"></span> &nbsp;&nbsp;&nbsp;&nbsp;
+						<input id="btn1" class="login" type="button" value="教务登录" />
 					</p>
 					<br>
 					<p class="small">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-						&nbsp;&nbsp;&nbsp;&nbsp;
-						<input id="btn2" class="login" type="button" value="教师登录"></button>
+						<span class="glyphicon glyphicon-user" aria-hidden="true"></span> &nbsp;&nbsp;&nbsp;&nbsp;
+						<input id="btn2" class="login" type="button" value="教师登录" onclick="UserLogin(2)" />
 					</p>
 					<br>
 					<p class="small">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-						&nbsp;&nbsp;&nbsp;&nbsp;
-						<input id="btn3" class="login" type="button" value="学生登录"></button>
+						<span class="glyphicon glyphicon-user" aria-hidden="true"></span> &nbsp;&nbsp;&nbsp;&nbsp;
+						<input id="btn3" class="login" type="button" value="学生登录" onclick="UserLogin(3)" />
 					</p>
 					<br>
 					<br>
 					<br>
-					<br></div>
+					<br>
+				</div>
 			</div>
 		</div>
 
@@ -189,7 +207,7 @@
 	<div class="footer">
 		<div class="lastPart"></div>
 		<div class="anotherline"></div>
-		<div class="container ljc last" >
+		<div class="container ljc last">
 			<div class="row">
 				<div class="col-xs-4">
 					<a>关于我们</a>
@@ -215,13 +233,14 @@
 		</div>
 
 		<p class="allRights">
-			版权所有@北京航空航天大学软件学院二元一次方程组，保留一切权利  地址：北京市海淀区学院路37号 邮编：100191 电话：18811055530
+			版权所有@北京航空航天大学软件学院二元一次方程组，保留一切权利 地址：北京市海淀区学院路37号 邮编：100191 电话：18811055530
 		</p>
 	</div>
 
 </body>
 
-	<script language="javascript" type="text/javascript" src="/jquery.min.js"></script>
-	<script src="/bootstrapdist/js/bootstrap.min.js"></script>
+<script language="javascript" type="text/javascript" src="/jquery.min.js"></script>
+<script src="/bootstrapdist/js/bootstrap.min.js"></script>
 </body>
+
 </html>

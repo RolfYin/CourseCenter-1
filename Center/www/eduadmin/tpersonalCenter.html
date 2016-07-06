@@ -3,9 +3,9 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>团队中心</title>
-	<meta name="keywords" content="团队中心" />
-	<meta name="description" content="团队中心。" />
+	<title>教师个人中心</title>
+	<meta name="keywords" content="教师个人中心" />
+	<meta name="description" content="我的中心。" />
 	<meta name="author" content="ljc" />
 	<meta name="robots" content="all" />
 
@@ -81,7 +81,7 @@
 			color: blue;
 		}
 		
-		p.teamInfo {
+		p.personalInfo {
 			font-size: 28px;
 		}
 		
@@ -113,17 +113,12 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$("#myCourses").click(function() {
-				window.location.href = "/eduadmin/myCourses.html";
+				window.location.href = "/eduadmin/tmyCourses.html";
 			});
 			$("#myTeams").click(function() {
-				window.location.href = "/eduadmin/myTeams.html";
+				window.location.href = "/eduadmin/tmyTeams.html";
 			});
-			$("#personalCenter").click(function() {
-				window.location.href = "/eduadmin/personalCenter.html";
-			});
-			$("#apply").click(function() {
-				alert("您已成功发送申请！");
-			});
+
 
 		});
 	</script>
@@ -132,7 +127,7 @@
 <body>
 	<p class="welcome">
 		您好，
-		<span class="stuName">李甲辰</span> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+		<span class="stuName">林广艳</span> &nbsp;&nbsp;老师&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
 		<a href="/eduadmin/login.html">登出</a>
 	</p>
 	<div class="logo">
@@ -148,7 +143,7 @@
 					<p id="myCourses">我的课程</p>
 				</li>
 				<li>
-					<p id="personalCenter">个人中心</p>
+					<p id="personalCenter" class="active">个人中心</p>
 				</li>
 				<li>
 					<p id="myTeams">我的团队</p>
@@ -163,12 +158,15 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12 col-md-12">
-				<p class="teamInfo">团队信息</p>
-				<p>团队名称：<span class="teamName">伏虎队</span></p>
-				<p>团队负责人：<span class="teamMaster">何博</span></p>
-				<p>团队负责人联系方式：<span class="contact">18811055530</span></p>
-				<p>团队介绍：<span class="teamIntro">我们这个团队就是为了看小说来的，我们要学习如何伏虎以及如何打豆豆。这是一个光荣而又艰巨的任务，大会vfhauicdys啊有点贵打啊打啊多久发货就卡的法国的空间噶大概我们一定好好努力！</span></p>
-				<p><a id="apply" href="#">申请加入该团队</a></p>
+				<p class="personalInfo">个人信息</p>
+				<p>姓名：<span class="tecName">林广艳</span></p>
+				<p>性别：<span class="sex">女</span></p>
+				<p>教工号：<span class="tecNumber">21073174</span></p>
+				<p>学院：<span class="college">软件学院</span></p>
+				<p>手机号码：<span class="phoneNumber">18811055530</span></p>
+				<P>E-mail:&nbsp;&nbsp;&nbsp;&nbsp;<span class="email">lingy@buaa.edu.cn</span></P>
+				<p>籍贯：<span class="from">天津</span></p>
+				<p><a href="">修改密码？</a></p>
 			</div>
 		</div>
 	</div>

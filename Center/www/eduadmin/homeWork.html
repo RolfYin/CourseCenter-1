@@ -3,9 +3,9 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>团队中心</title>
-	<meta name="keywords" content="团队中心" />
-	<meta name="description" content="团队中心。" />
+	<title>课程作业</title>
+	<meta name="keywords" content="课程作业 所有课程 我的课程" />
+	<meta name="description" content="我的课程作业。" />
 	<meta name="author" content="ljc" />
 	<meta name="robots" content="all" />
 
@@ -70,23 +70,37 @@
 		}
 		
 		#menu li p:hover {
-			color: black;
+			color: red;
 		}
 		
 		#menu li p.active:hover {
 			color: red;
 		}
 		
-		.blue {
+		p.workName:hover {
 			color: blue;
 		}
 		
-		p.teamInfo {
-			font-size: 28px;
+		p.courseCenter:hover,
+		p.courseSource:hover {
+			color: red;
 		}
 		
-		div.col-xs-12.col-md-12 {
+		p.red {
+			color: red;
+		}
+		
+		div div.course {
 			font-size: 20px;
+		}
+		
+		div div div div.col-xs-12.col-md-2.left {
+			height: 500px;
+			font-size: 20px;
+		}
+		
+		div div div div.col-xs-12.right p {
+			margin: 0px 0px 15px 0px;
 		}
 		
 		div.lastPart {
@@ -98,7 +112,6 @@
 		
 		div.footer {
 			text-align: center;
-			margin-top: 200px;
 		}
 		
 		p.allRights {
@@ -115,16 +128,21 @@
 			$("#myCourses").click(function() {
 				window.location.href = "/eduadmin/myCourses.html";
 			});
-			$("#myTeams").click(function() {
-				window.location.href = "/eduadmin/myTeams.html";
+			$(".courseSource").click(function() {
+				window.location.href = "/eduadmin/courseSource.html";
+			});
+			$(".courseWorks").click(function() {
+				window.location.href = "/eduadmin/courseWorks.html";
+			});
+			$(".courseCenter").click(function() {
+				window.location.href = "/eduadmin/courseCenter.html";
 			});
 			$("#personalCenter").click(function() {
 				window.location.href = "/eduadmin/personalCenter.html";
 			});
-			$("#apply").click(function() {
-				alert("您已成功发送申请！");
+			$("#myTeams").click(function() {
+				window.location.href = "/eduadmin/myTeams.html";
 			});
-
 		});
 	</script>
 </head>
@@ -161,18 +179,22 @@
 		</div>
 	</div>
 	<div class="container">
-		<div class="row">
-			<div class="col-xs-12 col-md-12">
-				<p class="teamInfo">团队信息</p>
-				<p>团队名称：<span class="teamName">伏虎队</span></p>
-				<p>团队负责人：<span class="teamMaster">何博</span></p>
-				<p>团队负责人联系方式：<span class="contact">18811055530</span></p>
-				<p>团队介绍：<span class="teamIntro">我们这个团队就是为了看小说来的，我们要学习如何伏虎以及如何打豆豆。这是一个光荣而又艰巨的任务，大会vfhauicdys啊有点贵打啊打啊多久发货就卡的法国的空间噶大概我们一定好好努力！</span></p>
-				<p><a id="apply" href="#">申请加入该团队</a></p>
+		<div class="course">
+			<div class="row">
+				<div class="col-xs-12 col-md-2 left">
+					<p class="courseCenter">软件工程过程</p>
+					<p class="red courseWorks">课程作业</p>
+					<P class="courseSource">课程资源</P>
+				</div>
+				<div class="col-xs-12 col-md-8 right">
+					<p>作业描述：</p>
+					<p id="workDes">7月4日，网上流传的截图信息显示，百度已对刘超参与外部讲演的不当言论和内外部影响进行联合调查，刘超未事先向公司报备参会信息，同时其行为及演讲内容给公司品牌造成严重影响，百度已决定将刘超从百度管理团队除名。</p>
+					<p id="workFile"><a href="">作业附件1</a></p>
+				</div>
+				
 			</div>
 		</div>
 	</div>
-
 
 	<div class="footer">
 		<div class="lastPart"></div>

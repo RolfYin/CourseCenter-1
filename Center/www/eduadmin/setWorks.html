@@ -3,9 +3,9 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>团队中心</title>
-	<meta name="keywords" content="团队中心" />
-	<meta name="description" content="团队中心。" />
+	<title>布置作业</title>
+	<meta name="keywords" content="课程作业 所有课程 我的课程" />
+	<meta name="description" content="布置课程作业。" />
 	<meta name="author" content="ljc" />
 	<meta name="robots" content="all" />
 
@@ -70,23 +70,43 @@
 		}
 		
 		#menu li p:hover {
-			color: black;
+			color: red;
 		}
 		
 		#menu li p.active:hover {
 			color: red;
 		}
 		
-		.blue {
+		p.workName:hover {
 			color: blue;
 		}
 		
-		p.teamInfo {
-			font-size: 28px;
+		p.courseCenter:hover,
+		p.courseSource:hover {
+			color: red;
 		}
 		
-		div.col-xs-12.col-md-12 {
+		p.red {
+			color: red;
+		}
+		
+		#setNewWork {
+			width: 200px;
+			background-color: orange;
+			margin-left: 50px;
+		}
+		
+		div div.course {
 			font-size: 20px;
+		}
+		
+		div div div div.col-xs-12.col-md-2.left {
+			height: 500px;
+			font-size: 20px;
+		}
+		
+		div div div div.col-xs-12.right p {
+			margin: 0px 0px 15px 0px;
 		}
 		
 		div.lastPart {
@@ -98,7 +118,6 @@
 		
 		div.footer {
 			text-align: center;
-			margin-top: 200px;
 		}
 		
 		p.allRights {
@@ -113,18 +132,23 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$("#myCourses").click(function() {
-				window.location.href = "/eduadmin/myCourses.html";
+				window.location.href = "/eduadmin/tmyCourses.html";
 			});
-			$("#myTeams").click(function() {
-				window.location.href = "/eduadmin/myTeams.html";
+			$(".courseSource").click(function() {
+				window.location.href = "/eduadmin/upload.html";
+			});
+			$(".courseCenter").click(function() {
+				window.location.href = "/eduadmin/tcourseCenter.html";
 			});
 			$("#personalCenter").click(function() {
 				window.location.href = "/eduadmin/personalCenter.html";
 			});
-			$("#apply").click(function() {
-				alert("您已成功发送申请！");
+			$("#myTeams").click(function() {
+				window.location.href = "/eduadmin/tmyTeams.html";
 			});
-
+			$("#setNewWork").click(function() {
+				window.location.href = "/eduadmin/newWork.html";
+			});
 		});
 	</script>
 </head>
@@ -132,7 +156,7 @@
 <body>
 	<p class="welcome">
 		您好，
-		<span class="stuName">李甲辰</span> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+		<span class="stuName">林广艳</span> &nbsp;&nbsp;老师&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
 		<a href="/eduadmin/login.html">登出</a>
 	</p>
 	<div class="logo">
@@ -161,18 +185,68 @@
 		</div>
 	</div>
 	<div class="container">
-		<div class="row">
-			<div class="col-xs-12 col-md-12">
-				<p class="teamInfo">团队信息</p>
-				<p>团队名称：<span class="teamName">伏虎队</span></p>
-				<p>团队负责人：<span class="teamMaster">何博</span></p>
-				<p>团队负责人联系方式：<span class="contact">18811055530</span></p>
-				<p>团队介绍：<span class="teamIntro">我们这个团队就是为了看小说来的，我们要学习如何伏虎以及如何打豆豆。这是一个光荣而又艰巨的任务，大会vfhauicdys啊有点贵打啊打啊多久发货就卡的法国的空间噶大概我们一定好好努力！</span></p>
-				<p><a id="apply" href="#">申请加入该团队</a></p>
+		<div class="course">
+			<div class="row">
+				<div class="col-xs-12 col-md-2 left">
+					<p class="courseCenter">软件工程过程</p>
+					<p class="red">布置作业</p>
+					<P class="courseSource">上传资源</P>
+				</div>
+				<div class="col-xs-12 col-md-6 right">
+					<p>作业名称：</p>
+					<ol>
+						<li>
+							<p class="workName">用户故事提交</p>
+						</li>
+						<li>
+							<p class="workName">版本发布计划</p>
+						</li>
+						<li>
+							<p class="workName">用户故事提交</p>
+						</li>
+						<li>
+							<p class="workName">版本发布计划</p>
+						</li>
+						<li>
+							<p class="workName">用户故事提交</p>
+						</li>
+						<li>
+							<p class="workName">版本发布计划</p>
+						</li>
+					</ol>
+					<p>
+						<button id="setNewWork">布置新的作业</button>
+					</p>
+
+				</div>
+				<div class="col-xs-12 col-md-2 right">
+
+					<p>状态：</p>
+					<ul>
+						<li>
+							<p>进行中</p>
+						</li>
+						<li>
+							<p>已截止</p>
+						</li>
+						<li>
+							<p>进行中</p>
+						</li>
+						<li>
+							<p>已截止</p>
+						</li>
+						<li>
+							<p>进行中</p>
+						</li>
+						<li>
+							<p>已截止</p>
+						</li>
+					</ul>
+				</div>
+
 			</div>
 		</div>
 	</div>
-
 
 	<div class="footer">
 		<div class="lastPart"></div>

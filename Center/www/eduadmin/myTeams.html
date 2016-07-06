@@ -1,52 +1,60 @@
 <!doctype html>
 <html>
+
 <head>
 	<meta charset="UTF-8">
 	<title>我的团队</title>
-	<meta name="keywords" content="我的团队 所有课程 我的课程"/>
-	<meta name="description" content="我的团队。"/>
-	<meta name="author" content="ljc"/>
-	<meta name="robots" content="all"/>
+	<meta name="keywords" content="我的团队 所有课程 我的课程" />
+	<meta name="description" content="我的团队。" />
+	<meta name="author" content="ljc" />
+	<meta name="robots" content="all" />
 
 	<link href="/bootstrapdist/css/bootstrap.min.css" rel="stylesheet">
 	<style type="text/css">
-	body
-	{
-		font-family: "Microsoft YaHei",微软雅黑,"Microsoft JhengHei",华文细黑,STHeiti,MingLiu;
-	}
-	p.welcome{
-		position: absolute;
-		top: 80px;
-		left: 1000px;
-		font-size: 20px;
-	}
-	img.logojpg{
-		height: 100px;
-	}
-	div.firstPart{
-		height: 5px;
-		width: 70%;
-		margin-top: 10px;
-		background-color: #4286d8;
-	}
-	div.anotherline{
-		margin-left: 400px;
-		background-color: gray;
-		height: 3px;
-	}
-	div#nav{
-		margin-left: 400px;
-	}
-	ul.menu{
+		body {
+			font-family: "Microsoft YaHei", 微软雅黑, "Microsoft JhengHei", 华文细黑, STHeiti, MingLiu;
+		}
+		
+		p.welcome {
+			position: absolute;
+			top: 80px;
+			left: 1000px;
+			font-size: 20px;
+		}
+		
+		img.logojpg {
+			height: 100px;
+		}
+		
+		div.firstPart {
+			height: 5px;
+			width: 70%;
+			margin-top: 10px;
+			background-color: #4286d8;
+		}
+		
+		div.anotherline {
+			margin-left: 400px;
+			background-color: gray;
+			height: 3px;
+		}
+		
+		div#nav {
+			margin-left: 400px;
+		}
+		
+		ul.menu {
 			float: left;
 			padding-left: 0px;
 			margin: 0 0 0 58px;
 		}
-	#menu li{
+		
+		#menu li {
 			display: inline-block;
 			margin: 0 15px 0 15px;
 		}
-		#menu>li p{
+		
+		#menu>li p {
 			color: gray;
 			text-decoration: none;
 			font-size: 24px;
@@ -54,86 +62,95 @@
 			letter-spacing: 2px;
 			border-bottom: solid 2px transparent;
 		}
-		#menu li p.active{
+		
+		#menu li p.active {
 			color: red;
 			border-bottom: solid 2px;
 			border-bottom-color: red;
 		}
-		#menu li p:hover{
+		
+		#menu li p:hover {
 			color: black;
 		}
-		#menu li p.active:hover{
+		
+		#menu li p.active:hover {
 			color: red;
 		}
-	
-	span.teamName1:hover{
-		color: blue;
-	}
-	span.teamName2:hover{
-		color: orange;
-	}
-	div.allTeams{
-		font-size: 20px;
-		margin-top: 50px;
-	}
-	div.myTeams{
-		font-size: 20px;
 		
-	}
-	.blue{
-		color: blue;
-	}
-	div.col-xs-12.col-md-4{
-		margin:5px 0px 5px 0px;
-	}
-	div.lastPart{
-		height: 5px;
-		margin-top: 50px;
-		width: 70%;
-		background-color: #4286d8;
-	}
-	div.footer{
-		text-align: center;
-
-	}
-	p.allRights{
-		margin-top: 10px;
-	}
-	div.container.ljc.last{
-		margin-top: 10px;
-	}
-	
-</style>
+		span.teamName1:hover {
+			color: blue;
+		}
+		
+		span.teamName2:hover {
+			color: orange;
+		}
+		
+		div.allTeams {
+			font-size: 20px;
+			margin-top: 50px;
+		}
+		
+		div.myTeams {
+			font-size: 20px;
+		}
+		
+		.blue {
+			color: blue;
+		}
+		
+		div.col-xs-12.col-md-4 {
+			margin: 5px 0px 5px 0px;
+		}
+		
+		div.lastPart {
+			height: 5px;
+			margin-top: 50px;
+			width: 70%;
+			background-color: #4286d8;
+		}
+		
+		div.footer {
+			text-align: center;
+		}
+		
+		p.allRights {
+			margin-top: 10px;
+		}
+		
+		div.container.ljc.last {
+			margin-top: 10px;
+		}
+	</style>
 	<script type="text/javascript" src="/jquery.min.js"></script>
 	<script type="text/javascript">
-	$(document).ready(function(){
-    $(".courseName").click(function(){
-    window.location.href="/eduadmin/courseCenter.html";
-  });
-    $("#personalCenter").click(function(){
-    window.location.href="/eduadmin/personalCenter.html";
-  });
-    $("#myCourses").click(function(){
-    window.location.href="/eduadmin/myCourses.html";
-  });
-    $("#myTeams").click(function(){
-    window.location.href="/eduadmin/myTeams.html";
-  });
-    $(".teamName1").click(function(){
-    window.location.href="/eduadmin/teamCenter1.html";
-  });
-    $(".teamName2").click(function(){
-    window.location.href="/eduadmin/teamCenter2.html";
-  });
- 	
-});
+		$(document).ready(function() {
+			$(".courseName").click(function() {
+				window.location.href = "/eduadmin/courseCenter.html";
+			});
+			$("#personalCenter").click(function() {
+				window.location.href = "/eduadmin/personalCenter.html";
+			});
+			$("#myCourses").click(function() {
+				window.location.href = "/eduadmin/myCourses.html";
+			});
+			$("#myTeams").click(function() {
+				window.location.href = "/eduadmin/myTeams.html";
+			});
+			$(".teamName1").click(function() {
+				window.location.href = "/eduadmin/teamCenter1.html";
+			});
+			$(".teamName2").click(function() {
+				window.location.href = "/eduadmin/teamCenter2.html";
+			});
+
+		});
 	</script>
 </head>
+
 <body>
 	<p class="welcome">
 		您好，
-		<span class="stuName">李甲辰</span>
-		&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+		<span class="stuName">李甲辰</span> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
 		<a href="/eduadmin/login.html">登出</a>
 	</p>
 	<div class="logo">
@@ -145,23 +162,23 @@
 	<div>
 		<div id="nav">
 			<ul id="menu">
-				<li >
+				<li>
 					<p id="myCourses">我的课程</p>
 				</li>
-				<li >
-					<p id="personalCenter" >个人中心</p>
+				<li>
+					<p id="personalCenter">个人中心</p>
 				</li>
-				<li >
+				<li>
 					<p id="myTeams" class="active">我的团队</p>
 				</li>
-				<li >
+				<li>
 					<p id="messages">我的消息</p>
 				</li>
 
 			</ul>
 		</div>
 	</div>
-
+    <div class="ForJs">
 	<div class="container myTeams">
 		<div class="row">
 			<div class="col-xs-12 col-md-4">
@@ -177,8 +194,7 @@
 			<div class="col-xs-12 col-md-4">
 				<p>
 					(负责人：
-					<span class="teamMaster">李甲辰</span>
-					)
+					<span class="teamMaster">李甲辰</span> )
 				</p>
 			</div>
 		</div>
@@ -196,8 +212,7 @@
 			<div class="col-xs-12 col-md-4">
 				<p>
 					(负责人：
-					<span class="teamMaster">李甲辰</span>
-					)
+					<span class="teamMaster">李甲辰</span> )
 				</p>
 			</div>
 		</div>
@@ -215,8 +230,7 @@
 			<div class="col-xs-12 col-md-4">
 				<p>
 					(负责人：
-					<span class="teamMaster">李甲辰</span>
-					)
+					<span class="teamMaster">李甲辰</span> )
 				</p>
 			</div>
 		</div>
@@ -234,8 +248,7 @@
 			<div class="col-xs-12 col-md-4">
 				<p>
 					(负责人：
-					<span class="teamMaster">李甲辰</span>
-					)
+					<span class="teamMaster">李甲辰</span> )
 				</p>
 			</div>
 		</div>
@@ -253,8 +266,7 @@
 			<div class="col-xs-12 col-md-4">
 				<p>
 					(负责人：
-					<span class="teamMaster">李甲辰</span>
-					)
+					<span class="teamMaster">李甲辰</span> )
 				</p>
 			</div>
 		</div>
@@ -272,8 +284,7 @@
 			<div class="col-xs-12 col-md-4">
 				<p>
 					(负责人：
-					<span class="teamMaster">李甲辰</span>
-					)
+					<span class="teamMaster">李甲辰</span> )
 				</p>
 			</div>
 		</div>
@@ -289,14 +300,13 @@
 			</div>
 			<div class="col-xs-12 col-md-4">
 				<P>
-					<span class="teamName2">降龙队</span>
+					<span class="teamName2">伏虎队</span>
 				</P>
 			</div>
 			<div class="col-xs-12 col-md-4">
 				<p>
 					(负责人：
-					<span class="teamMaster">李甲辰</span>
-					)
+					<span class="teamMaster">何博</span> )
 				</p>
 			</div>
 		</div>
@@ -308,14 +318,13 @@
 			</div>
 			<div class="col-xs-12 col-md-4">
 				<P>
-					<span class="teamName2">降龙队</span>
+					<span class="teamName2">伏虎队</span>
 				</P>
 			</div>
 			<div class="col-xs-12 col-md-4">
 				<p>
 					(负责人：
-					<span class="teamMaster">李甲辰</span>
-					)
+					<span class="teamMaster">何博</span> )
 				</p>
 			</div>
 		</div>
@@ -327,14 +336,13 @@
 			</div>
 			<div class="col-xs-12 col-md-4">
 				<P>
-					<span class="teamName2">降龙队</span>
+					<span class="teamName2">伏虎队</span>
 				</P>
 			</div>
 			<div class="col-xs-12 col-md-4">
 				<p>
 					(负责人：
-					<span class="teamMaster">李甲辰</span>
-					)
+					<span class="teamMaster">何博</span> )
 				</p>
 			</div>
 		</div>
@@ -346,14 +354,13 @@
 			</div>
 			<div class="col-xs-12 col-md-4">
 				<P>
-					<span class="teamName2">降龙队</span>
+					<span class="teamName2">伏虎队</span>
 				</P>
 			</div>
 			<div class="col-xs-12 col-md-4">
 				<p>
 					(负责人：
-					<span class="teamMaster">李甲辰</span>
-					)
+					<span class="teamMaster">何博</span> )
 				</p>
 			</div>
 		</div>
@@ -365,14 +372,13 @@
 			</div>
 			<div class="col-xs-12 col-md-4">
 				<P>
-					<span class="teamName2">降龙队</span>
+					<span class="teamName2">伏虎队</span>
 				</P>
 			</div>
 			<div class="col-xs-12 col-md-4">
 				<p>
 					(负责人：
-					<span class="teamMaster">李甲辰</span>
-					)
+					<span class="teamMaster">何博</span> )
 				</p>
 			</div>
 		</div>
@@ -384,24 +390,23 @@
 			</div>
 			<div class="col-xs-12 col-md-4">
 				<P>
-					<span class="teamName2">降龙队</span>
+					<span class="teamName2">伏虎队</span>
 				</P>
 			</div>
 			<div class="col-xs-12 col-md-4">
 				<p>
 					(负责人：
-					<span class="teamMaster">李甲辰</span>
-					)
+					<span class="teamMaster">何博</span> )
 				</p>
 			</div>
 		</div>
 
 	</div>
-
+    </div>
 	<div class="footer">
 		<div class="lastPart"></div>
 		<div class="anotherline"></div>
-		<div class="container ljc last" >
+		<div class="container ljc last">
 			<div class="row">
 				<div class="col-xs-4">
 					<a>关于我们</a>
@@ -427,13 +432,14 @@
 		</div>
 
 		<p class="allRights">
-			版权所有@北京航空航天大学软件学院二元一次方程组，保留一切权利  地址：北京市海淀区学院路37号 邮编：100191 电话：18811055530
+			版权所有@北京航空航天大学软件学院二元一次方程组，保留一切权利 地址：北京市海淀区学院路37号 邮编：100191 电话：18811055530
 		</p>
 	</div>
 
 </body>
 
-	<script language="javascript" type="text/javascript" src="/jquery.min.js"></script>
-	<script src="/bootstrapdist/js/bootstrap.min.js"></script>
+<script language="javascript" type="text/javascript" src="/jquery.min.js"></script>
+<script src="/bootstrapdist/js/bootstrap.min.js"></script>
 </body>
+
 </html>

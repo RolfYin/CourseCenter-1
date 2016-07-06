@@ -2,14 +2,20 @@
 <html>
 
 <head>
-	<meta charset="UTF-8">
-	<title>团队中心</title>
-	<meta name="keywords" content="团队中心" />
-	<meta name="description" content="团队中心。" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script src="/jquery.min.js" type="text/javascript"></script>
+    
+	<title>布置作业</title>
+	<meta name="keywords" content="课程作业 所有课程 我的课程" />
+	<meta name="description" content="布置课程作业。" />
 	<meta name="author" content="ljc" />
 	<meta name="robots" content="all" />
-
+	<script src="/UploadiFive/jquery.uploadifive.js" type="text/javascript"></script>
+	<link rel="stylesheet" type="text/css" href="/UploadiFive/uploadifive.css">
+	<script src="/bootstrapdist/js/bootstrap.min.js"></script>
 	<link href="/bootstrapdist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="/UploadiFive/jquery.uploadifive.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="/UploadiFive/uploadifive.css">
 	<style type="text/css">
 		body {
 			font-family: "Microsoft YaHei", 微软雅黑, "Microsoft JhengHei", 华文细黑, STHeiti, MingLiu;
@@ -70,22 +76,41 @@
 		}
 		
 		#menu li p:hover {
-			color: black;
+			color: red;
 		}
 		
 		#menu li p.active:hover {
 			color: red;
 		}
 		
-		.blue {
+		p.workName:hover {
 			color: blue;
 		}
 		
-		p.teamInfo {
-			font-size: 28px;
+		p.courseCenter:hover,
+		p.courseSource:hover {
+			color: red;
 		}
 		
-		div.col-xs-12.col-md-12 {
+		p.red {
+			color: red;
+		}
+		
+		div div.course {
+			font-size: 20px;
+		}
+		
+		div div div div.col-xs-2.col-md-2.left {
+			height: 500px;
+			font-size: 20px;
+		}
+		
+		div div div div.col-xs-8.right p {
+			margin: 0px 0px 5px 0px;
+		}
+		
+		#workDes {
+			width: 800px;
 			font-size: 20px;
 		}
 		
@@ -98,7 +123,6 @@
 		
 		div.footer {
 			text-align: center;
-			margin-top: 200px;
 		}
 		
 		p.allRights {
@@ -109,22 +133,24 @@
 			margin-top: 10px;
 		}
 	</style>
-	<script type="text/javascript" src="/jquery.min.js"></script>
+
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$("#myCourses").click(function() {
-				window.location.href = "/eduadmin/myCourses.html";
+				window.location.href = "/eduadmin/tmyCourses.html";
 			});
-			$("#myTeams").click(function() {
-				window.location.href = "/eduadmin/myTeams.html";
+			$(".courseSource").click(function() {
+				window.location.href = "/eduadmin/tcourseSource.html";
+			});
+			$(".courseCenter").click(function() {
+				window.location.href = "/eduadmin/tcourseCenter.html";
 			});
 			$("#personalCenter").click(function() {
 				window.location.href = "/eduadmin/personalCenter.html";
 			});
-			$("#apply").click(function() {
-				alert("您已成功发送申请！");
+			$("#myTeams").click(function() {
+				window.location.href = "/eduadmin/tmyTeams.html";
 			});
-
 		});
 	</script>
 </head>
@@ -132,7 +158,7 @@
 <body>
 	<p class="welcome">
 		您好，
-		<span class="stuName">李甲辰</span> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+		<span class="stuName">林广艳</span> &nbsp;&nbsp;老师&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
 		<a href="/eduadmin/login.html">登出</a>
 	</p>
 	<div class="logo">
@@ -161,18 +187,41 @@
 		</div>
 	</div>
 	<div class="container">
-		<div class="row">
-			<div class="col-xs-12 col-md-12">
-				<p class="teamInfo">团队信息</p>
-				<p>团队名称：<span class="teamName">伏虎队</span></p>
-				<p>团队负责人：<span class="teamMaster">何博</span></p>
-				<p>团队负责人联系方式：<span class="contact">18811055530</span></p>
-				<p>团队介绍：<span class="teamIntro">我们这个团队就是为了看小说来的，我们要学习如何伏虎以及如何打豆豆。这是一个光荣而又艰巨的任务，大会vfhauicdys啊有点贵打啊打啊多久发货就卡的法国的空间噶大概我们一定好好努力！</span></p>
-				<p><a id="apply" href="#">申请加入该团队</a></p>
+		<div class="course">
+			<div class="row">
+				<div class="col-xs-2 col-md-2 left">
+					<p class="courseCenter">软件工程过程</p>
+					<p class="red">布置作业</p>
+					<P class="courseSource">上传资源</P>
+				</div>
+				<div class="col-xs-8 col-md-8">
+					<p>作业描述：</p>
+					<p>
+						<textarea id="workDes" name="content" rows="6">
+							软件开发流程即软件设计思路和方法的一般过程，包括设计软件的功能和实现的算法和方法、软件的总体结构设计和模块设计、编程和调试、程序联调和测试以及编写、提交程序等一系列操作。
+						</textarea>
+					</p>
+					<div>
+						<form>
+							<input id="file_upload" name="file_upload" type="file" multiple="true">
+						</form>
+
+						<script type="text/javascript">
+							$(function() {
+								$('#file_upload').uploadifive({
+									'formData': {
+										"key": "yufeng"
+									},
+									'uploadScript': '/upload/'
+								});
+							});
+						</script>
+					</div>
+				</div>
+
 			</div>
 		</div>
 	</div>
-
 
 	<div class="footer">
 		<div class="lastPart"></div>
@@ -207,10 +256,6 @@
 		</p>
 	</div>
 
-</body>
-
-<script language="javascript" type="text/javascript" src="/jquery.min.js"></script>
-<script src="/bootstrapdist/js/bootstrap.min.js"></script>
 </body>
 
 </html>

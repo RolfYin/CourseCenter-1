@@ -3,9 +3,9 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>团队中心</title>
-	<meta name="keywords" content="团队中心" />
-	<meta name="description" content="团队中心。" />
+	<title>老师课程</title>
+	<meta name="keywords" content="课程 老师课程" />
+	<meta name="description" content="老师课程。" />
 	<meta name="author" content="ljc" />
 	<meta name="robots" content="all" />
 
@@ -77,16 +77,25 @@
 			color: red;
 		}
 		
+		span.courseName:hover {
+			color: blue;
+		}
+		
+		div div div.left {
+			height: 500px;
+			font-size: 20px;
+		}
+		
+		div.myCourses {
+			font-size: 20px;
+		}
+		
 		.blue {
 			color: blue;
 		}
 		
-		p.teamInfo {
-			font-size: 28px;
-		}
-		
-		div.col-xs-12.col-md-12 {
-			font-size: 20px;
+		div.col-xs-4 {
+			margin: 5px 0px 5px 0px;
 		}
 		
 		div.lastPart {
@@ -98,7 +107,6 @@
 		
 		div.footer {
 			text-align: center;
-			margin-top: 200px;
 		}
 		
 		p.allRights {
@@ -112,19 +120,15 @@
 	<script type="text/javascript" src="/jquery.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$("#myCourses").click(function() {
-				window.location.href = "/eduadmin/myCourses.html";
-			});
-			$("#myTeams").click(function() {
-				window.location.href = "/eduadmin/myTeams.html";
+			$(".courseName").click(function() {
+				window.location.href = "/eduadmin/tcourseCenter.html";
 			});
 			$("#personalCenter").click(function() {
-				window.location.href = "/eduadmin/personalCenter.html";
+				window.location.href = "/eduadmin/tpersonalCenter.html";
 			});
-			$("#apply").click(function() {
-				alert("您已成功发送申请！");
+			$("#myTeams").click(function() {
+				window.location.href = "/eduadmin/tmyTeams.html";
 			});
-
 		});
 	</script>
 </head>
@@ -132,7 +136,7 @@
 <body>
 	<p class="welcome">
 		您好，
-		<span class="stuName">李甲辰</span> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+		<span class="stuName">林广艳</span> &nbsp;&nbsp;老师&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
 		<a href="/eduadmin/login.html">登出</a>
 	</p>
 	<div class="logo">
@@ -145,7 +149,7 @@
 		<div id="nav">
 			<ul id="menu">
 				<li>
-					<p id="myCourses">我的课程</p>
+					<p id="myCourses" class="active">我的课程</p>
 				</li>
 				<li>
 					<p id="personalCenter">个人中心</p>
@@ -160,18 +164,65 @@
 			</ul>
 		</div>
 	</div>
-	<div class="container">
+
+	<div class="container myCourses">
 		<div class="row">
-			<div class="col-xs-12 col-md-12">
-				<p class="teamInfo">团队信息</p>
-				<p>团队名称：<span class="teamName">伏虎队</span></p>
-				<p>团队负责人：<span class="teamMaster">何博</span></p>
-				<p>团队负责人联系方式：<span class="contact">18811055530</span></p>
-				<p>团队介绍：<span class="teamIntro">我们这个团队就是为了看小说来的，我们要学习如何伏虎以及如何打豆豆。这是一个光荣而又艰巨的任务，大会vfhauicdys啊有点贵打啊打啊多久发货就卡的法国的空间噶大概我们一定好好努力！</span></p>
-				<p><a id="apply" href="#">申请加入该团队</a></p>
+			<div class="col-xs-4 left">
+				<p>
+					<span class="blue">我的课程</span>
+				</p>
+			</div>
+			<div class="col-xs-4">
+				<P>
+					<span class="courseName">软件工程过程</span>
+				</P>
+				<P>
+					<span class="courseName">软件工程过程</span>
+				</P>
+				<P>
+					<span class="courseName">软件工程过程</span>
+				</P>
+				<P>
+					<span class="courseName">软件工程过程</span>
+				</P>
+				<P>
+					<span class="courseName">软件工程过程</span>
+				</P>
+				<P>
+					<span class="courseName">软件工程过程</span>
+				</P>
+			</div>
+			<div class="col-xs-4">
+				<p>
+					(教师：
+					<span>林广艳</span> )
+				</p>
+				<p>
+					(教师：
+					<span>林广艳</span> )
+				</p>
+				<p>
+					(教师：
+					<span>林广艳</span> )
+				</p>
+				<p>
+					(教师：
+					<span>林广艳</span> )
+				</p>
+				<p>
+					(教师：
+					<span>林广艳</span> )
+				</p>
+				<p>
+					(教师：
+					<span>林广艳</span> )
+				</p>
+
 			</div>
 		</div>
+
 	</div>
+
 
 
 	<div class="footer">

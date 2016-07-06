@@ -3,9 +3,9 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>团队中心</title>
-	<meta name="keywords" content="团队中心" />
-	<meta name="description" content="团队中心。" />
+	<title>课程中心</title>
+	<meta name="keywords" content="课程介绍 所有课程 我的课程" />
+	<meta name="description" content="我的课程中心。" />
 	<meta name="author" content="ljc" />
 	<meta name="robots" content="all" />
 
@@ -70,23 +70,67 @@
 		}
 		
 		#menu li p:hover {
-			color: black;
+			color: red;
 		}
 		
 		#menu li p.active:hover {
 			color: red;
 		}
 		
-		.blue {
+		p.workName:hover {
 			color: blue;
 		}
 		
-		p.teamInfo {
+		p.courseSource:hover,
+		p.courseWorks:hover {
+			color: red;
+		}
+		
+		p.red {
+			color: red;
+		}
+		
+		div.up {
+			border-bottom: 1px solid;
+			padding-bottom: 10px;
+		}
+		
+		div.down {
+			margin-top: 20px;
+		}
+		
+		div div.course {
+			font-size: 20px;
+		}
+		
+		p.courseIntro,
+		p.courseAr {
 			font-size: 28px;
 		}
 		
-		div.col-xs-12.col-md-12 {
+		div div div div.col-xs-12.col-md-2.left {
+			height: 500px;
 			font-size: 20px;
+		}
+		
+		div div div div.col-xs-12.right p {
+			margin: 0px 0px 15px 0px;
+		}
+		
+		#teachAr,
+		#courseInfo {
+			width: 920px;
+			font-size: 20px;
+		}
+		
+		#saveTeachAr {
+			width: 200px;
+			background-color: orange;
+		}
+		
+		#saveCourseInfo {
+			width: 200px;
+			background-color: orange;
 		}
 		
 		div.lastPart {
@@ -98,7 +142,6 @@
 		
 		div.footer {
 			text-align: center;
-			margin-top: 200px;
 		}
 		
 		p.allRights {
@@ -110,20 +153,25 @@
 		}
 	</style>
 	<script type="text/javascript" src="/jquery.min.js"></script>
+
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$("#myCourses").click(function() {
-				window.location.href = "/eduadmin/myCourses.html";
+			$(".courseWorks").click(function() {
+				window.location.href = "/eduadmin/setWorks.html";
 			});
-			$("#myTeams").click(function() {
-				window.location.href = "/eduadmin/myTeams.html";
+			$("#myCourses").click(function() {
+				window.location.href = "/eduadmin/tmyCourses.html";
+			});
+			$(".courseSource").click(function() {
+				window.location.href = "/eduadmin/upload.html";
 			});
 			$("#personalCenter").click(function() {
-				window.location.href = "/eduadmin/personalCenter.html";
+				window.location.href = "/eduadmin/tpersonalCenter.html";
 			});
-			$("#apply").click(function() {
-				alert("您已成功发送申请！");
+			$("#myTeams").click(function() {
+				window.location.href = "/eduadmin/tmyTeams.html";
 			});
+
 
 		});
 	</script>
@@ -132,7 +180,7 @@
 <body>
 	<p class="welcome">
 		您好，
-		<span class="stuName">李甲辰</span> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+		<span class="tecName">林广艳</span> &nbsp;&nbsp;老师&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
 		<a href="/eduadmin/login.html">登出</a>
 	</p>
 	<div class="logo">
@@ -161,18 +209,45 @@
 		</div>
 	</div>
 	<div class="container">
-		<div class="row">
-			<div class="col-xs-12 col-md-12">
-				<p class="teamInfo">团队信息</p>
-				<p>团队名称：<span class="teamName">伏虎队</span></p>
-				<p>团队负责人：<span class="teamMaster">何博</span></p>
-				<p>团队负责人联系方式：<span class="contact">18811055530</span></p>
-				<p>团队介绍：<span class="teamIntro">我们这个团队就是为了看小说来的，我们要学习如何伏虎以及如何打豆豆。这是一个光荣而又艰巨的任务，大会vfhauicdys啊有点贵打啊打啊多久发货就卡的法国的空间噶大概我们一定好好努力！</span></p>
-				<p><a id="apply" href="#">申请加入该团队</a></p>
+		<div class="course">
+			<div class="row">
+				<div class="col-xs-12 col-md-2 left">
+					<p class="red">软件工程过程</p>
+					<p class="courseWorks">布置作业</p>
+					<P class="courseSource">上传资源</P>
+				</div>
+				<div class="col-xs-12 col-md-10 right">
+					<div class="up">
+						<p class="courseIntro">课程介绍</p>
+						<p>课程名称：<span class="courseName">软件工程过程</span></p>
+						<p>任课教师：<span class="teacherName">林广艳</span></p>
+						<p>上课地点：<span class="classPlace">主北-303</span></p>
+						<p>上课周次：第<span class="week1">2</span>周-第<span class="week2">16</span>周</p>
+						<p>上课时间：星期<span class="day">2</span>，第<span class="time">7,8</span>节</p>
+						<p>课程信息：</p>
+						<p>
+							<textarea id="courseInfo" rows="6">
+								软件开发流程即软件设计思路和方法的一般过程，包括设计软件的功能和实现的算法和方法、软件的总体结构设计和模块设计、编程和调试、程序联调和测试以及编写、提交程序等一系列操作。
+							</textarea>
+						</p>
+						<button id="saveCourseInfo">保存并发布</button>
+					</div>
+					<div class="down">
+						<p class="courseAr">课程安排</p>
+
+						<p>
+							<textarea id="teachAr" name="content" rows="6">
+								软件开发流程即软件设计思路和方法的一般过程，包括设计软件的功能和实现的算法和方法、软件的总体结构设计和模块设计、编程和调试、程序联调和测试以及编写、提交程序等一系列操作。
+							</textarea>
+						</p>
+						<button id="saveTeachAr">保存并发布</button>
+
+					</div>
+				</div>
+
 			</div>
 		</div>
 	</div>
-
 
 	<div class="footer">
 		<div class="lastPart"></div>
@@ -211,6 +286,5 @@
 
 <script language="javascript" type="text/javascript" src="/jquery.min.js"></script>
 <script src="/bootstrapdist/js/bootstrap.min.js"></script>
-</body>
 
 </html>
