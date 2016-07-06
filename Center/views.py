@@ -123,8 +123,8 @@ def view_course_source(request):
         s = SessionStore(session_key=key)
         s.set_expiry(160)
         s.save()
-        rcs = serializers.serialize("json", Resource.objects.filter(cid=int(data["cID"])))
-        return HttpResponse(rcs)
+        rcs = Resource.objects.filter(cid=int(data["cID"])).values()
+        return HttpResponse(json.dumps(rcs))
     except Exception as er:
         print(er.__class__, er)
         return HttpResponse("{}")
