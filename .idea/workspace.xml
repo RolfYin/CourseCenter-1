@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="2a5ae824-bd14-413b-bcc9-1ee5d6108ee4" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Center/www/eduadmin/login.html" afterPath="$PROJECT_DIR$/Center/www/eduadmin/login.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/CourseCenter.iml" afterPath="$PROJECT_DIR$/.idea/CourseCenter.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="CourseCenter.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,8 +32,8 @@
             <file leaf-file-name="新建文本文档.html" pinned="false" current-in-tab="false">
               <entry file="file://$PROJECT_DIR$/../新建文本文档.html">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="30">
-                    <caret line="9" column="43" selection-start-line="9" selection-start-column="43" selection-end-line="9" selection-end-column="43" />
+                  <state relative-caret-position="684">
+                    <caret line="36" column="8" selection-start-line="36" selection-start-column="8" selection-end-line="55" selection-end-column="10" />
                     <folding />
                   </state>
                 </provider>
@@ -84,24 +84,42 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="myCourses.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="myCourses.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Center/www/eduadmin/myCourses.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1228">
-              <caret line="139" column="17" selection-start-line="139" selection-start-column="17" selection-end-line="139" selection-end-column="17" />
+            <state relative-caret-position="-666">
+              <caret line="79" column="8" selection-start-line="79" selection-start-column="8" selection-end-line="81" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="personalCenter.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Center/www/eduadmin/personalCenter.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="197">
+              <caret line="237" column="17" selection-start-line="237" selection-start-column="17" selection-end-line="237" selection-end-column="17" />
               <folding>
                 <element signature="n#style#0;n#head#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="e#3432#3590#0#HTML" expanded="false" />
+                <element signature="e#3118#4698#0#HTML" expanded="false" />
+                <element signature="e#3166#3427#0#HTML" expanded="false" />
+                <element signature="e#3474#3737#0#HTML" expanded="false" />
+                <element signature="e#3791#4178#0#HTML" expanded="false" />
+                <element signature="e#4224#4487#0#HTML" expanded="false" />
+                <element signature="e#4729#4887#0#HTML" expanded="false" />
+                <element signature="e#4924#4968#0#HTML" expanded="false" />
+                <element signature="e#5002#5169#0#HTML" expanded="false" />
+                <element signature="e#5203#6222#0#HTML" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="personalCenter.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Center/www/eduadmin/personalCenter.html">
+      <file leaf-file-name="courseCenter.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Center/www/eduadmin/courseCenter.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="119" column="69" selection-start-line="119" selection-start-column="69" selection-end-line="119" selection-end-column="69" />
+            <state relative-caret-position="121">
+              <caret line="92" column="14" selection-start-line="92" selection-start-column="12" selection-end-line="92" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -110,8 +128,18 @@
       <file leaf-file-name="courseSource.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Center/www/eduadmin/courseSource.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="354">
-              <caret line="210" column="0" selection-start-line="210" selection-start-column="0" selection-end-line="210" selection-end-column="0" />
+            <state relative-caret-position="69">
+              <caret line="129" column="0" selection-start-line="129" selection-start-column="0" selection-end-line="143" selection-end-column="15" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="upload.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Center/www/eduadmin/upload.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-57">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -120,7 +148,7 @@
       <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Center/www/eduadmin/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
+            <state relative-caret-position="2109">
               <caret line="111" column="93" selection-start-line="111" selection-start-column="58" selection-end-line="111" selection-end-column="93" />
               <folding />
             </state>
@@ -140,7 +168,7 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CourseCenter/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
+            <state relative-caret-position="361">
               <caret line="22" column="34" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
               <folding />
             </state>
@@ -157,16 +185,16 @@
       <list>
         <option value="$PROJECT_DIR$/CourseCenter/wsgi.py" />
         <option value="$PROJECT_DIR$/CourseCenter/settings.py" />
-        <option value="$PROJECT_DIR$/Center/www/eduadmin/courseSource.html" />
         <option value="$PROJECT_DIR$/Center/www/newWork.html" />
         <option value="$PROJECT_DIR$/../personalCenter.html" />
-        <option value="$PROJECT_DIR$/../新建文本文档.html" />
         <option value="$PROJECT_DIR$/Center/www/eduadmin/myTeams.html" />
         <option value="$PROJECT_DIR$/Center/www/eduadmin/login.html" />
         <option value="$PROJECT_DIR$/CourseCenter/urls.py" />
         <option value="$PROJECT_DIR$/Center/models.py" />
         <option value="$PROJECT_DIR$/Center/www/eduadmin/myCourses.html" />
         <option value="$PROJECT_DIR$/Center/views.py" />
+        <option value="$PROJECT_DIR$/../新建文本文档.html" />
+        <option value="$PROJECT_DIR$/Center/www/eduadmin/courseSource.html" />
         <option value="$PROJECT_DIR$/Center/www/eduadmin/personalCenter.html" />
       </list>
     </option>
@@ -178,8 +206,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-58" />
-    <option name="y" value="43" />
+    <option name="x" value="454" />
+    <option name="y" value="213" />
     <option name="width" value="1370" />
     <option name="height" value="772" />
   </component>
@@ -296,8 +324,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -597,16 +625,16 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-58" y="43" width="1370" height="772" extended-state="0" />
+    <frame x="454" y="213" width="1370" height="772" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24122137" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24503817" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28794992" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29577464" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3267974" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -653,11 +681,21 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="13" />
+      <option name="time" value="16" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/../personalCenter.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#head#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Center/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
@@ -875,14 +913,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../新建文本文档.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="9" column="43" selection-start-line="9" selection-start-column="43" selection-end-line="9" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Center/www/eduadmin/myTeams.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="213">
@@ -891,21 +921,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../personalCenter.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="127" column="19" selection-start-line="127" selection-start-column="19" selection-end-line="127" selection-end-column="19" />
-          <folding>
-            <element signature="n#style#0;n#head#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://F:/python 3.5/Lib/wsgiref/simple_server.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="370">
           <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -917,26 +936,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Center/www/eduadmin/courseSource.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="210" column="0" selection-start-line="210" selection-start-column="0" selection-end-line="210" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CourseCenter/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
+        <state relative-caret-position="361">
           <caret line="22" column="34" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Center/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="171" column="0" selection-start-line="171" selection-start-column="0" selection-end-line="171" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -953,27 +956,85 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Center/www/eduadmin/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
+        <state relative-caret-position="2109">
           <caret line="111" column="93" selection-start-line="111" selection-start-column="58" selection-end-line="111" selection-end-column="93" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Center/www/eduadmin/personalCenter.html">
+    <entry file="file://$PROJECT_DIR$/Center/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="119" column="69" selection-start-line="119" selection-start-column="69" selection-end-line="119" selection-end-column="69" />
+        <state relative-caret-position="146">
+          <caret line="171" column="0" selection-start-line="171" selection-start-column="0" selection-end-line="171" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../新建文本文档.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="684">
+          <caret line="36" column="8" selection-start-line="36" selection-start-column="8" selection-end-line="55" selection-end-column="10" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Center/www/eduadmin/myCourses.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1228">
-          <caret line="139" column="17" selection-start-line="139" selection-start-column="17" selection-end-line="139" selection-end-column="17" />
+        <state relative-caret-position="-666">
+          <caret line="79" column="8" selection-start-line="79" selection-start-column="8" selection-end-line="81" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Center/www/eduadmin/upload.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-57">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Center/www/eduadmin/courseSource.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="129" column="0" selection-start-line="129" selection-start-column="0" selection-end-line="143" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Center/www/eduadmin/courseCenter.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="121">
+          <caret line="92" column="14" selection-start-line="92" selection-start-column="12" selection-end-line="92" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../personalCenter.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="127" column="19" selection-start-line="127" selection-start-column="19" selection-end-line="127" selection-end-column="19" />
           <folding>
             <element signature="n#style#0;n#head#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="e#3432#3590#0#HTML" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Center/www/eduadmin/personalCenter.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="237" column="17" selection-start-line="237" selection-start-column="17" selection-end-line="237" selection-end-column="17" />
+          <folding>
+            <element signature="n#style#0;n#head#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="e#3118#4698#0#HTML" expanded="false" />
+            <element signature="e#3166#3427#0#HTML" expanded="false" />
+            <element signature="e#3474#3737#0#HTML" expanded="false" />
+            <element signature="e#3791#4178#0#HTML" expanded="false" />
+            <element signature="e#4224#4487#0#HTML" expanded="false" />
+            <element signature="e#4729#4887#0#HTML" expanded="false" />
+            <element signature="e#4924#4968#0#HTML" expanded="false" />
+            <element signature="e#5002#5169#0#HTML" expanded="false" />
+            <element signature="e#5203#6222#0#HTML" expanded="false" />
           </folding>
         </state>
       </provider>
