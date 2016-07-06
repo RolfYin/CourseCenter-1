@@ -142,6 +142,7 @@
         }
     </style>
     <script type="text/javascript" src="/jquery.min.js"></script>
+    <script src="/bootstrapdist/js/bootstrap.min.js"></script>
     <script type="text/javascript">
         var Course;var Json;var t;
         $(document).ready(function () {
@@ -231,14 +232,12 @@
        function  SelectResource(c)
         {
             console.log(c);
-            $.post("/view/course_source",JSON.stringify({"key":sessionStorage.getItem("key"),"cID":c}),function (cdata) {
-                if(cdata)
-                {
 
-                    sessionStorage.setItem("resource",eval("'"+cdata+"'"));
+
+                    sessionStorage.setItem("cID",c);
                     window.open("/eduadmin/upload.html");
-                }
-            })
+
+
         }
     </script>
 </head>
@@ -327,8 +326,6 @@
 
 </body>
 
-<script language="javascript" type="text/javascript" src="/jquery.min.js"></script>
-<script src="/bootstrapdist/js/bootstrap.min.js"></script>
-</body>
+
 
 </html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+    <script src="base64.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#login").click(function () {
+
+                sessionStorage.setItem("username", Base64.encode("汤泽卿"));
+                var MyCourse=[{"CourseName":"数据结构","CourseTeacher":"林广艳"}, {"CourseName":"软件工程","CourseTeacher":"吕云翔"}, {"CourseName":"算法设计","CourseTeacher":"宋友"}];
+                sessionStorage.setItem("CourseList",Base64.encode(JSON.stringify(MyCourse)));
+
+                window.location.href = "/Users/REWOL/Desktop/personalCenter.html"
+
+                //alert(datastring);
+            });
+        });
+        function chooseCourse(t)
+        {
+            alert($(t).text());
+        }
+    </script>
+</head>
+
+<body>
+<form>
+    UserName: <input id="user" type="text" name="username" size="30">
+    Password:<input id="pwd" type="text" name="password" size="30">
+    <input type="button" value="login" id="login"/>
+
+    <div class="container">
+		<div class="course">
+			<div class="row">
+				<div class="col-xs-12 col-md-2 left">
+					<p class="red">软件工程过程</p>
+					<p class="courseWorks">课程作业</p>
+					<P class="courseSource">课程资源</P>
+				</div>
+				<div class="col-xs-12 col-md-10 right">
+					<div class="up">
+						<p class="courseIntro">课程介绍</p>
+						<p>课程名称：<span class="courseName">软件工程过程</span></p>
+						<p>任课教师：<span class="teacherName">林广艳</span></p>
+						<p>课程信息：<span class="courseInfo">软件开发流程即软件设计思路和方法的一般过程，包括设计软件的功能和实现的算法和方法、软件的总体结构设计和模块设计、编程和调试、程序联调和测试以及编写、提交程序等一系列操作。</span></p>
+					</div>
+					<div class="down">
+						<p class="courseAr">课程安排</p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</form>
+</body>
+
+</html>
