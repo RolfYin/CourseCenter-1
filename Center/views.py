@@ -1,3 +1,4 @@
+# -encoding=utf-8
 import io
 import json
 
@@ -48,7 +49,7 @@ def upload(request):
         assert isinstance(request.FILES["Filedata"].file, io.BytesIO)
         with open(rc.filepath, "w+b") as fd:
             fd.write(request.FILES["Filedata"].file.read())
-        new_rc = set(Resource.objects.filter(cid=rc.cid).values())-old_rc
+        new_rc = set(Resource.objects.filter(cid=rc.cid).values()) - old_rc
         return HttpResponse(json.dumps(list(new_rc)))
     except Exception as er:
         print(er.__class__, er)
@@ -119,8 +120,9 @@ def view_course_source(request):
         s.set_expiry(160)
         s.save()
         rcs = Resource.objects.filter(cid=int(data["cID"])).values()
-        return HttpResponse(json.dumps(rcs))
+        return HttpResponse(json.dumps(rcs, skipkeys=True))
     except Exception as er:
         print(er.__class__, er)
         print(request.body)
+        print(rcs)
         return HttpResponse("{}")

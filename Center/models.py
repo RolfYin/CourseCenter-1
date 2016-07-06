@@ -139,7 +139,7 @@ class DjangoSession(models.Model):
 
 class Resource(models.Model):
     cid = models.ForeignKey(Course, models.DO_NOTHING, db_column='cID')  # Field name made lowercase.
-    index = models.IntegerField(db_column='Index')  # Field name made lowercase.
+    index = models.IntegerField(db_column='Index',primary_key=True)  # Field name made lowercase.
     filename = models.CharField(db_column='FileName', max_length=45)  # Field name made lowercase.
     filepath = models.CharField(db_column='FilePath', max_length=200)  # Field name made lowercase.
     category = models.CharField(db_column='Category', max_length=45)  # Field name made lowercase.
@@ -162,8 +162,8 @@ class Student(models.Model):
 
 
 class Studentcourse(models.Model):
-    sid = models.ForeignKey(Student, models.DO_NOTHING, db_column='sID')  # Field name made lowercase.
-    cid = models.ForeignKey(Course, models.DO_NOTHING, db_column='cID')  # Field name made lowercase.
+    sid = models.ForeignKey(Student, models.DO_NOTHING, db_column='sID',primary_key=True)  # Field name made lowercase.
+    cid = models.ForeignKey(Course, models.DO_NOTHING, db_column='cID',primary_key=True)  # Field name made lowercase.
 
     class Meta:
         managed = False

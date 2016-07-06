@@ -230,9 +230,11 @@
         }
        function  SelectResource(c)
         {
+
             $.post("/view/course_source",JSON.stringify({"key":sessionStorage.getItem("key"),"cID":c}),function (cdata) {
                 if(cdata)
                 {
+                    alert(cdata);
                     sessionStorage.setItem("resource",eval("'"+cdata+"'"));
                     window.open("/eduadmin/upload.html");
                 }
