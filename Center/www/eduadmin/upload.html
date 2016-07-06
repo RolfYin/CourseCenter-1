@@ -109,7 +109,7 @@
         }
 
         div div div div.col-xs-12.col-md-2.left {
-            height: 500px;
+            height: 300px;
             font-size: 20px;
         }
 
@@ -137,7 +137,10 @@
         }
     </style>
     <script type="text/javascript">
+        var ResourceList;
         $(document).ready(function () {
+
+            InitResourceList();
             $("#myCourses").click(function () {
                 window.location.href = "/eduadmin/tmyCourses.html";
             });
@@ -157,6 +160,24 @@
                 window.location.href = "/eduadmin/newWork.html";
             });
         });
+        function InitResourceList() {
+            $("div.col-xs-12.col-md-6.right").html('<p>资源名称:</p>');
+            $("div.col-xs-12.col-md-2.right").html('<p>上传时间:</p>');
+            $.post('/view/course_source', JSON.stringify({
+                "key": sessionStorage.getItem("key"),
+                "cID": sessionStorage.getItem("cID")
+            }), function (data) {
+                ResourceList = JSON.parse(data);
+
+                for (var i = 0; i < ResourceList.length; i++) {
+                    $("div.col-xs-12.col-md-6.right").append('<p class="workName ' + ResourceList[i].category + '">' + ResourceList[i].filename + '</p>');
+                    $("div.col-xs-12.col-md-2.right").append('<p class="uploadTime">' + ResourceList[i].category + '</p>');
+                }
+            });
+
+
+        }
+
     </script>
 </head>
 
@@ -194,25 +215,28 @@
 <div class="container">
     <div class="course">
         <div class="row">
-            <div class="col-xs-12 col-md-2 left">
+            <div class="col-xs-12 col-md-2">
                 <p class="courseCenter">软件工程过程</p>
                 <p class="setWorks">布置作业</p>
                 <P class="red">上传资源</P>
             </div>
             <div class="col-xs-12 col-md-6 right">
-                <p>作业名称：</p>
-                <p class="workName">用户故事提交</p>
+                <p>资源名称：</p>
 
-                <p class="workName">版本发布计划</p>
 
-                <p class="workName">用户故事提交</p>
+            </div>
 
-                <p class="workName">版本发布计划</p>
 
-                <p class="workName">用户故事提交</p>
+            <div class="col-xs-12 col-md-2 right">
+                <p>上传时间：</p>
 
-                <p class="workName">版本发布计划</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-md-2 left">
 
+            </div>
+            <div class="col-xs-12 col-md-8 right">
                 <p class="orange">添加资源：</p>
                 <input id="file_upload" name="file_upload" type="file" multiple="true">
 
@@ -220,30 +244,37 @@
                     $(function () {
                         $('#file_upload').uploadifive({
                             'formData': {
-                                "key": "yufeng",
-                                "cID": 301
+                                "key": sessionStorage.getItem("key"),
+                                "cID": sessionStorage.getItem("cID"),
                             },
-                            'uploadScript': '/upload'
+                            'uploadScript': '/upload',
+                            'onUploadComplete': function (file, data) {
+
+                                data = JSON.parse(data);
+                                for(var i in data)
+                                {
+                                    $("div.col-xs-12.col-md-6.right").append('<p class="workName ' + data[i].category + '">' + data[i].filename + '</p>');
+                                    $("div.col-xs-12.col-md-2.right").append('<p class="uploadTime '+ data[i].category +'">'  + data[i].category  + '</p>');
+                                }
+                            }
+
 
                         });
                     });
                 </script>
             </div>
+            <script>
+                $(document).ready(function () {
+                    if (sessionStorage.getItem("usertype") != 2) {
+                        $("div.col-xs-12.col-md-8.right").hide();
+                    }
+                    ;
+                });
 
-
-            <div class="col-xs-12 col-md-2 right">
-                <p>上传时间：</p>
-                <p class="uploadTime">2016.07.03 10:00</p>
-                <p class="uploadTime">2016.07.03 10:00</p>
-                <p class="uploadTime">2016.07.03 10:00</p>
-                <p class="uploadTime">2016.07.03 10:00</p>
-                <p class="uploadTime">2016.07.03 10:00</p>
-                <p class="uploadTime">2016.07.03 10:00</p>
-            </div>
+            </script>
         </div>
     </div>
 </div>
-
 
 <div class="footer">
     <div class="lastPart"></div>

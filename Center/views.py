@@ -1,7 +1,7 @@
-# -encoding=utf-8
 import io
 import json
 
+import multiprocessing
 from django.contrib.sessions.backends.db import SessionStore
 from django.core import serializers
 from django.http import HttpResponse, HttpRequest
@@ -30,31 +30,42 @@ def download(request):
         return HttpResponse("{}")
 
 
+rlock = multiprocessing.RLock()
+
+
 def upload(request):
+    global rlock
     assert isinstance(request, HttpRequest)
     try:
-        data = json.loads(request.body.decode())
-        key = data["key"]
+        rlock.acquire()
+        key = request.POST["key"]
         s = SessionStore(session_key=key)
         s.set_expiry(160)
         s.save()
-        filename = request.FILES["Filedata"]
         rc = Resource()
-        rc.cid = int(data["cID"])
+        rc.cid = Course.objects.filter(cid=int(request.POST["cID"]))[0]
+        filename = str(request.FILES["Filedata"])
         rc.filename = filename
-        rc.filepath = "Center/www/uplaod/" + filename
+        rc.filepath = "Center/www/upload/" + filename
         rc.category = "PPT"
-        rc.index = 0
-        rc.save()
-        old_rc = set(Resource.objects.filter(cid=rc.cid).values())
-        assert isinstance(request.FILES["Filedata"].file, io.BytesIO)
+        old = Resource.objects.filter(filename=filename)
+        if len(old) > 0:
+            rc.index = old[0].index
+        else:
+            rc.index = -1
+        old_rc = list(Resource.objects.all().values())
         with open(rc.filepath, "w+b") as fd:
             fd.write(request.FILES["Filedata"].file.read())
-        new_rc = set(Resource.objects.filter(cid=rc.cid).values()) - old_rc
-        return HttpResponse(json.dumps(list(new_rc)))
+        rc.save()
+        new_rc = []
+
+        for rc in list(Resource.objects.all().values()):
+            if rc not in old_rc:
+                new_rc.append(rc)
+        rlock.release()
+        return HttpResponse(json.dumps(new_rc))
     except Exception as er:
         print(er.__class__, er)
-        print(request.body)
         return HttpResponse("[]")
 
 
@@ -111,7 +122,6 @@ def view_course(request):
         print(er.__class__, er)
         print(request.body)
         return HttpResponse("{}")
-
     return HttpResponse(json.dumps(courses))
 
 
@@ -123,8 +133,7 @@ def view_course_source(request):
         s = SessionStore(session_key=key)
         s.set_expiry(160)
         s.save()
-        rcs = Resource.objects.filter(cid=int(data["cID"])).values()
-        return HttpResponse(json.dumps(rcs))
+        return HttpResponse(str(Resource.objects.filter(cid=int(data["cID"])).values()).replace("'", '"'))
     except Exception as er:
         print(er.__class__, er)
         return HttpResponse("{}")
