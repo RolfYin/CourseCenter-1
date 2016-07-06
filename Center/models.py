@@ -79,13 +79,12 @@ class AuthUserUserPermissions(models.Model):
 class Course(models.Model):
     cid = models.IntegerField(db_column='cID', primary_key=True)  # Field name made lowercase.
     cname = models.CharField(db_column='cName', max_length=45)  # Field name made lowercase.
-    descripition = models.CharField(db_column='Descripition', max_length=200, blank=True,
-                                    null=True)  # Field name made lowercase.
-    location = models.CharField(db_column='Location', max_length=45, blank=True,
-                                null=True)  # Field name made lowercase.
+    descripition = models.CharField(db_column='Descripition', max_length=200, blank=True, null=True)  # Field name made lowercase.
+    location = models.CharField(db_column='Location', max_length=45, blank=True, null=True)  # Field name made lowercase.
     startday = models.DateField(db_column='StartDay')  # Field name made lowercase.
     endday = models.DateField(db_column='EndDay')  # Field name made lowercase.
     teacherid = models.ForeignKey('Teacher', models.DO_NOTHING, db_column='teacherID')  # Field name made lowercase.
+    isteam = models.CharField(db_column='IsTeam', max_length=1)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -161,8 +160,8 @@ class Student(models.Model):
 
 
 class Studentcourse(models.Model):
-    sid = models.ForeignKey(Student, models.DO_NOTHING, db_column='sID',primary_key=True)  # Field name made lowercase.
-    cid = models.ForeignKey(Course, models.DO_NOTHING, db_column='cID',primary_key=True)  # Field name made lowercase.
+    sid = models.ForeignKey(Student, models.DO_NOTHING, db_column='sID')  # Field name made lowercase.
+    cid = models.ForeignKey(Course, models.DO_NOTHING, db_column='cID')  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -176,8 +175,7 @@ class Task(models.Model):
     request = models.CharField(db_column='Request', max_length=300, blank=True, null=True)  # Field name made lowercase.
     release = models.DateTimeField(db_column='Release')  # Field name made lowercase.
     deadline = models.DateTimeField(db_column='Deadline')  # Field name made lowercase.
-    attachment = models.CharField(db_column='Attachment', max_length=200, blank=True,
-                                  null=True)  # Field name made lowercase.
+    attachment = models.CharField(db_column='Attachment', max_length=200, blank=True, null=True)  # Field name made lowercase.
     maxgrade = models.FloatField(db_column='MaxGrade')  # Field name made lowercase.
 
     class Meta:
@@ -200,14 +198,34 @@ class Teacher(models.Model):
 class Team(models.Model):
     teamid = models.IntegerField(db_column='teamID', primary_key=True)  # Field name made lowercase.
     teamname = models.CharField(db_column='teamName', max_length=45)  # Field name made lowercase.
-    descripition = models.CharField(db_column='Descripition', max_length=200, blank=True,
-                                    null=True)  # Field name made lowercase.
+    descripition = models.CharField(db_column='Descripition', max_length=200, blank=True, null=True)  # Field name made lowercase.
     leaderid = models.ForeignKey(Student, models.DO_NOTHING, db_column='LeaderID')  # Field name made lowercase.
     maxnumber = models.IntegerField(db_column='maxNumber')  # Field name made lowercase.
 
     class Meta:
         managed = False
         db_table = 'team'
+
+
+class Teamapply(models.Model):
+    tid = models.ForeignKey(Team, models.DO_NOTHING, db_column='tID')  # Field name made lowercase.
+    cid = models.ForeignKey(Course, models.DO_NOTHING, db_column='cID')  # Field name made lowercase.
+    accept = models.CharField(db_column='Accept', max_length=1)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'teamapply'
+        unique_together = (('tid', 'cid'),)
+
+
+class Teamcourse(models.Model):
+    teamid = models.ForeignKey(Team, models.DO_NOTHING, db_column='teamID')  # Field name made lowercase.
+    cid = models.ForeignKey(Course, models.DO_NOTHING, db_column='cID')  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'teamcourse'
+        unique_together = (('teamid', 'cid'),)
 
 
 class Teamjoin(models.Model):
@@ -220,11 +238,24 @@ class Teamjoin(models.Model):
         unique_together = (('teamid', 'sid'),)
 
 
+class Teamsubmit(models.Model):
+    teamid = models.ForeignKey(Teamcourse, models.DO_NOTHING, db_column='teamID')  # Field name made lowercase.
+    cid = models.ForeignKey(Teamcourse, models.DO_NOTHING, db_column='cID')  # Field name made lowercase.
+    taskindex = models.ForeignKey(Task, models.DO_NOTHING, db_column='TaskIndex')  # Field name made lowercase.
+    submittime = models.DateTimeField(db_column='SubmitTime')  # Field name made lowercase.
+    filepath = models.CharField(db_column='FilePath', max_length=200)  # Field name made lowercase.
+    grade = models.FloatField(db_column='Grade', blank=True, null=True)  # Field name made lowercase.
+    comment = models.CharField(db_column='Comment', max_length=200, blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'teamsubmit'
+        unique_together = (('teamid', 'cid', 'taskindex'),)
+
+
 class Worksubmit(models.Model):
-    sid = models.ForeignKey(Studentcourse, models.DO_NOTHING, db_column='sID',
-                            related_name="w_sid")  # Field name made lowercase.
-    cid = models.ForeignKey(Studentcourse, models.DO_NOTHING, db_column='cID',
-                            related_name="w_cid")  # Field name made lowercase.
+    sid = models.ForeignKey(Studentcourse, models.DO_NOTHING, db_column='sID')  # Field name made lowercase.
+    cid = models.ForeignKey(Studentcourse, models.DO_NOTHING, db_column='cID')  # Field name made lowercase.
     taskindex = models.ForeignKey(Task, models.DO_NOTHING, db_column='TaskIndex')  # Field name made lowercase.
     filepath = models.CharField(db_column='FilePath', max_length=200)  # Field name made lowercase.
     submittime = models.DateTimeField(db_column='SubmitTime')  # Field name made lowercase.

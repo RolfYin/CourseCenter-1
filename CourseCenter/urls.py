@@ -24,5 +24,7 @@ urlpatterns = [
     url(r'^login', views.login),
     url(r'^logout', views.logout),
     url(r'^view/course', views.view_course),
+    url(r'^view/course_source', views.view_course),
+
     url(r'^(?P<path>.*\.[\w]*)$', serve),
 ]
