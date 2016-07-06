@@ -1,7 +1,6 @@
 import io
 import json
 
-import datetime
 from django.contrib.sessions.backends.db import SessionStore
 from django.http import HttpResponse, HttpRequest
 
@@ -10,21 +9,51 @@ from Center.models import *
 
 
 def download(request):
-    with open('H:/BaiduYunDownload/31 - Green Bird.flac', "r+b") as fd:
-        data = fd.read()
-    response = HttpResponse(data, content_type='application/octet-stream')
-    response['Content-Disposition'] = 'attachment; filename="31 - Green Bird.flac"'
-    return response
+    assert isinstance(request, HttpRequest)
+    try:
+        data = json.loads(request.body.decode())
+        key = data["key"]
+        s = SessionStore(session_key=key)
+        s.set_expiry(160)
+        s.save()
+        rc = Resource.objects.filter(cid=int(data["cID"]))[0]
+        with open(rc.filepath, "r+b") as fd:
+            data = fd.read()
+        response = HttpResponse(data, content_type='application/octet-stream')
+        response['Content-Disposition'] = 'attachment; filename="{0}"'.format(rc.filename)
+        return HttpResponse(json.dumps({}))
+    except Exception as er:
+        print(er.__class__, er)
+        print(request.body)
+        return HttpResponse("{}")
 
 
 def upload(request):
     assert isinstance(request, HttpRequest)
-    # with open("test.jpg", "w+b") as fd:
-    #     fd.write(request.body)-0
-    assert isinstance(request.FILES["Filedata"].file, io.BytesIO)
-    print(request.FILES["Filedata"])
-    print(request.FILES["Filedata"].file.read())
-    return HttpResponse("OK")
+    try:
+        data = json.loads(request.body.decode())
+        key = data["key"]
+        s = SessionStore(session_key=key)
+        s.set_expiry(160)
+        s.save()
+        filename = request.FILES["Filedata"]
+        rc = Resource()
+        rc.cid = int(data["cID"])
+        rc.filename = filename
+        rc.filepath = "Center/www/uplaod/" + filename
+        rc.category = "PPT"
+        rc.index = 0
+        rc.save()
+        old_rc = set(Resource.objects.filter(cid=rc.cid).values())
+        assert isinstance(request.FILES["Filedata"].file, io.BytesIO)
+        with open(rc.filepath, "w+b") as fd:
+            fd.write(request.FILES["Filedata"].file.read())
+        new_rc = set(Resource.objects.filter(cid=rc.cid).values())-old_rc
+        return HttpResponse(json.dumps(list(new_rc)))
+    except Exception as er:
+        print(er.__class__, er)
+        print(request.body)
+        return HttpResponse("[]")
 
 
 def login(request):
@@ -67,15 +96,31 @@ def view_course(request):
             courses_id = Studentcourse.objects.filter(sid=int(s["ID"]))
             for course_id in courses_id:
                 c = Course.objects.filter(cid=course_id.cid.cid).values()[0]
-                c["endday"]=  c["endday"].strftime("%Y-%m-%d-%H")
+                c["endday"] = c["endday"].strftime("%Y-%m-%d-%H")
                 c["startday"] = c["startday"].strftime("%Y-%m-%d-%H")
                 print(c)
                 courses.append(c)
         elif int(s["type"]) == 2:
             courses = Course.objects.filter(teacherid=int(s["ID"])).values()
     except Exception as er:
-        print(er.__class__,er)
+        print(er.__class__, er)
         print(request.body)
-        return HttpRequest("OO")
+        return HttpResponse("{}")
 
     return HttpResponse(json.dumps(courses))
+
+
+def view_course_source(request):
+    assert isinstance(request, HttpRequest)
+    try:
+        data = json.loads(request.body.decode())
+        key = data["key"]
+        s = SessionStore(session_key=key)
+        s.set_expiry(160)
+        s.save()
+        rcs = Resource.objects.filter(cid=int(data["cID"])).values()
+        return HttpResponse(json.dumps(rcs))
+    except Exception as er:
+        print(er.__class__, er)
+        print(request.body)
+        return HttpResponse("{}")
