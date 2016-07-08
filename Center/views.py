@@ -1,5 +1,6 @@
 import json
 import multiprocessing
+import urllib
 
 from django.contrib.sessions.backends.db import SessionStore
 from django.http import HttpResponse, HttpRequest, HttpResponseRedirect
@@ -24,7 +25,8 @@ def download(request):
         with open(rc.filepath, "r+b") as fd:
             data = fd.read()
         response = HttpResponse(data, content_type='application/octet-stream')
-        response['Content-Disposition'] = "attachment; filename=\"{0}\"".format(rc.filename)
+        response['Content-Disposition'] = "attachment; filename=\"{0}\"".format(
+            urllib.parse.quote(rc.filename, safe='/[]'))
         return response
     except Exception as er:
         print(er.__class__, er)
