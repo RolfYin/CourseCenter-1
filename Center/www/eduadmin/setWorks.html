@@ -2,284 +2,271 @@
 <html>
 
 <head>
-	<meta charset="UTF-8">
-	<title>布置作业</title>
-	<meta name="keywords" content="课程作业 所有课程 我的课程" />
-	<meta name="description" content="布置课程作业。" />
-	<meta name="author" content="ljc" />
-	<meta name="robots" content="all" />
+    <meta charset="UTF-8">
+    <title>布置作业</title>
+    <meta name="keywords" content="课程作业 所有课程 我的课程"/>
+    <meta name="description" content="布置课程作业。"/>
+    <meta name="author" content="ljc"/>
+    <meta name="robots" content="all"/>
 
-	<link href="/bootstrapdist/css/bootstrap.min.css" rel="stylesheet">
-	<style type="text/css">
-		body {
-			font-family: "Microsoft YaHei", 微软雅黑, "Microsoft JhengHei", 华文细黑, STHeiti, MingLiu;
-		}
-		
-		p.welcome {
-			position: absolute;
-			top: 80px;
-			left: 1000px;
-			font-size: 20px;
-		}
-		
-		img.logojpg {
-			height: 100px;
-		}
-		
-		div.firstPart {
-			height: 5px;
-			width: 70%;
-			margin-top: 10px;
-			background-color: #4286d8;
-		}
-		
-		div.anotherline {
-			margin-left: 400px;
-			background-color: gray;
-			height: 3px;
-		}
-		
-		div#nav {
-			margin-left: 400px;
-		}
-		
-		ul.menu {
-			float: left;
-			padding-left: 0px;
-			margin: 0 0 0 58px;
-		}
-		
-		#menu li {
-			display: inline-block;
-			margin: 0 15px 0 15px;
-		}
-		
-		#menu>li p {
-			color: gray;
-			text-decoration: none;
-			font-size: 24px;
-			padding: 0px 8px 4px 8px;
-			letter-spacing: 2px;
-			border-bottom: solid 2px transparent;
-		}
-		
-		#menu li p.active {
-			color: red;
-			border-bottom: solid 2px;
-			border-bottom-color: red;
-		}
-		
-		#menu li p:hover {
-			color: red;
-		}
-		
-		#menu li p.active:hover {
-			color: red;
-		}
-		
-		p.workName:hover {
-			color: blue;
-		}
-		
-		p.courseCenter:hover,
-		p.courseSource:hover {
-			color: red;
-		}
-		
-		p.red {
-			color: red;
-		}
-		
-		#setNewWork {
-			width: 200px;
-			background-color: orange;
-			margin-left: 50px;
-		}
-		
-		div div.course {
-			font-size: 20px;
-		}
-		
-		div div div div.col-xs-12.col-md-2.left {
-			height: 500px;
-			font-size: 20px;
-		}
-		
-		div div div div.col-xs-12.right p {
-			margin: 0px 0px 15px 0px;
-		}
-		
-		div.lastPart {
-			height: 5px;
-			margin-top: 50px;
-			width: 70%;
-			background-color: #4286d8;
-		}
-		
-		div.footer {
-			text-align: center;
-		}
-		
-		p.allRights {
-			margin-top: 10px;
-		}
-		
-		div.container.ljc.last {
-			margin-top: 10px;
-		}
-	</style>
-	<script type="text/javascript" src="/jquery.min.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$("#myCourses").click(function() {
-				window.location.href = "/eduadmin/tmyCourses.html";
-			});
-			$(".courseSource").click(function() {
-				window.location.href = "/eduadmin/upload.html";
-			});
-			$(".courseCenter").click(function() {
-				window.location.href = "/eduadmin/tcourseCenter.html";
-			});
-			$("#personalCenter").click(function() {
-				window.location.href = "/eduadmin/personalCenter.html";
-			});
-			$("#myTeams").click(function() {
-				window.location.href = "/eduadmin/tmyTeams.html";
-			});
-			$("#setNewWork").click(function() {
-				window.location.href = "/eduadmin/newWork.html";
-			});
-		});
-	</script>
+    <link href="/bootstrapdist/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+        body {
+            font-family: "Microsoft YaHei", 微软雅黑, "Microsoft JhengHei", 华文细黑, STHeiti, MingLiu;
+        }
+
+        p.welcome {
+            position: absolute;
+            top: 80px;
+            left: 1000px;
+            font-size: 20px;
+        }
+
+        img.logojpg {
+            height: 100px;
+        }
+
+        div.firstPart {
+            height: 5px;
+            width: 70%;
+            margin-top: 10px;
+            background-color: #4286d8;
+        }
+
+        div.anotherline {
+            margin-left: 400px;
+            background-color: gray;
+            height: 3px;
+        }
+
+        div#nav {
+            margin-left: 400px;
+        }
+
+        ul.menu {
+            float: left;
+            padding-left: 0px;
+            margin: 0 0 0 58px;
+        }
+
+        #menu li {
+            display: inline-block;
+            margin: 0 15px 0 15px;
+        }
+
+        #menu > li p {
+            color: gray;
+            text-decoration: none;
+            font-size: 24px;
+            padding: 0px 8px 4px 8px;
+            letter-spacing: 2px;
+            border-bottom: solid 2px transparent;
+        }
+
+        #menu li p.active {
+            color: red;
+            border-bottom: solid 2px;
+            border-bottom-color: red;
+        }
+
+        #menu li p:hover {
+            color: red;
+        }
+
+        #menu li p.active:hover {
+            color: red;
+        }
+
+        p.workName:hover {
+            color: blue;
+        }
+
+        p.courseCenter:hover,
+        p.courseSource:hover {
+            color: red;
+        }
+
+        p.red {
+            color: red;
+        }
+
+        #setNewWork {
+            width: 200px;
+            background-color: orange;
+            margin-left: 50px;
+        }
+
+        div div.course {
+            font-size: 20px;
+        }
+
+        div div div div.col-xs-12.col-md-2.left {
+            height: 500px;
+            font-size: 20px;
+        }
+
+        div div div div.col-xs-12.right p {
+            margin: 0px 0px 15px 0px;
+        }
+
+        div.lastPart {
+            height: 5px;
+            margin-top: 50px;
+            width: 70%;
+            background-color: #4286d8;
+        }
+
+        div.footer {
+            text-align: center;
+        }
+
+        p.allRights {
+            margin-top: 10px;
+        }
+
+        div.container.ljc.last {
+            margin-top: 10px;
+        }
+    </style>
+    <script type="text/javascript" src="/jquery.min.js"></script>
+    <script type="text/javascript">
+         var Mycid=sessionStorage.getItem("HcID");
+        $(document).ready(function () {
+
+           InitHouseworkList();
+
+        });
+        function InitHouseworkList() {
+            $("div.col-xs-12.col-md-6.right").html('<p><ol></ol></p>');
+            $("div.col-xs-12.col-md-2.right").html('<p><ul></ul></p>');
+            $.post('')
+        };
+         function NewHousework(){
+             sessionStorage.setItem("NewTaskcID",Mycid);
+             window.open("/eduadmin/newWork.html");
+         }
+    </script>
+
 </head>
 
-<body>
-	<p class="welcome">
-		您好，
-		<span class="stuName">林广艳</span> &nbsp;&nbsp;老师&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="/eduadmin/login.html">登出</a>
-	</p>
-	<div class="logo">
-		<img class="logojpg" src="images/logo.jpg"></div>
+<body >
+<p class="welcome">
+    您好，
+    <span class="stuName">林广艳</span> &nbsp;&nbsp;老师&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="/eduadmin/login.html">登出</a>
+</p>
+<div class="logo">
+    <img class="logojpg" src="images/logo.jpg"></div>
 
-	<div class="firstPart"></div>
-	<div class="anotherline"></div>
-	<br>
-	<div>
-		<div id="nav">
-			<ul id="menu">
-				<li>
-					<p id="myCourses">我的课程</p>
-				</li>
-				<li>
-					<p id="personalCenter">个人中心</p>
-				</li>
-				<li>
-					<p id="myTeams">我的团队</p>
-				</li>
-				<li>
-					<p id="messages">我的消息</p>
-				</li>
+<div class="firstPart"></div>
+<div class="anotherline"></div>
+<br>
+<div>
+    <div id="nav">
+        <ul id="menu">
 
-			</ul>
-		</div>
-	</div>
-	<div class="container">
-		<div class="course">
-			<div class="row">
-				<div class="col-xs-12 col-md-2 left">
-					<p class="courseCenter">软件工程过程</p>
-					<p class="red">布置作业</p>
-					<P class="courseSource">上传资源</P>
-				</div>
-				<div class="col-xs-12 col-md-6 right">
-					<p>作业名称：</p>
-					<ol>
-						<li>
-							<p class="workName">用户故事提交</p>
-						</li>
-						<li>
-							<p class="workName">版本发布计划</p>
-						</li>
-						<li>
-							<p class="workName">用户故事提交</p>
-						</li>
-						<li>
-							<p class="workName">版本发布计划</p>
-						</li>
-						<li>
-							<p class="workName">用户故事提交</p>
-						</li>
-						<li>
-							<p class="workName">版本发布计划</p>
-						</li>
-					</ol>
-					<p>
-						<button id="setNewWork">布置新的作业</button>
-					</p>
 
-				</div>
-				<div class="col-xs-12 col-md-2 right">
+        </ul>
+    </div>
+</div>
+<div class="container">
+    <div class="course">
+        <div class="row">
+            <div class="col-xs-12 col-md-2 left">
+                <p class="courseCenter">软件工程过程</p>
+                <p class="red">布置作业</p>
+                <P class="courseSource">上传资源</P>
+            </div>
+            <div class="col-xs-12 col-md-6 right">
+                <p>作业名称：</p>
+                <ol>
+                    <li>
+                        <p class="workName">用户故事提交</p>
+                    </li>
+                    <li>
+                        <p class="workName">版本发布计划</p>
+                    </li>
+                    <li>
+                        <p class="workName">用户故事提交</p>
+                    </li>
+                    <li>
+                        <p class="workName">版本发布计划</p>
+                    </li>
+                    <li>
+                        <p class="workName">用户故事提交</p>
+                    </li>
+                    <li>
+                        <p class="workName">版本发布计划</p>
+                    </li>
+                </ol>
 
-					<p>状态：</p>
-					<ul>
-						<li>
-							<p>进行中</p>
-						</li>
-						<li>
-							<p>已截止</p>
-						</li>
-						<li>
-							<p>进行中</p>
-						</li>
-						<li>
-							<p>已截止</p>
-						</li>
-						<li>
-							<p>进行中</p>
-						</li>
-						<li>
-							<p>已截止</p>
-						</li>
-					</ul>
-				</div>
 
-			</div>
-		</div>
-	</div>
+            </div>
 
-	<div class="footer">
-		<div class="lastPart"></div>
-		<div class="anotherline"></div>
-		<div class="container ljc last">
-			<div class="row">
-				<div class="col-xs-4">
-					<a>关于我们</a>
-				</div>
-				<div class="col-xs-4">
-					<a>客服中心</a>
-				</div>
-				<div class="col-xs-4">
-					<a>友情链接</a>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-4">
-					<a>版权声明</a>
-				</div>
-				<div class="col-xs-4">
-					<a>联系我们</a>
-				</div>
-				<div class="col-xs-4">
-					<a>新浪微博</a>
-				</div>
-			</div>
-		</div>
+            <div class="col-xs-12 col-md-2 right">
 
-		<p class="allRights">
-			版权所有@北京航空航天大学软件学院二元一次方程组，保留一切权利 地址：北京市海淀区学院路37号 邮编：100191 电话：18811055530
-		</p>
-	</div>
+                <p>状态：</p>
+                <ul>
+                    <li>
+                        <p>进行中</p>
+                    </li>
+                    <li>
+                        <p>已截止</p>
+                    </li>
+                    <li>
+                        <p>进行中</p>
+                    </li>
+                    <li>
+                        <p>已截止</p>
+                    </li>
+                    <li>
+                        <p>进行中</p>
+                    </li>
+                    <li>
+                        <p>已截止</p>
+                    </li>
+                </ul>
+            </div>
+            <p>
+                <button id="setNewWork" onclick="NewHousework()">布置新的作业</button>
+            </p>
+
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <div class="lastPart"></div>
+    <div class="anotherline"></div>
+    <div class="container ljc last">
+        <div class="row">
+            <div class="col-xs-4">
+                <a>关于我们</a>
+            </div>
+            <div class="col-xs-4">
+                <a>客服中心</a>
+            </div>
+            <div class="col-xs-4">
+                <a>友情链接</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4">
+                <a>版权声明</a>
+            </div>
+            <div class="col-xs-4">
+                <a>联系我们</a>
+            </div>
+            <div class="col-xs-4">
+                <a>新浪微博</a>
+            </div>
+        </div>
+    </div>
+
+    <p class="allRights">
+        版权所有@北京航空航天大学软件学院二元一次方程组，保留一切权利 地址：北京市海淀区学院路37号 邮编：100191 电话：18811055530
+    </p>
+</div>
 
 </body>
 

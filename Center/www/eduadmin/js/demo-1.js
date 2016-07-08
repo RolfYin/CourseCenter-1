@@ -122,7 +122,7 @@
             for(var i in points) {
                 // detect points in range
 				dis=Math.abs(getDistance(target, points[i]));
-                if(dis < 2000) {
+                if(dis <= 2000) {
                     points[i].active = 0.49-dis/5000;
                     points[i].circle.active = 0.9-dis/2500;
                 } else {
@@ -130,9 +130,11 @@
                     points[i].circle.active = 0.1;
                 }
 
+
                 drawLines(points[i]);
                 points[i].circle.draw();
-            }
+            };
+
         }
         requestAnimationFrame(animate);
     }
