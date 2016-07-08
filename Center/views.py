@@ -1,13 +1,16 @@
-import io
 import json
-
 import multiprocessing
+
 from django.contrib.sessions.backends.db import SessionStore
-from django.core import serializers
-from django.http import HttpResponse, HttpRequest
+from django.http import HttpResponse, HttpRequest, HttpResponseRedirect
 
 # Create your views here.
 from Center.models import *
+
+
+def index(request):
+    assert isinstance(request, HttpRequest)
+    return HttpResponseRedirect("/eduadmin/index.html")
 
 
 def download(request):
@@ -18,7 +21,7 @@ def download(request):
         s = SessionStore(session_key=key)
         s.set_expiry(160)
         s.save()
-        rc = Resource.objects.filter(cid=int(data["cID"]))[0]
+        rc = Resource.objects.filter(cid=int(data["cID"]), index=int(data["index"]))[0]
         with open(rc.filepath, "r+b") as fd:
             data = fd.read()
         response = HttpResponse(data, content_type='application/octet-stream')
@@ -126,6 +129,20 @@ def view_course(request):
 
 
 def view_course_source(request):
+    assert isinstance(request, HttpRequest)
+    try:
+        data = json.loads(request.body.decode())
+        key = data["key"]
+        s = SessionStore(session_key=key)
+        s.set_expiry(160)
+        s.save()
+        return HttpResponse(str(Resource.objects.filter(cid=int(data["cID"])).values()).replace("'", '"'))
+    except Exception as er:
+        print(er.__class__, er)
+        return HttpResponse("{}")
+
+
+def add_task(request):
     assert isinstance(request, HttpRequest)
     try:
         data = json.loads(request.body.decode())
