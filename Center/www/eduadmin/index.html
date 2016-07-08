@@ -57,11 +57,11 @@
         function UserLogin() {
             $(document).ready(function () {
                 var i;
-                if($("#idNumber").val()[0]=='1'){
-                    i=1;
+                if ($("#idNumber").val()[0] == '1') {
+                    i = 1;
                 }
-                else{
-                    i=2;
+                else {
+                    i = 2;
                 }
                 alert(i);
                 var UserLogin = {
@@ -85,7 +85,7 @@
 
     <!--[if IE]>
 		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
+	<![endif]-->
 </head>
 <body>
 <div class="containe demo-1">
@@ -121,7 +121,9 @@
         </fieldset>
 
         <fieldset>
-            <button name="submit" type="submit" id="contact-submit" data-submit="...Sending" onclick="UserLogin()">Submit</button>
+            <button name="submit" type="submit" id="contact-submit" data-submit="...Sending" onclick="UserLogin()">
+                Submit
+            </button>
         </fieldset>
     </form>
 
