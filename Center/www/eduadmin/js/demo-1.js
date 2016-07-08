@@ -123,11 +123,11 @@
                 // detect points in range
 				dis=Math.abs(getDistance(target, points[i]));
                 if(dis <= 2000) {
-                    points[i].active = 0.49-dis/5000;
-                    points[i].circle.active = 0.9-dis/2500;
+                    points[i].active = 0.54-dis/5000;
+                    points[i].circle.active = 1-dis/2500;
                 } else {
-                    points[i].active = 0.09;
-                    points[i].circle.active = 0.1;
+                    points[i].active = 0.14;
+                    points[i].circle.active = 0.2;
                 }
 
 
