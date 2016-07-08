@@ -156,12 +156,12 @@
                 "DeadLine": $('input[type="datetime-local"]').val(),
                 "key": sessionStorage.getItem("key"),
                 "cID": TaskCID
-            }
+            };
             $.post('/add/task', JSON.stringify(TaskInfo), function (data) {
                 DocSubmitInfo = {
                     "index": JSON.parse(data).index,
                     "key": TaskKey,
-                    "cID": TaskCID,
+                    "cID": TaskCID
                 };
                 $('#file_upload').uploadifive('upload');
             });
@@ -223,7 +223,7 @@
                             $('#file_upload').uploadifive({
                                 'formData':DocSubmitInfo,
                                 "auto": false,
-                                'uploadScript': '/task_upload'
+                                'uploadScript': '/task/upload'
 
                             });
                         });
