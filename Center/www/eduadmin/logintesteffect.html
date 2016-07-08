@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <meta name="keywords" content="登录"/>
+    <meta name="description" content="用户可以在此页面登录系统。"/>
+    <meta name="author" content="ljc"/>
+    <meta name="robots" content="all"/>
+
+
+    <style type="text/css">
+        body {
+            font-family: "Microsoft YaHei", 微软雅黑, "Microsoft JhengHei", 华文细黑, STHeiti, MingLiu;
+        }
+
+        img.logojpg {
+            height: 100px;
+        }
+
+        div.firstPart {
+            height: 5px;
+            width: 70%;
+            margin-top: 10px;
+            background-color: #4286d8;
+        }
+
+        div.anotherline {
+            margin-left: 400px;
+            background-color: gray;
+            height: 3px;
+        }
+
+        div div.row.ljc {
+            height: 600px;
+        }
+
+        div div.row.ljc div.left {
+            height: 600px;
+        }
+
+        div div div div.thumbnail {
+            width: 730px;
+        }
+
+        div div.row.ljc div div img {
+            width: 730px;
+            height: 600px;
+        }
+
+        #idNumber,
+        #password {
+            height: 40px;
+            width: 200px;
+        }
+
+        div div div div p {
+            font-size: large;
+        }
+
+        .login {
+            height: 40px;
+            width: 160px;
+            font-size: large;
+            background-color: #f98f27;
+        }
+
+        div div div div.caption a {
+            font-size: small;
+        }
+
+        div div.right {
+            border-left-color: #999 !important;
+            border-left: 1px solid;
+            padding-left: 50px;
+        }
+
+        div.lastPart {
+            height: 5px;
+            margin-top: 50px;
+            width: 70%;
+            background-color: #4286d8;
+        }
+
+        div.footer {
+            text-align: center;
+        }
+
+        p.allRights {
+            margin-top: 10px;
+        }
+
+        div.container.ljc.last {
+            margin-top: 10px;
+        }
+    </style>
+{#    <script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>#}
+    <script>
+        function UserLogin(i) {
+            $(document).ready(function () {
+                var UserLogin = {
+                    "type": i,
+                    "ID": $("#idNumber").val(),
+                    "Password": $("#password").val(),
+                };
+                var datastring = JSON.stringify(UserLogin);
+                $.post("/login", datastring, function (data) {
+                    if (data) {
+                        sessionStorage.setItem('usertype', i);
+                        sessionStorage.setItem('key', JSON.parse(data).key);
+                        sessionStorage.setItem('username', eval("'" + JSON.parse(data).name + "'"));
+                        window.location.href = "/eduadmin/personalCenter.html";
+                    } else alert("错误的用户名或密码！")
+                })
+
+            })
+        }
+    </script>
+</head>
+
+<body>
+<div class="logo">
+    <img class="logojpg" src="images/logo.jpg"></div>
+
+<div class="firstPart"></div>
+<div class="anotherline"></div>
+<br>
+<br>
+<div class="container ljc">
+    <div class="row ljc">
+
+    </div>
+    <div id="large-header" class="large-header" style="height: 500px;">
+        <canvas id="demo-canvas" width="1366" height="500"></canvas>
+    </div>
+</div>
+
+<script src="js/TweenLite.min.js"></script>
+<script src="js/EasePack.min.js"></script>
+<script src="js/rAF.js"></script>
+<script src="js/demo-1.js"></script>
+<script src="js/jquery.min.js"></script>
+</body>
+
+
+</body>
+
+</html>

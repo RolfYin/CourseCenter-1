@@ -170,13 +170,24 @@
                 ResourceList = JSON.parse(data);
 
                 for (var i = 0; i < ResourceList.length; i++) {
-                    $("div.col-xs-12.col-md-6.right").append('<p class="workName ' + ResourceList[i].category + '">' + ResourceList[i].filename + '</p>');
-                    $("div.col-xs-12.col-md-2.right").append('<p class="uploadTime">' + ResourceList[i].category + '</p>');
+                    $("div.col-xs-12.col-md-6.right").append('<p class="workName" category="'+ ResourceList[i].category + '" index="'+ResourceList[i].index+'" cID="'+ResourceList[i].cid_id+'" onclick="ResourceDownload(this)">' + ResourceList[i].filename + '</p>');
+                    $("div.col-xs-12.col-md-2.right").append('<p class="category" category="'+ResourceList[i].category+'">' + ResourceList[i].category + '</p>');
                 }
             });
 
 
         }
+
+        function ResourceDownload(t)
+        {
+          $.post("/download",{
+              "cID":$(t).attr("cID"),
+              "index":$(t).attr("index"),
+              "key":sessionStorage.getItem("key"),
+          },function (data) {
+              
+          });
+        };
 
     </script>
 </head>
