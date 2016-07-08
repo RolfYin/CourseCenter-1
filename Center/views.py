@@ -24,7 +24,7 @@ def download(request):
         with open(rc.filepath, "r+b") as fd:
             data = fd.read()
         response = HttpResponse(data, content_type='application/octet-stream')
-        response['Content-Disposition'] = 'attachment; filename="{0}"'.format(rc.filename)
+        response['Content-Disposition'] = "attachment; filename=\"{0}\"".format(rc.filename)
         return response
     except Exception as er:
         print(er.__class__, er)

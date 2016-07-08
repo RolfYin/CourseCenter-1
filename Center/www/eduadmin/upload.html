@@ -256,7 +256,7 @@
                                 data = JSON.parse(data);
                                 for(var i in data)
                                 {
-                                    $("div.col-xs-12.col-md-6.right").append('<p class="workName ' + data[i].category + '">' + data[i].filename + '</p>');
+                                    $("div.col-xs-12.col-md-6.right").append('<p><a class="workName" category="'+ data[i].category + '" href="/download?index='+data[i].index+'&cID='+data[i].cid_id+'&key='+sessionStorage.getItem("key")+'">'+ data[i].filename + '</a></p>');
                                     $("div.col-xs-12.col-md-2.right").append('<p class="uploadTime '+ data[i].category +'">'  + data[i].category  + '</p>');
                                 }
                             }
