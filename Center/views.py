@@ -16,12 +16,11 @@ def index(request):
 def download(request):
     assert isinstance(request, HttpRequest)
     try:
-        data = json.loads(request.body.decode())
-        key = data["key"]
+        key = request.GET["key"]
         s = SessionStore(session_key=key)
         s.set_expiry(160)
         s.save()
-        rc = Resource.objects.filter(cid=int(data["cID"]), index=int(data["index"]))[0]
+        rc = Resource.objects.filter(cid=int(request.GET["cID"]), index=int(request.GET["index"]))[0]
         with open(rc.filepath, "r+b") as fd:
             data = fd.read()
         response = HttpResponse(data, content_type='application/octet-stream')
@@ -45,6 +44,8 @@ def upload(request):
         s = SessionStore(session_key=key)
         s.set_expiry(160)
         s.save()
+        if int(s["type"] != 2):
+            raise Exception
         rc = Resource()
         rc.cid = Course.objects.filter(cid=int(request.POST["cID"]))[0]
         filename = str(request.FILES["Filedata"])
@@ -68,6 +69,7 @@ def upload(request):
         rlock.release()
         return HttpResponse(json.dumps(new_rc))
     except Exception as er:
+        rlock.release()
         print(er.__class__, er)
         return HttpResponse("[]")
 
