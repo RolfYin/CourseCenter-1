@@ -180,11 +180,11 @@
 
         function ResourceDownload(t)
         {
-          $.post("/download",{
+          $.post("/download",JSON.stringify({
               "cID":$(t).attr("cID"),
               "index":$(t).attr("index"),
               "key":sessionStorage.getItem("key"),
-          },function (data) {
+          }),function (data) {
 
           });
         };
