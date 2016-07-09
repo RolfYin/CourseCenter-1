@@ -142,7 +142,7 @@
     <script type="text/javascript">
         var TaskCID = sessionStorage.getItem("NewTaskcID");
         var TaskKey = sessionStorage.getItem("key");
-        var DocSubmitInfo;
+        var DocSubmitInfo={};
         $(document).ready(function () {
             $('[name="key"]').attr("value", sessionStorage.getItem("key"));
 
@@ -158,11 +158,10 @@
                 "cID": TaskCID
             };
             $.post('/add/task', JSON.stringify(TaskInfo), function (data) {
-                DocSubmitInfo = {
-                    "index": JSON.parse(data).index,
-                    "key": TaskKey,
-                    "cID": TaskCID
-                };
+                DocSubmitInfo["index"]=JSON.parse(data).index;
+                DocSubmitInfo["key"]=TaskKey;
+                DocSubmitInfo["cID"]=TaskCID;
+{#                alert($('#file_upload').data.settings.formData[0]);#}
                 $('#file_upload').uploadifive('upload');
             });
             return false;
