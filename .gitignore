@@ -1,3 +1,5 @@
 *.pyc
 deployment/*
 .idea/*
+Center/www/.idea/*
+Center/www/upload/*
