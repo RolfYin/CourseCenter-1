@@ -223,7 +223,12 @@ def view_task(request):
             pass
         s.set_expiry(160)
         s.save()
-        return HttpResponse(str(Task.objects.filter(cid__cid=int(data["cID"])).values()).replace("'", '"'))
+        tasks = []
+        for task in Task.objects.filter(cid__cid=int(data["cID"])).values():
+            task["Release"] = task["Release"].strftime("%Y-%m-%dT%H:%M")
+            task["Deadline"] = task["Deadline"].strftime("%Y-%m-%dT%H:%M")
+            tasks.append(task)
+        return HttpResponse(json.dumps(tasks))
     except Exception as er:
         print(er.__class__, er)
         return HttpResponse("")
