@@ -8,7 +8,8 @@
     <meta name="description" content="布置课程作业。"/>
     <meta name="author" content="ljc"/>
     <meta name="robots" content="all"/>
-
+<script language="javascript" type="text/javascript" src="/jquery.min.js"></script>
+<script src="/bootstrapdist/js/bootstrap.min.js"></script>
     <link href="/bootstrapdist/css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
         body {
@@ -85,7 +86,17 @@
         p.courseSource:hover {
             color: red;
         }
-
+        li a.workName{
+            margin-bottom: 10px;
+            display:block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 400px;
+        }
+        ul li{
+            font-size: 20px;
+        }
         p.red {
             color: red;
         }
@@ -96,6 +107,7 @@
             margin-left: 50px;
         }
 
+
         div div.course {
             font-size: 20px;
         }
@@ -105,9 +117,6 @@
             font-size: 20px;
         }
 
-        div div div div.col-xs-12.right p {
-            margin: 0px 0px 15px 0px;
-        }
 
         div.lastPart {
             height: 5px;
@@ -130,36 +139,42 @@
     </style>
     <script type="text/javascript" src="/jquery.min.js"></script>
     <script type="text/javascript">
-        var TaskList;
+        var TaskList;var usertype;
         $(document).ready(function () {
-            if(sessionStorage.getItem("usertype")==3){
+             usertype = sessionStorage.getItem("usertype");
+            if (usertype == 3) {
                 $("p.setNewWork").hide();
-            };
+            }
+            ;
 
             InitHouseworkList();
             GetHousework();
         });
         function InitHouseworkList() {
-            $("div.col-xs-12.col-md-6.right").html('<p>作业名称</p><ol name="TaskName"></ol>');
-            $("div.col-xs-12.col-md-2.right").html('<p>截止时间</p><ul id="deadline"></ul>');
+            $("div.col-xs-12.col-md-6.right").html('<p>作业名称</p><ul id="TaskName"></ul>');
+            $("div.col-xs-12.col-md-4.right").html('<p>截止时间</p><ul id="deadline"></ul>');
         }
         ;
         function NewHousework() {
-            var index=window.location.href.indexOf("=")+1;
-            var cNum=window.location.href.substring(index);
-            window.open("/eduadmin/newWork.html?cid="+cNum);
+            var index = window.location.href.indexOf("=") + 1;
+            var cNum = window.location.href.substring(index);
+            window.open("/eduadmin/newWork.html?cid=" + cNum);
         }
         function GetHousework() {
-            var index=window.location.href.indexOf("=")+1;
-            var cNum=window.location.href.substring(index);
-            $.get("/view/task?cID=" +cNum+ "&key=" + sessionStorage.getItem("key"), function (data) {
+            var index = window.location.href.indexOf("=") + 1;
+            var cNum = window.location.href.substring(index);
+            $.get("/view/task?cID=" + cNum + "&key=" + sessionStorage.getItem("key"), function (data) {
 
 
                 TaskList = JSON.parse(data);
 
                 for (var i = 0; i < TaskList.length; i++) {
-                    $("ol").append('<li><a class="workName" index="'+TaskList[i].index+'" href="/eduadmin/homeWork.html?cID='+TaskList[i].cid_id+'&index='+TaskList[i].index+'" target="_blank">' + TaskList[i].name + '</a></li>');
-                    $("ul#deadline").append('<li><p class="deadline" index="'+TaskList[i].index+'">'+TaskList[i].deadline+'</p></li>');
+                    if (usertype == 3) {
+                        $("ul#TaskName").append('<li><a class="workName" index="' + TaskList[i].index + '" href="/eduadmin/homeWork.html?cID=' + TaskList[i].cid_id + '&index=' + TaskList[i].index + '" target="_blank">' + TaskList[i].name + '</a></li>');
+                    }else{
+                        $("ul#TaskName").append('<li><a class="workName" index="' + TaskList[i].index + '" href="/eduadmin/checkWork.html?cID=' + TaskList[i].cid_id + '&index=' + TaskList[i].index + '" target="_blank">' + TaskList[i].name + '</a></li>');
+                    }
+                    $("ul#deadline").append('<li><p class="deadline" index="' + TaskList[i].index + '">' + TaskList[i].deadline + '</p></li>');
                 }
             })
         }
@@ -221,7 +236,7 @@
 
             </div>
 
-            <div class="col-xs-12 col-md-2 right">
+            <div class="col-xs-12 col-md-4 right">
 
                 <p>状态：</p>
                 <ul>
@@ -288,8 +303,7 @@
 
 </body>
 
-<script language="javascript" type="text/javascript" src="/jquery.min.js"></script>
-<script src="/bootstrapdist/js/bootstrap.min.js"></script>
-</body>
+
+
 
 </html>
