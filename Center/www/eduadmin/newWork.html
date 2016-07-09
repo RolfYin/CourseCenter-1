@@ -140,10 +140,13 @@
     </style>
 
     <script type="text/javascript">
-        var TaskCID = sessionStorage.getItem("NewTaskcID");
+        var index = window.location.href.indexOf("=") + 1;
+        var cNum = window.location.href.substring(index);
+        var TaskCID = cNum;
         var TaskKey = sessionStorage.getItem("key");
-        var DocSubmitInfo={};
+        var DocSubmitInfo = {};
         $(document).ready(function () {
+
             $('[name="key"]').attr("value", sessionStorage.getItem("key"));
 
 
@@ -158,9 +161,9 @@
                 "cID": TaskCID
             };
             $.post('/add/task', JSON.stringify(TaskInfo), function (data) {
-                DocSubmitInfo["index"]=JSON.parse(data).index;
-                DocSubmitInfo["key"]=TaskKey;
-                DocSubmitInfo["cID"]=TaskCID;
+                DocSubmitInfo["index"] = JSON.parse(data).index;
+                DocSubmitInfo["key"] = TaskKey;
+                DocSubmitInfo["cID"] = TaskCID;
                 $('#file_upload').uploadifive('upload');
             });
             return false;
@@ -219,7 +222,7 @@
                     <script type="text/javascript">
                         $(function () {
                             $('#file_upload').uploadifive({
-                                'formData':DocSubmitInfo,
+                                'formData': DocSubmitInfo,
                                 "auto": false,
                                 'uploadScript': '/task/upload'
 

@@ -3,17 +3,13 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>课程作业</title>
+	<title>作业列表</title>
 	<meta name="keywords" content="课程作业 所有课程 我的课程" />
-	<meta name="description" content="我的课程作业。" />
+	<meta name="description" content="布置课程作业。" />
 	<meta name="author" content="ljc" />
-	<meta name="robots" content="all" />	
+	<meta name="robots" content="all" />
 
-	<script language="javascript" type="text/javascript" src="/jquery.min.js"></script>
-	<script src="/bootstrapdist/js/bootstrap.min.js"></script>
-	<link href="/bootstrapdist/css/bootstrap.min.css" rel="stylesheet">	
-	<script src="/UploadiFive/jquery.uploadifive.js" type="text/javascript"></script>
-	<link rel="stylesheet" type="text/css" href="/UploadiFive/uploadifive.css">	
+	<link href="/bootstrapdist/css/bootstrap.min.css" rel="stylesheet">
 	<style type="text/css">
 		body {
 			font-family: "Microsoft YaHei", 微软雅黑, "Microsoft JhengHei", 华文细黑, STHeiti, MingLiu;
@@ -93,6 +89,10 @@
 		p.red {
 			color: red;
 		}
+		.workScore{
+			width: 100px;
+			height: 27px;
+		}
 		
 		div div.course {
 			font-size: 20px;
@@ -125,36 +125,87 @@
 		div.container.ljc.last {
 			margin-top: 10px;
 		}
+		.submitted{color: green;}
+		.submitting{color: red;}
+		#saveScore {
+			width: 200px;
+			background-color: pink;
+		}
 	</style>
+	
+	<script type="text/javascript" src="/jquery.min.js">
+		
+	</script>
 
 	<script type="text/javascript">
+		
+		var i = 0;
+
 		$(document).ready(function() {
 			$("#myCourses").click(function() {
-				window.location.href = "/eduadmin/myCourses.html";
+				window.location.href = "/eduadmin/tmyCourses.html";
 			});
 			$(".courseSource").click(function() {
-				window.location.href = "/eduadmin/courseSource.html";
-			});
-			$(".courseWorks").click(function() {
-				window.location.href = "/eduadmin/courseWorks.html";
+				window.location.href = "/eduadmin/upload.html";
 			});
 			$(".courseCenter").click(function() {
-				window.location.href = "/eduadmin/courseCenter.html";
+				window.location.href = "/eduadmin/tcourseCenter.html";
 			});
 			$("#personalCenter").click(function() {
 				window.location.href = "/eduadmin/personalCenter.html";
 			});
 			$("#myTeams").click(function() {
-				window.location.href = "/eduadmin/myTeams.html";
+				window.location.href = "/eduadmin/tmyTeams.html";
 			});
+			$(".setWorks").click(function() {
+				window.location.href = "/eduadmin/setWorks.html";
+			});
+
+			for( i = 0 ; obj.students[i] != null ; i++ )
+			{
+				add(i);
+			}
 		});
+		function add(i){
+				$(".saveGrade").before('<div class="row">' +
+				'<div class="col-xs-12 col-md-2">' +
+				'</div>' +
+				'<div class="col-xs-6 col-md-2 right">' +
+				obj.students[i].sID +
+				'</div>' +
+				'<div class="col-xs-6 col-md-2 right">' +
+				obj.students[i].sName +
+				'</div>' +
+				'<div class="col-xs-6 col-md-2 right">' +
+				'<p class="submitted">已提交</p>' +
+				'</div>' +
+				'<div class="col-xs-6 col-md-2 right">' +
+				'<p><a href='+ obj.students[i].FPath+ '>下载</a></p>' +
+				'</div>' +
+				'<div class="col-xs-6 col-md-2 right">' +
+				'<p><input type="number" name="Grade" width="100px" min = 0 max = 10 value = 0 /></p>' +
+				'</div>' +
+				'</div>'
+				);
+			};
+		
 	</script>
+	
 </head>
 
 <body>
+	<script type="text/javascript">
+		var txt = '{ "students" : [' +
+		'{ "sID":"13211000" , "sName":"张三" , "FPath":"http://dldir1.qq.com/qqfile/qq/QQ8.4/18357/QQ8.4.exe" },' +
+		'{ "sID":"13211002" , "sName":"李四"  },' +
+		'{ "sID":"13211003" , "sName":"王二麻子"  }]}';
+
+		var obj = eval ("(" + txt + ")");
+	</script>
+
 	<p class="welcome">
 		您好，
-		<span class="stuName">李甲辰</span> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+		<span class="stuName">林广艳</span> &nbsp;&nbsp;老师&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
 		<a href="/eduadmin/login.html">登出</a>
 	</p>
 	<div class="logo">
@@ -185,41 +236,48 @@
 	<div class="container">
 		<div class="course">
 			<div class="row">
-				<div class="col-xs-12 col-md-2 left">
+				<div class="col-xs-12 col-md-2">
 					<p class="courseCenter">软件工程过程</p>
-					<p class="red courseWorks">课程作业</p>
-					<P class="courseSource">课程资源</P>
+					<p class="setWorks">作业列表</p>
+					<P class="courseSource">上传资源</P>
 				</div>
-				<div class="col-xs-12 col-md-8 right">
-				<p>
-					作业提交情况：<span id="submitOrNot">未提交</span>
-				</p>
-				<p>
-					作业成绩：<span id="workScore"></span>
-				</p>
-					<p>作业描述如下：</p>
-					<p id="workDes">7月4日，网上流传的截图信息显示，百度已对刘超参与外部讲演的不当言论和内外部影响进行联合调查，刘超未事先向公司报备参会信息，同时其行为及演讲内容给公司品牌造成严重影响，百度已决定将刘超从百度管理团队除名。</p>
-					<p id="workFile"><a href="">作业附件1</a></p>
-					<br>
-					<p>提交作业：</p>
-						<input id="file_upload" name="file_upload" type="file" multiple="true">
-
-						<script type="text/javascript">
-							$(function() {
-								$('#file_upload').uploadifive({
-									'formData': {
-										"key": "yufeng"
-									},
-									'uploadScript': '/upload/'
-
-								});
-							});
-						</script>
+				<div class="col-xs-12 col-md-10 right">
+					<p>作业名称：<span id="taskName"></span></p>
+					<p>满分：<span id="MaxGrade"></span></p>
 				</div>
-				
+				<div class="col-xs-6 col-md-2 right">
+					<p id="ID"> <B>学号</B></p>
+					
+				</div>
+				<div class="col-xs-6 col-md-2 right">
+					<p id="stuName"> <B>姓名</B></p>
+					
+				</div>
+				<div class="col-xs-6 col-md-2 right">
+					<p id="submitCon"> <B>提交情况</B></p>
+					
+				</div>
+				<div class="col-xs-6 col-md-2 right">
+					<p id=""> <B>作业下载</B></p>
+					
+				</div>
+				<div class="col-xs-6 col-md-2 right">
+					<p id=""> <B>分数设置</B></p>
+				</div>
+			</div>
+						
+			<div class="saveGrade">
+				<div class="col-xs-12 col-md-2">
+				</div>
+				<div class="col-xs-6 col-md-10 right">
+				<br />
+				<button id="saveScore">保存成绩</button>
+				</div>
 			</div>
 		</div>
 	</div>
+	
+
 
 	<div class="footer">
 		<div class="lastPart"></div>
@@ -256,5 +314,8 @@
 
 </body>
 
+<script language="javascript" type="text/javascript" src="/jquery.min.js"></script>
+<script src="/bootstrapdist/js/bootstrap.min.js"></script>
+</body>
 
 </html>
