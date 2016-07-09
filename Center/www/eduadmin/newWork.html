@@ -161,7 +161,6 @@
                 DocSubmitInfo["index"]=JSON.parse(data).index;
                 DocSubmitInfo["key"]=TaskKey;
                 DocSubmitInfo["cID"]=TaskCID;
-{#                alert($('#file_upload').data.settings.formData[0]);#}
                 $('#file_upload').uploadifive('upload');
             });
             return false;
