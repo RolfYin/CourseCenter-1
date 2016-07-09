@@ -28,6 +28,6 @@ urlpatterns = [
     url(r'^view/course$', views.view_course),
     url(r'^view/course_source$', views.view_course_source),
     url(r'^add/task$', views.add_task),
-
+    url(r'^view/task$', views.view_task),
     url(r'^(?P<path>.*\.[\w]*)$', serve),
 ]
