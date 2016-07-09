@@ -167,27 +167,58 @@
 			}
 		});
 		function add(i){
-				$(".saveGrade").before('<div class="row">' +
-				'<div class="col-xs-12 col-md-2">' +
-				'</div>' +
-				'<div class="col-xs-6 col-md-2 right">' +
-				obj.students[i].sID +
-				'</div>' +
-				'<div class="col-xs-6 col-md-2 right">' +
-				obj.students[i].sName +
-				'</div>' +
-				'<div class="col-xs-6 col-md-2 right">' +
-				'<p class="submitted">已提交</p>' +
-				'</div>' +
-				'<div class="col-xs-6 col-md-2 right">' +
-				'<p><a href='+ obj.students[i].FPath+ '>下载</a></p>' +
-				'</div>' +
-				'<div class="col-xs-6 col-md-2 right">' +
-				'<p><input type="number" name="Grade" width="100px" min = 0 max = 10 value = 0 /></p>' +
-				'</div>' +
-				'</div>'
-				);
-			};
+			$(".saveGrade").before('<div class="row">' +
+			'<div class="col-xs-12 col-md-2">' +
+			'</div>' +
+			'<div class="col-xs-6 col-md-2 right">' +
+			obj.students[i].sID +
+			'</div>' +
+			'<div class="col-xs-6 col-md-2 right">' +
+			obj.students[i].sName +
+			'</div>' +
+			'<div class="col-xs-6 col-md-2 right">' +
+			'<p class="submitted">已提交</p>' +
+			'</div>' +
+			'<div class="col-xs-6 col-md-2 right">' +
+			'<a href='+ obj.students[i].FPath+ '>下载</a>' +
+			'</div>' +
+			'<div class="col-xs-6 col-md-2 right">' +
+			'<p><input type="number" name="Grade" width="100px" min = 0 max = 10 value =' + obj.students[i].tgrade + ' /></p>' +
+			'</div>' +
+			'</div>'
+			);
+		};
+
+		var TaskSubmit;   
+     	var TaskGrade;
+      	$(document).ready(function () {
+     	   	$('[name="key"]').attr("value", sessionStorage.getItem("key"));
+       	});
+
+        function AddScore()  {
+       		ShowSubmit={
+       		"key": sessionStorage.getItem("key"),
+            "Index": "201",
+            "cId":"101";
+       	}
+		
+		$.post('/show/submit', JSON.stringify(ShowSubmit), function (data)
+		{
+			TaskSubmit= JSON.parse(data);
+		})
+            
+        AddGrade = {
+        	"Grade": $("input").val(),
+            "sID":
+           	"Index":"201",
+           	"cID":"101";
+        }
+           
+        $.post('/add/grade', JSON.stringify(AddGrade), function (data){		
+
+		});
+          	return false;
+      	}
 		
 	</script>
 	
@@ -196,9 +227,9 @@
 <body>
 	<script type="text/javascript">
 		var txt = '{ "students" : [' +
-		'{ "sID":"13211000" , "sName":"张三" , "FPath":"http://dldir1.qq.com/qqfile/qq/QQ8.4/18357/QQ8.4.exe" },' +
-		'{ "sID":"13211002" , "sName":"李四"  },' +
-		'{ "sID":"13211003" , "sName":"王二麻子"  }]}';
+		'{ "sID":"13211000" , "sName":"李敏捷" , "FPath":"http://dldir1.qq.com/qqfile/qq/QQ8.4/18357/QQ8.4.exe" , "tgrade":"0" },' +
+		'{ "sID":"13211002" , "sName":"王起飞" , "tgrade":"0"  },' +
+		'{ "sID":"13211003" , "sName":"萧老板" , "tgrade":"233"  }]}';
 
 		var obj = eval ("(" + txt + ")");
 	</script>
