@@ -130,26 +130,37 @@
     </style>
     <script type="text/javascript" src="/jquery.min.js"></script>
     <script type="text/javascript">
-         var Mycid=sessionStorage.getItem("HcID");
+        var TaskList;
         $(document).ready(function () {
 
-           InitHouseworkList();
-
+            InitHouseworkList();
+            GetHousework();
         });
         function InitHouseworkList() {
-            $("div.col-xs-12.col-md-6.right").html('<p><ol></ol></p>');
-            $("div.col-xs-12.col-md-2.right").html('<p><ul></ul></p>');
-            $.post('')
-        };
-         function NewHousework(){
-             sessionStorage.setItem("NewTaskcID",Mycid);
-             window.open("/eduadmin/newWork.html");
-         }
+            $("div.col-xs-12.col-md-6.right").html('<p>作业名称</p><ol name="TaskName"></ol>');
+            $("div.col-xs-12.col-md-2.right").html('<p>状态</p><ul></ul>');
+        }
+        ;
+        function NewHousework() {
+            sessionStorage.setItem("NewTaskcID", Mycid);
+            window.open("/eduadmin/newWork.html");
+        }
+        function GetHousework() {
+            var index=window.location.href.indexOf("=")+1;
+            var cNum=window.location.href.substring(index);
+            $.get("/view/task?cID=" +cNum+ "&key=" + sessionStorage.getItem("key"), function (data) {
+                TaskList = JSON.parse(data);
+                alert(TaskList[0]);
+                for (var i = 0; i < TaskList.length; i++) {
+                    $("[name='TaskName']").append('<li><p class="workName">' + TaskList[i].name + '</p></li>');
+                }
+            })
+        }
     </script>
 
 </head>
 
-<body >
+<body>
 <p class="welcome">
     您好，
     <span class="stuName">林广艳</span> &nbsp;&nbsp;老师&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;

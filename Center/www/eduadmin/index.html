@@ -78,13 +78,14 @@
                         sessionStorage.setItem('key', JSON.parse(data).key);
                         sessionStorage.setItem('username', eval("'" + JSON.parse(data).name + "'"));
                         window.location.href = "/eduadmin/personalCenter.html";
-
+                        return false;
                     } else {
                         alert("错误的用户名或密码！");
+                        return false;
 
                     };
                 });
-                return false;
+
 
             })
         }
@@ -117,7 +118,7 @@
 
 </div>
 <div class="container">
-    <form id="contact" action="" method="post" onsubmit="return UserLogin();">
+    <form id="contact" action="#" method="post" onsubmit="return UserLogin();">
         <h3></h3>
 
         <fieldset>

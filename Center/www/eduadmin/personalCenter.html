@@ -76,31 +76,47 @@
         #menu li p.active:hover {
             color: red;
         }
+
         p.courseSource:hover,
         p.courseWorks:hover {
-			color: red;
-		}
+            color: red;
+        }
+
         div div div div.col-xs-12.right p {
-			margin: 0px 0px 15px 0px;
-		}
+            margin: 0px 0px 15px 0px;
+        }
+
         div.up {
-			border-bottom: 1px solid;
-			padding-bottom: 5px;
-		}
+            border-bottom: 1px solid;
+            padding-bottom: 5px;
+        }
+
+        a.courseWorks:hover {
+            color: red;
+        }
+
+        a {
+            margin: 0 0 10px;
+        }
+
         p.courseIntro,
-		p.courseAr {
-			font-size: 28px;
-		}
+        p.courseAr {
+            font-size: 28px;
+        }
+
         div.down {
-			margin-top: 20px;
-		}
+            margin-top: 20px;
+        }
+
         p.red {
-			color: red;
-		}
+            color: red;
+        }
+
         div div div div.col-xs-12.col-md-2.left {
-			height: 500px;
-			font-size: 20px;
-		}
+            height: 500px;
+            font-size: 20px;
+        }
+
         .blue {
             color: blue;
         }
@@ -144,7 +160,9 @@
     <script type="text/javascript" src="/jquery.min.js"></script>
     <script src="/bootstrapdist/js/bootstrap.min.js"></script>
     <script type="text/javascript">
-        var Course;var Json;var t;
+        var Course;
+        var Json;
+        var t;
         $(document).ready(function () {
             $("#myCourses").click(function () {
                 $("#personalCenter").attr("class", "");
@@ -169,7 +187,7 @@
                 InitDivContent('<div class="container"><div class="row"><div class="col-xs-12 col-md-12"></div></div></div>');
                 SetPersonInfo();
             });
-            $("#messages").click(function(){
+            $("#messages").click(function () {
                 $("#personalCenter").attr("class", "");
                 $("#myCourses").attr("class", "");
                 $("#myTeams").attr("class", "");
@@ -205,45 +223,39 @@
                     var JsonCourse = JSON.parse(Course);
                     for (var i = 0; i < JsonCourse.length; i++) {
                         var id = eval("'" + JsonCourse[i].cid + "'");
-                        $("#CourseName").append('<p><span class="courseName" id='+id+' onclick="chooseCourse(this)">' + JsonCourse[i].cname + '</span></p>');
+                        $("#CourseName").append('<p><span class="courseName" id=' + id + ' onclick="chooseCourse(this)">' + JsonCourse[i].cname + '</span></p>');
                         $("#CourseTeacher").append('<p>地点:<span>' + JsonCourse[i].location + '</span></p>');
                     }
 
                 }
             });
         }
-        function chooseCourse(p)
-        {
+        function chooseCourse(p) {
 
-            var i =parseInt($(p).attr("id"));
-            Json=JSON.parse(Course);
-            t=0;
-            for(;i!=parseInt(Json[t].cid);t++)
-            {
+            var i = parseInt($(p).attr("id"));
+            Json = JSON.parse(Course);
+            t = 0;
+            for (; i != parseInt(Json[t].cid); t++) {
 
             }
 
-            InitDivContent('<div class="container"><div class="course"> <div class="row"> <div class="col-xs-12 col-md-2 left"> <p class="red"></p> <p class="courseWorks" onclick="SelectHousework(Json[t].cid)">课程作业</p> <P class="courseSource" onclick="SelectResource(Json[t].cid)">课程资源</P> </div> <div class="col-xs-12 col-md-10 right"> <div class="up"> <p class="courseIntro">课程介绍</p> <p>课程名称：<span class="courseName"></span></p> <p>任课教师：<span class="teacherName"></span></p> <p>课程信息：<span class="courseInfo"></span></p> </div> <div class="down"> <p class="courseAr">课程安排</p> </div> </div> </div> </div> </div>');
+            InitDivContent('<div class="container"><div class="course"> <div class="row"> <div class="col-xs-12 col-md-2 left"> <p class="red"></p> <a class="courseWorks"   href="">课程作业</a><P class="courseSource" onclick="SelectResource(Json[t].cid)">课程资源</P> </div> <div class="col-xs-12 col-md-10 right"> <div class="up"> <p class="courseIntro">课程介绍</p> <p>课程名称：<span class="courseName"></span></p> <p>任课教师：<span class="teacherName"></span></p> <p>课程信息：<span class="courseInfo"></span></p> </div> <div class="down"> <p class="courseAr">课程安排</p> </div> </div> </div> </div> </div>');
             $("p.red").text(Json[t].cname);
             $("span.courseName").text(Json[t].cname);
             $("span.teacherName").text(Json[t].teacherid_id);
             $("span.courseInfo").text(Json[t].descripition);
+            $("a.courseWorks").attr("href", "/eduadmin/setWorks.html?cID=" + Json[t].cid);
         }
-       function  SelectResource(c)
-        {
+        function SelectResource(c) {
             console.log(c);
 
 
-                    sessionStorage.setItem("cID",c);
-                    window.open("/eduadmin/upload.html");
+            sessionStorage.setItem("cID", c);
+            window.open("/eduadmin/upload.html");
 
 
         }
-        function SelectHousework(c)
-        {
-            sessionStorage.setItem("HcID",c);
-            window.open("/eduadmin/setWorks.html");
-        }
+
     </script>
 </head>
 
@@ -330,7 +342,6 @@
 </div>
 
 </body>
-
 
 
 </html>
