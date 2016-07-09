@@ -149,11 +149,13 @@
             var index=window.location.href.indexOf("=")+1;
             var cNum=window.location.href.substring(index);
             $.get("/view/task?cID=" +cNum+ "&key=" + sessionStorage.getItem("key"), function (data) {
+                alert(data);
+
                 TaskList = JSON.parse(data);
-                alert(TaskList[0]);
+
                 for (var i = 0; i < TaskList.length; i++) {
-                    $("[name='TaskName']").append('<li><p class="workName">' + TaskList[i].name + '</p></li>');
-                    $("ul").append('<li><p class="deadline">'+TaskList[i].deadline+'</p></li>');
+                    $("ol").append('<li><p class="workName" index="'+TaskList[i].index+'">' + TaskList[i].name + '</p></li>');
+                    $("ul").append('<li><p class="deadline" index="'+TaskList[i].index+'">'+TaskList[i].deadline+'</p></li>');
                 }
             })
         }
