@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="no-mobile">
+<head>
+
+    <title>Login In System</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="js/style.css" media="screen" type="text/css"/>
+    <style>
+        img.logojpg {
+            height: 100px;
+        }
+
+        div.firstPart {
+            height: 5px;
+            width: 70%;
+            margin-top: 10px;
+            background-color: #4286d8;
+        }
+
+        div.anotherline {
+            margin-left: 400px;
+            background-color: gray;
+            height: 3px;
+        }
+
+        body {
+            margin: 0;
+            display: block;
+            box-sizing: border-box;
+        }
+
+        .large-header {
+            position: relative;
+            width: 100%;
+
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .container {
+            position: absolute;
+            margin: 0;
+            padding: 0;
+
+            text-align: center;
+            top: 50%;
+            left: 35%;
+        }
+    </style>
+    <script language="javascript" type="text/javascript" src="/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $('html, body').animate({scrollTop: $(document).height()});
+
+        });
+        function UserLogin() {
+            $(document).ready(function () {
+                var i;
+                if ($("#idNumber").val()[0] == '1') {
+                    i = 3;
+                }
+                else {
+                    i = 2;
+                };
+
+                var UserLogin = {
+                    "type": i,
+                    "ID": $("#idNumber").val(),
+                    "Password": $("#password").val(),
+                };
+                var datastring = JSON.stringify(UserLogin);
+                $.post("/login", datastring, function (data) {
+
+                    if (data) {
+
+                        sessionStorage.setItem('usertype', i);
+                        sessionStorage.setItem('key', JSON.parse(data).key);
+                        sessionStorage.setItem('username', eval("'" + JSON.parse(data).name + "'"));
+                        window.location.href = "/eduadmin/personalCenter.html";
+                        return false;
+                    } else {
+                        alert("错误的用户名或密码！");
+                        return false;
+
+                    };
+                });
+
+
+            })
+        }
+    </script>
+
+    <!--[if IE]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</head>
+<body>
+<div class="containe demo-1">
+
+
+    <div class="logo">
+        <img class="logojpg" src="images/logo.jpg">
+    </div>
+    <div class="firstPart"></div>
+    <div class="anotherline"></div>
+    <div id="large-header" class="large-header">
+        <canvas id="demo-canvas"></canvas>
+
+    </div>
+    <script src="js/TweenLite.min.js"></script>
+    <script src="js/EasePack.min.js"></script>
+    <script src="js/rAF.js"></script>
+    <script src="js/demo-1.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <!-- /container -->
+
+
+</div>
+<div class="container">
+    <form id="contact" action="#" method="post" onsubmit="return UserLogin();">
+        <h3></h3>
+
+        <fieldset>
+            <input id="idNumber" placeholder="Your ID" type="text" tabindex="1" required autofocus>
+        </fieldset>
+        <fieldset>
+            <input id="password" placeholder="Your Password" type="password" tabindex="2" required>
+        </fieldset>
+
+        <fieldset>
+            <button name="submit" type="submit" id="contact-submit" data-submit="...Sending" >
+                Submit
+            </button>
+        </fieldset>
+    </form>
+
+</div>
+
+</body>
+
+</html>
