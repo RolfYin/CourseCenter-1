@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^$', views.index),
     url(r'^download$', views.download),
     url(r'^upload$', views.upload),
+    url(r'^task/upload$', views.task_upload),
     url(r'^login$', views.login),
     url(r'^logout$', views.logout),
     url(r'^view/course$', views.view_course),
