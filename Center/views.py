@@ -20,6 +20,8 @@ def download(request):
     try:
         key = request.GET["key"]
         s = SessionStore(session_key=key)
+        if s["type"]:
+            pass
         s.set_expiry(160)
         s.save()
         rc = Resource.objects.filter(cid=int(request.GET["cID"]), index=int(request.GET["index"]))[0]
@@ -113,6 +115,8 @@ def view_course(request):
         data = json.loads(request.body.decode())
         key = data["key"]
         s = SessionStore(session_key=key)
+        if s["type"]:
+            pass
         s.set_expiry(160)
         s.save()
         courses = []
@@ -142,6 +146,8 @@ def view_course_source(request):
         data = json.loads(request.body.decode())
         key = data["key"]
         s = SessionStore(session_key=key)
+        if s["type"]:
+            pass
         s.set_expiry(160)
         s.save()
         return HttpResponse(str(Resource.objects.filter(cid=int(data["cID"])).values()).replace("'", '"'))
@@ -187,6 +193,8 @@ def task_upload(request):
         cID = request.POST["cID"]
         index_ = request.POST["index"]
         s = SessionStore(session_key=key)
+        if s["type"]:
+            pass
         s.set_expiry(160)
         s.save()
         if int(s["type"]) != 2:
@@ -208,12 +216,14 @@ def task_upload(request):
 def view_task(request):
     assert isinstance(request, HttpRequest)
     try:
-        data = json.loads(request.body.decode())
+        data = request.GET
         key = data["key"]
         s = SessionStore(session_key=key)
+        if s["type"]:
+            pass
         s.set_expiry(160)
         s.save()
-        return HttpResponse(str(Task.objects.filter(cid=int(data["cID"])).values()).replace("'", '"'))
+        return HttpResponse(str(Task.objects.filter(cid__cid=int(data["cID"])).values()).replace("'", '"'))
     except Exception as er:
         print(er.__class__, er)
         return HttpResponse("")
@@ -225,6 +235,8 @@ def view_finished_task(request):
         data = json.loads(request.body.decode())
         key = data["key"]
         s = SessionStore(session_key=key)
+        if s["type"]:
+            pass
         s.set_expiry(160)
         s.save()
         return HttpResponse(str(Resource.objects.filter(cid=int(data["cID"])).values()).replace("'", '"'))
