@@ -248,3 +248,66 @@ def view_finished_task(request):
     except Exception as er:
         print(er.__class__, er)
         return HttpResponse("")
+
+
+def view_taskinfo(request):
+    assert isinstance(request, HttpRequest)
+    try:
+        data = json.loads(request.body.decode())
+        key = data["key"]
+        s = SessionStore(session_key=key)
+        if s["type"]:
+            pass
+        s.set_expiry(160)
+        s.save()
+        task = Task.objects.filter(cid=int(data["cID"]), index=int(data["index"])).values()[0]
+        task["release"] = task["release"].strftime("%Y-%m-%dT%H:%M")
+        task["deadline"] = task["deadline"].strftime("%Y-%m-%dT%H:%M")
+        print(task)
+        return HttpResponse(json.dumps(task))
+    except Exception as er:
+        print(er.__class__, er)
+        return HttpResponse("")
+
+
+def view_submit(request):
+    assert isinstance(request, HttpRequest)
+    try:
+        data = json.loads(request.body.decode())
+        key = data["key"]
+        s = SessionStore(session_key=key)
+        if s["type"]:
+            pass
+        s.set_expiry(160)
+        s.save()
+        submitted = Worksubmit.objects.filter(cid=int(data["cID"]), sid=int(s["ID"]),
+                                              taskindex=int(data["index"])).values()[0]
+        submitted["submittime"] = submitted["submittime"].strftime("%Y-%m-%dT%H:%M")
+        submitted = json.dumps(submitted)
+        print(submitted)
+        return HttpResponse(submitted)
+    except Exception as er:
+        print(er.__class__, er)
+        return HttpResponse("")
+
+
+def task_download(request):
+    assert isinstance(request, HttpRequest)
+    try:
+        data = request.GET
+        key = data["key"]
+        s = SessionStore(session_key=key)
+        if s["type"]:
+            pass
+        s.set_expiry(160)
+        s.save()
+        task = Task.objects.filter(cid=int(data["cID"]), index=int(data["index"])).values()[0]
+        with open(task.attachment, "r+b") as fd:
+            data = fd.read()
+        response = HttpResponse(data, content_type='application/octet-stream')
+        response['Content-Disposition'] = "attachment; filename=\"{0}\"".format(
+            urllib.parse.quote(task.attachment.rsplit("/", -1), safe='/[]'))
+        return response
+    except Exception as er:
+        print(er.__class__, er)
+        return HttpResponse("")

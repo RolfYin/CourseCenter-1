@@ -29,5 +29,8 @@ urlpatterns = [
     url(r'^view/course_source$', views.view_course_source),
     url(r'^add/task$', views.add_task),
     url(r'^view/task$', views.view_task),
+    url(r'^view/submit$', views.view_submit),
+    url(r'^view/taskinfo$', views.view_taskinfo),
+    url(r'^task/download$', views.view_taskinfo),
     url(r'^(?P<path>.*\.[\w]*)$', serve),
 ]

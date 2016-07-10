@@ -130,7 +130,7 @@
     <script type="text/javascript">
         var Url=window.location.href;
         var indexofcID = Url.indexOf("cID") + 4;
-        var cNum = Url.substring(indexofcID,indexofcID+2);
+        var cNum = Url.substring(indexofcID,indexofcID+3);
         var TaskCID = cNum;
         var indexofindex=Url.indexOf("index")+6;
         var TaskIndex=Url.substring(indexofindex);
@@ -138,6 +138,7 @@
         var DocSubmitInfo = {};
         $(document).ready(function () {
            $('[name="key"]').attr("value", sessionStorage.getItem("key"));
+            InitTask();
         });
         function InitTask() {
             var InitRequest={
@@ -149,7 +150,7 @@
                var Task=JSON.parse(data);
                 $("p#workDes").text(Task.request);
                 $("p.taskName").text(Task.name);
-                $("a#workFile").attr("href",'/task/download?cID='+TaskCID+'&index'+TaskIndex);
+                $("a#workFile").attr("href",'/task/download?cID='+TaskCID+'&index='+TaskIndex);
             });
 
             $.post("/view/submit",JSON.stringify(InitRequest),function (data) {

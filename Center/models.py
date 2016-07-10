@@ -262,10 +262,12 @@ class Teamsubmit(models.Model):
 
 
 class Worksubmit(models.Model):
-    sid = models.ForeignKey(Studentcourse, models.DO_NOTHING, db_column='sID')  # Field name made lowercase.
+    sid = models.ForeignKey(Studentcourse, models.DO_NOTHING, db_column='sID',
+                            primary_key=True)  # Field name made lowercase.
     cid = models.ForeignKey(Studentcourse, models.DO_NOTHING, db_column='cID',
-                            related_name="w_cid")  # Field name made lowercase.
-    taskindex = models.ForeignKey(Task, models.DO_NOTHING, db_column='TaskIndex')  # Field name made lowercase.
+                            related_name="w_cid", primary_key=True)  # Field name made lowercase.
+    taskindex = models.ForeignKey(Task, models.DO_NOTHING, db_column='TaskIndex',
+                                  primary_key=True)  # Field name made lowercase.
     filepath = models.CharField(db_column='FilePath', max_length=2048)  # Field name made lowercase.
     submittime = models.DateTimeField(db_column='SubmitTime')  # Field name made lowercase.
     grade = models.FloatField(db_column='Grade', blank=True, null=True)  # Field name made lowercase.
