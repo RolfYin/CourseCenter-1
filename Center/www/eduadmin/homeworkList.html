@@ -126,6 +126,15 @@
         div.container.ljc.last {
             margin-top: 10px;
         }
+        div.input-group {
+            width: 130px;
+        }
+
+        div.scoring {
+            width: 70%;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
         .submitted {
             color: green;
@@ -145,7 +154,9 @@
     <script>
         var AllData, TaskCID, TaskIndex, TaskKey;
         $(document).ready(function () {
+            $("div.StudentScore").hide();
             LoadName();
+
         });
         function LoadName() {
             showName = sessionStorage.getItem("username");
@@ -171,37 +182,62 @@
                 "cID": TaskCID,
             }), function (data) {
                 AllData = JSON.parse(data);
-                $("div#TotalList").html("");
                 InitStudentList();
             });
         }
         ;
         function InitStudentList() {
+            $("tbody").innerHTML = "";
+            $("div.panel-heading").text('满分：'+AllData[0].maxgrade);
             for (var i in AllData) {
                 if (AllData[i].grade == -1) {
-                    var part1 = '<div class="' + AllData[i].sid_id + '"><p>学号：' + AllData[i].sid_id + '        姓名：' + AllData[i].name + '</p><p>提交内容：' + AllData[i].text + '</p><p><a href="/submit/download?key=' + TaskKey + '&sID=' + AllData[i].sid_id + '&cID=' + AllData[i].cid_id + '&index=' + AllData[i].taskindex_id + '">附件下载</a></p><p><textarea id="comment" rows="2" placeholder="Write down your comments..."' + 'sid="' + AllData[i].sid_id + '" >';
-                    var part2 = '</textarea></p><p><input id="grades" type="number" sid="' + AllData[i].sid_id + '"</input>/<a id="Maxpoints">' + AllData[i].maxgrade + '</a>         <button sid="' + AllData[i].sid_id + '" onclick="SubmitGrade(this)">提交</button></p></div>';
-                    $("div#TotalList").append(part1 + part2);
+                    AddUnscored(AllData[i]);
                 }
                 ;
             }
             ;
             for (var i in AllData) {
                 if (!(AllData[i].grade == -1)) {
-                    var part1 = '<div class="' + AllData[i].sid_id + '"><p>学号：' + AllData[i].sid_id + '        姓名：' + AllData[i].name + '</p><p>提交内容：' + AllData[i].text + '</p><p><a href="/submit/download?key=' + TaskKey + '&sID=' + AllData[i].sid_id + '&cID=' + AllData[i].cid_id + '&index=' + AllData[i].taskindex_id + '">附件下载</a></p><p><textarea id="comment" rows="2" sid="' + AllData[i].sid_id + '" >' + AllData[i].comment + '</textarea>';
-                    var part2 = '</p><p><input id="grades" type="number" sid="' + AllData[i].sid_id + '">已评分:' + AllData[i].grade + '</input>/<a sid="' + AllData[i].sid_id + '">' + AllData[i].maxgrade + '</a>         <button sid="' + AllData[i].sid_id + '" onclick="SubmitGrade(this)">重评</button></p></div>';
-                    $("div#TotalList").append(part1 + part2);
+                    Addscored(AllData[i]);
                 }
                 ;
             }
             ;
         }
         ;
+        function Addunscored(p) {
+            $("div.StudentScore>td.sid").text(p.sid_id);
+            $("div.StudentScore>td.sname").text(p.name);
+            $("div.StudentScore>p.stutext").text(p.text);
+            $("div.StudentScore>textarea").attr("sid", p.sid_id);
+            $("div.StudentScore>textarea").val(p.comment);
+            $("div.StudentScore>input.grade").attr("sid", p.sid_id);
+            $("div.StudentScore>input.grade").attr("max", p.maxgrade);
+            $("div.StudentScore>input.grade").val(p.grade);
+
+            $("div.StudentScore>button.download").attr('onclick', 'window.open("' + '"/submit/download?key=' + TaskKey + '&sID=' + p.sid_id + '&cID=' + p.cid_id + '&index=' + p.taskindex_id + '")');
+            $("div.StudentScore>button.submit").attr("sid", p.sid_id);
+            $("div.StudentScore>button.submit").text("上传分数");
+            $("tbody").append($("div.StudentScore").innerHTML);
+        }
+        ;
+        function Addscored(p) {
+            $("div.StudentScore>td.sid").text(p.sid_id);
+            $("div.StudentScore>td.sname").text(p.name);
+            $("div.StudentScore>p.stutext").text(p.text);
+            $("div.StudentScore>textarea").attr("sid", p.sid_id);
+            $("div.StudentScore>input.grade").attr("sid", p.sid_id);
+            $("div.StudentScore>input.grade").attr("max", p.maxgrade);
+            $("div.StudentScore>button.download").attr('onclick', 'window.open("' + '"/submit/download?key=' + TaskKey + '&sID=' + p.sid_id + '&cID=' + p.cid_id + '&index=' + p.taskindex_id + '")');
+            $("div.StudentScore>button.submit").attr("sid", p.sid_id);
+            $("div.StudentScore>button.submit").text("重新提交");
+            $("tbody").append($("div.StudentScore").innerHTML);
+        }
         function SubmitGrade(t) {
             var sid = $(t).attr("sid");
-            var grades = $("input[sid=" + sid+ "]").val();
+            var grades = $("input[sid=" + sid + "]").val();
             if (grades) {
-                if (grades >= 0 && grades <= $("a[sid=" + sid+ "]").text) {
+                if (grades >= 0 && grades <= $("a[sid=" + sid + "]").text) {
                     $.post("/score", JSON.stringify({
                         "key": TaskKey,
                         "sid": sid,
@@ -211,7 +247,6 @@
                         "grade": grades
                     }), function (data) {
                         if (data) {
-                            alert("提交成功！");
                             getAllData();
                         } else {
                             alert("提交失败！请重新填写");
@@ -224,26 +259,7 @@
             }
         }
         ;
-        function EditGrade(t) {
-             var sid = $(t).attr("sid");
-            $.post("/score", JSON.stringify({
-                        "key": TaskKey,
-                        "sid": sid,
-                        "cid": TaskCID,
-                        "index": TaskIndex,
-                        "comment": "",
-                        "grade": -1
-                    }), function (data) {
-                        if (data) {
-                            alert("撤销成功！");
-                            getAllData();
-                        } else {
-                            alert("撤销失败！请重试");
-                            getAllData();
-                        }
-                    });
-        }
-        ;
+
     </script>
 
 </head>
@@ -276,54 +292,118 @@
                 <p class="courseCenter"></p>
                 <p class="setWorks"></p>
             </div>
-            <div id="TotalList">
 
+                <div class="panel panel-default scoring">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading"></div>
+                    <table class="table ">
+                        <thead>
+                        <th>学号</th>
+                        <th>姓名</th>
+                        <th>作业</th>
+                        <th>分数</th>
+
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
-            <div class="saveGrade">
-                <div class="col-xs-12 col-md-2">
-                </div>
-                <div class="col-xs-6 col-md-10 right">
-                    <br/>
 
+        <div class="saveGrade">
+            <div class="col-xs-12 col-md-2">
+            </div>
+            <div class="col-xs-6 col-md-10 right">
+                <br/>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div it="model" class="StudentScore">
+    <tr>
+        <td class="sid"></td>
+        <td class="sname"></td>
+        <td>
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">
+                查看
+            </button>
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                 aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">文本作业</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p class="stutext"></p>
+                            <hr>
+                            <div class="form-group">
+                                <label for="message-text" class="control-label">Comment:</label>
+                                    <textarea sid="" class="form-control" id="message-text"
+                                              placeholder="Write down comments..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+
+                            <button type="button" class="btn btn-default" data-dismiss="modal">保存
+                            </button>
+
+                        </div>
+                    </div>
                 </div>
+            </div>
+            <button type="button" class="download" class="btn btn-default" onclick="window.open('')">下载</button>
+        </td>
+        <td>
+            <div class="input-group">
+                <input type="number" sid="" min="0" max="" class="form-control grade">
+      <span class="input-group-btn">
+        <button class="btn btn-default submit" sid="" type="button" onclick="SubmitGrade(this)"></button>
+      </span>
+            </div>
+        </td>
+    </tr>
+
+</div>
+
+<div class="footer">
+    <div class="lastPart"></div>
+    <div class="anotherline"></div>
+    <div class="container ljc last">
+        <div class="row">
+            <div class="col-xs-4">
+                <a>关于我们</a>
+            </div>
+            <div class="col-xs-4">
+                <a>客服中心</a>
+            </div>
+            <div class="col-xs-4">
+                <a>友情链接</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4">
+                <a>版权声明</a>
+            </div>
+            <div class="col-xs-4">
+                <a>联系我们</a>
+            </div>
+            <div class="col-xs-4">
+                <a>新浪微博</a>
             </div>
         </div>
     </div>
 
-
-    <div class="footer">
-        <div class="lastPart"></div>
-        <div class="anotherline"></div>
-        <div class="container ljc last">
-            <div class="row">
-                <div class="col-xs-4">
-                    <a>关于我们</a>
-                </div>
-                <div class="col-xs-4">
-                    <a>客服中心</a>
-                </div>
-                <div class="col-xs-4">
-                    <a>友情链接</a>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-4">
-                    <a>版权声明</a>
-                </div>
-                <div class="col-xs-4">
-                    <a>联系我们</a>
-                </div>
-                <div class="col-xs-4">
-                    <a>新浪微博</a>
-                </div>
-            </div>
-        </div>
-
-        <p class="allRights">
-            版权所有@北京航空航天大学软件学院二元一次方程组，保留一切权利 地址：北京市海淀区学院路37号 邮编：100191 电话：18811055530
-        </p>
-    </div>
+    <p class="allRights">
+        版权所有@北京航空航天大学软件学院二元一次方程组，保留一切权利 地址：北京市海淀区学院路37号 邮编：100191 电话：18811055530
+    </p>
+</div>
 </div>
 
 
