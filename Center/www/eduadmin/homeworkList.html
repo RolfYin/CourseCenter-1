@@ -126,6 +126,7 @@
         div.container.ljc.last {
             margin-top: 10px;
         }
+
         div.input-group {
             width: 130px;
         }
@@ -188,7 +189,7 @@
         ;
         function InitStudentList() {
             $("tbody").innerHTML = "";
-            $("div.panel-heading").text('满分：'+AllData[0].maxgrade);
+            $("div.panel-heading").text('满分：' + AllData[0].maxgrade);
             for (var i in AllData) {
                 if (AllData[i].grade == -1) {
                     AddUnscored(AllData[i]);
@@ -205,7 +206,7 @@
             ;
         }
         ;
-        function Addunscored(p) {
+        function AddUnscored(p) {
             $("div.StudentScore>td.sid").text(p.sid_id);
             $("div.StudentScore>td.sname").text(p.name);
             $("div.StudentScore>p.stutext").text(p.text);
@@ -215,10 +216,10 @@
             $("div.StudentScore>input.grade").attr("max", p.maxgrade);
             $("div.StudentScore>input.grade").val(p.grade);
 
-            $("div.StudentScore>button.download").attr('onclick', 'window.open("' + '"/submit/download?key=' + TaskKey + '&sID=' + p.sid_id + '&cID=' + p.cid_id + '&index=' + p.taskindex_id + '")');
+            $("div.StudentScore>button.download").attr("onclick", "window.open('" + "'/submit/download?key=" + TaskKey + "&sID=" + p.sid_id + "&cID=" + p.cid_id + "&index=" + p.taskindex_id + "')");
             $("div.StudentScore>button.submit").attr("sid", p.sid_id);
             $("div.StudentScore>button.submit").text("上传分数");
-            $("tbody").append($("div.StudentScore").innerHTML);
+            $("tbody").append($("div.StudentScore").html());
         }
         ;
         function Addscored(p) {
@@ -228,10 +229,10 @@
             $("div.StudentScore>textarea").attr("sid", p.sid_id);
             $("div.StudentScore>input.grade").attr("sid", p.sid_id);
             $("div.StudentScore>input.grade").attr("max", p.maxgrade);
-            $("div.StudentScore>button.download").attr('onclick', 'window.open("' + '"/submit/download?key=' + TaskKey + '&sID=' + p.sid_id + '&cID=' + p.cid_id + '&index=' + p.taskindex_id + '")');
+            $("div.StudentScore>button.download").attr("onclick", "window.open('" + "'/submit/download?key=" + TaskKey + "&sID=" + p.sid_id + "&cID=" + p.cid_id + "&index=" + p.taskindex_id + "')");
             $("div.StudentScore>button.submit").attr("sid", p.sid_id);
             $("div.StudentScore>button.submit").text("重新提交");
-            $("tbody").append($("div.StudentScore").innerHTML);
+            $("tbody").append($("div.StudentScore").html());
         }
         function SubmitGrade(t) {
             var sid = $(t).attr("sid");
@@ -293,23 +294,23 @@
                 <p class="setWorks"></p>
             </div>
 
-                <div class="panel panel-default scoring">
-                    <!-- Default panel contents -->
-                    <div class="panel-heading"></div>
-                    <table class="table ">
-                        <thead>
-                        <th>学号</th>
-                        <th>姓名</th>
-                        <th>作业</th>
-                        <th>分数</th>
+            <div class="panel panel-default scoring">
+                <!-- Default panel contents -->
+                <div class="panel-heading"></div>
+                <table class="table ">
+                    <thead>
+                    <th>学号</th>
+                    <th>姓名</th>
+                    <th>作业</th>
+                    <th>分数</th>
 
-                        </thead>
-                        <tbody>
+                    </thead>
+                    <tbody>
 
-                        </tbody>
-                    </table>
-                </div>
+                    </tbody>
+                </table>
             </div>
+        </div>
 
 
         <div class="saveGrade">

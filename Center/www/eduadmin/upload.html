@@ -140,6 +140,8 @@
         var ResourceList;
         var Url=window.location.href;
         var indexofcID = Url.indexOf("=") + 1;
+        var indexofcName = Url.indexOf("cName")
+        var cName = Url.substr(indexofcName+6)
         var cID = Url.substring(indexofcID);
         $(document).ready(function () {
 
@@ -151,8 +153,10 @@
         });
         function LoadName() {
             showName = sessionStorage.getItem("username");
+
             if (showName) {
                 $(".stuName").text(showName);
+                $(".courseCenter").text(decodeURI(cName))
             }
         }
 
@@ -203,7 +207,7 @@
     <div class="course">
         <div class="row">
             <div class="col-xs-12 col-md-2">
-                <p class="courseCenter">请重新登录</p>
+                <p class="courseCenter"></p>
 
             </div>
             <div class="col-xs-12 col-md-6 right">

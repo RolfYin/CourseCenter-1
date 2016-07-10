@@ -142,22 +142,37 @@
     <script type="text/javascript">
         var TaskList;
         var usertype;
+
         $(document).ready(function () {
             usertype = sessionStorage.getItem("usertype");
             if (usertype == 3) {
                 $("p.setNewWork").hide();
             }
-            ;
             LoadName();
             InitHouseworkList();
             GetHousework();
-        })
-        ;
+        });
+        function parseUrlParam(url) {
+            var params = {};
+            start = url.indexOf("?");
+            for (pos = start + 1; pos != 0; pos = url.indexOf("&") + 1) {
+                url = url.substring(pos);
+                var sep_pos = url.indexOf("=");
+                var end = url.indexOf("&");
+                if (end == -1) {
+                    end = url.length
+                }
+                params[url.substring(0, sep_pos)] = url.substring(sep_pos + 1, end);
+            }
+            return params;
+        }
         function LoadName() {
             showName = sessionStorage.getItem("username");
             if (showName) {
                 $(".stuName").text(showName);
+
             }
+            $(".courseCenter").text(decodeURI(parseUrlParam(window.location.href)["cName"]))
         }
         function InitHouseworkList() {
             $("div.col-xs-12.col-md-6.right").html('<p>作业名称</p><ul id="TaskName"></ul>');
@@ -179,7 +194,7 @@
 
                 for (var i = 0; i < TaskList.length; i++) {
                     if (usertype == 3) {
-                        $("ul#TaskName").append('<li><a class="workName" index="' + TaskList[i].index + '" href="/eduadmin/homeWork.html?cID=' + TaskList[i].cid_id + '&index=' + TaskList[i].index + '" target="_blank">' + TaskList[i].name + '</a></li>');
+                        $("ul#TaskName").append('<li><a class="workName" index="' + TaskList[i].index + '" href="/eduadmin/homeWork.html?cID=' + TaskList[i].cid_id + '&index=' + TaskList[i].index +'&cName='+parseUrlParam(window.location.href)["cName"]+ '" target="_blank">' + TaskList[i].name + '</a></li>');
                     } else {
                         $("ul#TaskName").append('<li><a class="workName" index="' + TaskList[i].index + '" href="/eduadmin/homeworkList.html?cID=' + TaskList[i].cid_id + '&index=' + TaskList[i].index + '" target="_blank">' + TaskList[i].name + '</a></li>');
                     }

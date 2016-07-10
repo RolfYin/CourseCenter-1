@@ -138,7 +138,7 @@ class DjangoSession(models.Model):
 
 
 class Resource(models.Model):
-    cid = models.ForeignKey(Course, models.DO_NOTHING, db_column='cID')  # Field name made lowercase.
+    cid = models.ForeignKey(Course, models.DO_NOTHING, db_column='cID', primary_key=True)  # Field name made lowercase.
     index = models.IntegerField(db_column='Index')  # Field name made lowercase.
     filename = models.CharField(db_column='FileName', max_length=1024)  # Field name made lowercase.
     filepath = models.CharField(db_column='FilePath', max_length=2048)  # Field name made lowercase.
@@ -162,7 +162,7 @@ class Student(models.Model):
 
 
 class Studentcourse(models.Model):
-    sid = models.ForeignKey(Student, models.DO_NOTHING, db_column='sID')  # Field name made lowercase.
+    sid = models.ForeignKey(Student, models.DO_NOTHING, db_column='sID', primary_key=True)  # Field name made lowercase.
     cid = models.ForeignKey(Course, models.DO_NOTHING, db_column='cID')  # Field name made lowercase.
 
     class Meta:
@@ -262,7 +262,8 @@ class Teamsubmit(models.Model):
 
 
 class Worksubmit(models.Model):
-    sid = models.ForeignKey(Studentcourse, models.DO_NOTHING, db_column='sID',primary_key=True)  # Field name made lowercase.
+    sid = models.ForeignKey(Studentcourse, models.DO_NOTHING, db_column='sID',
+                            primary_key=True)  # Field name made lowercase.
     cid = models.ForeignKey(Studentcourse, models.DO_NOTHING, db_column='cID',
                             related_name="w_cid")  # Field name made lowercase.
     taskindex = models.ForeignKey(Task, models.DO_NOTHING, db_column='TaskIndex')  # Field name made lowercase.

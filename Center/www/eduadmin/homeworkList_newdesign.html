@@ -1,0 +1,475 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>作业列表</title>
+	<meta name="keywords" content="课程作业 所有课程 我的课程" />
+	<meta name="description" content="布置课程作业。" />
+	<meta name="author" content="ljc" />
+	<meta name="robots" content="all" />
+
+	<link href="/bootstrapdist/css/bootstrap.min.css" rel="stylesheet">
+	<style type="text/css">
+		body {
+			font-family: "Microsoft YaHei", 微软雅黑, "Microsoft JhengHei", 华文细黑, STHeiti, MingLiu;
+		}
+
+
+
+		#windows {
+			z-index: 999;
+			display: none;
+			overflow: hidden;
+			position: fixed;
+			top: 20%;
+			left: 20%;
+			width: 500px;
+			height: 350px;
+			border: 1px solid #999999;
+			border-radius: 10px;
+			background-color: #ffffff;
+		}
+
+		.header {
+			height: 45px;
+			background-color: #eeeeee;
+		}
+		#close {
+			float: right;
+			width: 45px;
+			height: 45px;
+			line-height: 45px;
+			text-align: center;
+			font-size: 40px;
+			color: #999999;
+			text-decoration: none;
+		}
+		#close:hover {
+			color: #333333;
+		}
+		#ifm {
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+		}
+		#mask {
+			z-index: 99;
+			display: none;
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: #000000;
+			opacity: 0.5;
+			-moz-opacity: 0.5;
+			filter:alpha(opacity=50);
+		}
+		
+		p.welcome {
+			position: absolute;
+			top: 80px;
+			left: 1000px;
+			font-size: 20px;
+		}
+		
+		img.logojpg {
+			height: 100px;
+		}
+		
+		div.firstPart {
+			height: 5px;
+			width: 70%;
+			margin-top: 10px;
+			background-color: #4286d8;
+		}
+		
+		div.anotherline {
+			margin-left: 400px;
+			background-color: gray;
+			height: 3px;
+		}
+		
+		div#nav {
+			margin-left: 400px;
+		}
+		
+		ul.menu {
+			float: left;
+			padding-left: 0px;
+			margin: 0 0 0 58px;
+		}
+		
+		#menu li {
+			display: inline-block;
+			margin: 0 15px 0 15px;
+		}
+		
+		#menu>li p {
+			color: gray;
+			text-decoration: none;
+			font-size: 24px;
+			padding: 0px 8px 4px 8px;
+			letter-spacing: 2px;
+			border-bottom: solid 2px transparent;
+		}
+		
+		#menu li p.active {
+			color: red;
+			border-bottom: solid 2px;
+			border-bottom-color: red;
+		}
+		
+		#menu li p:hover {
+			color: red;
+		}
+		
+		#menu li p.active:hover {
+			color: red;
+		}
+		
+		p.workName:hover {
+			color: blue;
+		}
+		
+		p.courseCenter:hover,
+		p.courseSource:hover {
+			color: red;
+		}
+		
+		p.red {
+			color: red;
+		}
+		.workScore{
+			width: 100px;
+			height: 27px;
+		}
+		
+		div div.course {
+			font-size: 20px;
+		}
+		
+		div div div div.col-xs-12.col-md-2.left {
+			height: 500px;
+			font-size: 20px;
+		}
+		
+		div div div div.col-xs-12.right p {
+			margin: 0px 0px 15px 0px;
+		}
+		
+		div.lastPart {
+			height: 5px;
+			margin-top: 50px;
+			width: 70%;
+			background-color: #4286d8;
+		}
+		
+		div.footer {
+			text-align: center;
+		}
+		
+		p.allRights {
+			margin-top: 10px;
+		}
+		
+		div.container.ljc.last {
+			margin-top: 10px;
+		}
+		.submitted{color: green;}
+		.submitting{color: red;}
+		#saveScore {
+			width: 200px;
+			background-color: pink;
+		}
+	</style>
+	
+	<script type="text/javascript" src="/jquery.min.js">
+		
+	</script>
+
+	<script type="text/javascript">
+		
+		var i = 0;
+
+		$(document).ready(function() {
+			$("#myCourses").click(function() {
+				window.location.href = "/eduadmin/tmyCourses.html";
+			});
+			$(".courseSource").click(function() {
+				window.location.href = "/eduadmin/upload.html";
+			});
+			$(".courseCenter").click(function() {
+				window.location.href = "/eduadmin/tcourseCenter.html";
+			});
+			$("#personalCenter").click(function() {
+				window.location.href = "/eduadmin/personalCenter.html";
+			});
+			$("#myTeams").click(function() {
+				window.location.href = "/eduadmin/tmyTeams.html";
+			});
+			$(".setWorks").click(function() {
+				window.location.href = "/eduadmin/setWorks.html";
+			});
+
+			document.getElementById("Request").innerText = "";
+			for( i = 0 ; obj.students[i] != null ; i++ )
+			{
+
+				add(i);
+			}
+            for( i = 0 ; obj.students[i] != null ; i++ )
+            {
+                document.getElementById("detail"+i).onclick = function(){
+			        show(i);
+                return false;}
+            }
+		});
+
+
+
+		function add(i){
+			$(".saveGrade").before('<div class="row">' +
+			'<div class="col-xs-12 col-md-2">' +
+			'</div>' +
+			'<div class="col-xs-6 col-md-2 right">' +
+			obj.students[i].sID +
+			'</div>' +
+			'<div class="col-xs-6 col-md-2 right">' +
+			obj.students[i].sName +
+			'</div>' +
+			'<div class="col-xs-6 col-md-2 right">' +
+			'<p class="submitted">已提交</p>' +
+			'</div>' +
+			'<div class="col-xs-6 col-md-2 right">' +
+			'<a id="detail'+ i + '" href="">查看</a>' + '，' +
+			'<a href='+ obj.students[i].FPath+ '>下载</a>' +
+			'</div>' +
+			'<div class="col-xs-6 col-md-2 right">' +
+			'<p><input type="number" name="Grade" width="100px" min = 0 max = 10 value =' + obj.students[i].tgrade + ' /></p>' +
+			'</div>' +
+			'</div>'
+			);
+		};
+/*
+        var TaskSubmit;
+        var AddStatus;
+        var TaskWork;
+        $(document).ready(function () {
+            $('[name="key"]').attr("value", sessionStorage.getItem("key"));
+        });
+
+        function AddScore()  {
+        	ShowSubmit={
+        		"key": sessionStorage.getItem("key"),
+                "TaskIndex": "201",
+                "cId":"101";
+        	}
+			$.post('view/student_task)', JSON.stringify(ShowSubmit), function (data)
+			{
+				TaskSubmit= JSON.parse(data);
+
+			})
+
+            AddGrade = {
+            	"key": sessionStorage.getItem("key"),
+            	"Grade": $("input[name = 'Grade']").val(),
+            	"Comment": $("input[name='Comment']").val(),
+            	"sID":"101" ,
+            	"TaskIndex":"201",
+            	"cID":"101"
+               // "cID": TaskCID
+            }
+            $.post('/correct', JSON.stringify(AddGrade), function (data)
+			{
+
+				AddStatus = JSON.parse(data);
+
+			})
+            ShowWork = {
+            	"key": sessionStorage.getItem("key"),
+            	"sID":
+            	"TaskIndex":
+            	"cID":
+            }
+            $.post('/view/work', JSON.stringify(ShowWork), function (data)
+			{
+
+				TaskWork = JSON.parse(data);
+
+			});
+               // {#                alert($('#file_upload').data.settings.formData[0]);#}
+//                 $('#file_upload').uploadifive('upload');
+//             }
+            return false;
+        }
+*/
+	</script>
+
+	
+</head>
+
+<body>
+
+	<div id="windows">
+		<div class="header">
+			<a id="close" href="">&times;</a>
+		</div>
+		<p>23333</p>
+		<!-- 小窗口内容（网页是不能直接调用数据库的，要通过后台程序比如PHP才能间接地访问数据库，以下的src部分就是相应的地址，换成给你提供数据的地址即可） -->
+	</div>
+        	<!-- 遮罩层，挡住小窗口以外的所有区域，点击以后小窗口消失 -->
+	<div id="mask"></div>
+
+
+        <script type="text/javascript">
+        var txt = '{ "students" : [' +
+		'{ "sID":"13211000" , "sName":"李敏捷" , "FPath":"http://dldir1.qq.com/qqfile/qq/QQ8.4/18357/QQ8.4.exe" , "tgrade":"0" },' +
+		'{ "sID":"13211002" , "sName":"王起飞" , "tgrade":"0"  },' +
+		'{ "sID":"13211003" , "sName":"萧老板" , "tgrade":"233"  }]}';
+
+		var obj = eval ("(" + txt + ")");
+
+             //显示小窗口和遮罩层的函数show()
+		function show(i) {
+			document.getElementById("windows").style.display = "block";
+			document.getElementById("mask").style.display = "block";
+		}
+		//隐藏小窗口和遮罩层的函数hide()
+		function hide() {
+			document.getElementById("windows").style.display = "none";
+			document.getElementById("mask").style.display = "none";
+		}
+
+		//点击小窗口上的关闭按钮时隐藏小窗口
+		document.getElementById("close").onclick = function(){
+			hide();
+			return false;
+		}
+		//小窗口以外的区域都是遮罩层，点击也隐藏小窗口
+		document.getElementById("mask").onclick = function(){
+			hide();
+			return false;
+		}
+    </script>
+
+	<p class="welcome">
+		您好，
+		<span class="stuName">林广艳</span> &nbsp;&nbsp;老师&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="/eduadmin/login.html">登出</a>
+	</p>
+	<div class="logo">
+		<img class="logojpg" src="images/logo.jpg"></div>
+
+	<div class="firstPart"></div>
+	<div class="anotherline"></div>
+	<br>
+	<div>
+		<div id="nav">
+			<ul id="menu">
+				<li>
+					<p id="myCourses">我的课程</p>
+				</li>
+				<li>
+					<p id="personalCenter">个人中心</p>
+				</li>
+				<li>
+					<p id="myTeams">我的团队</p>
+				</li>
+				<li>
+					<p id="messages">我的消息</p>
+				</li>
+
+			</ul>
+		</div>
+	</div>
+	<div class="container">
+		<div class="course">
+			<div class="row">
+				<div class="col-xs-12 col-md-2">
+					<p class="courseCenter">软件工程过程</p>
+					<p class="setWorks">作业列表</p>
+					<P class="courseSource">上传资源</P>
+				</div>
+				<div class="col-xs-12 col-md-10 right">
+					<p>作业名称：<span id="taskName"></span></p>
+					<p>满分：<span id="MaxGrade"></span></p>
+					<p>作业要求：</p>
+					<p><span id="Request"></span></p>
+				</div>
+				<div class="col-xs-6 col-md-2 right"></div>
+				<div class="col-xs-6 col-md-2 right">
+					<p id="ID"> <B>学号</B></p>
+					
+				</div>
+				<div class="col-xs-6 col-md-2 right">
+					<p id="stuName"> <B>姓名</B></p>
+					
+				</div>
+				<div class="col-xs-6 col-md-2 right">
+					<p id="submitCon"> <B>提交情况</B></p>
+					
+				</div>
+				<div class="col-xs-6 col-md-2 right">
+					<p id=""> <B>作业下载</B></p>
+					
+				</div>
+				<div class="col-xs-6 col-md-2 right">
+					<p id=""> <B>分数设置</B></p>
+				</div>
+			</div>
+						
+			<div class="saveGrade">
+				<div class="col-xs-12 col-md-2">
+				</div>
+				<div class="col-xs-6 col-md-10 right">
+				<br />
+				<button id="saveScore">保存成绩</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
+
+	<div class="footer">
+		<div class="lastPart"></div>
+		<div class="anotherline"></div>
+		<div class="container ljc last">
+			<div class="row">
+				<div class="col-xs-4">
+					<a>关于我们</a>
+				</div>
+				<div class="col-xs-4">
+					<a>客服中心</a>
+				</div>
+				<div class="col-xs-4">
+					<a>友情链接</a>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-4">
+					<a>版权声明</a>
+				</div>
+				<div class="col-xs-4">
+					<a>联系我们</a>
+				</div>
+				<div class="col-xs-4">
+					<a>新浪微博</a>
+				</div>
+			</div>
+		</div>
+
+		<p class="allRights">
+			版权所有@北京航空航天大学软件学院二元一次方程组，保留一切权利 地址：北京市海淀区学院路37号 邮编：100191 电话：18811055530
+		</p>
+	</div>
+
+</body>
+
+<script language="javascript" type="text/javascript" src="/jquery.min.js"></script>
+<script src="/bootstrapdist/js/bootstrap.min.js"></script>
+</body>
+
+</html>
