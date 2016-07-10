@@ -8,8 +8,8 @@
     <meta name="description" content="布置课程作业。"/>
     <meta name="author" content="ljc"/>
     <meta name="robots" content="all"/>
-<script language="javascript" type="text/javascript" src="/jquery.min.js"></script>
-<script src="/bootstrapdist/js/bootstrap.min.js"></script>
+    <script language="javascript" type="text/javascript" src="/jquery.min.js"></script>
+    <script src="/bootstrapdist/js/bootstrap.min.js"></script>
     <link href="/bootstrapdist/css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
         body {
@@ -86,17 +86,20 @@
         p.courseSource:hover {
             color: red;
         }
-        li a.workName{
+
+        li a.workName {
             margin-bottom: 10px;
-            display:block;
+            display: block;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
             width: 400px;
         }
-        ul li{
+
+        ul li {
             font-size: 20px;
         }
+
         p.red {
             color: red;
         }
@@ -107,7 +110,6 @@
             margin-left: 50px;
         }
 
-
         div div.course {
             font-size: 20px;
         }
@@ -116,7 +118,6 @@
             height: 500px;
             font-size: 20px;
         }
-
 
         div.lastPart {
             height: 5px;
@@ -139,17 +140,25 @@
     </style>
     <script type="text/javascript" src="/jquery.min.js"></script>
     <script type="text/javascript">
-        var TaskList;var usertype;
+        var TaskList;
+        var usertype;
         $(document).ready(function () {
-             usertype = sessionStorage.getItem("usertype");
+            usertype = sessionStorage.getItem("usertype");
             if (usertype == 3) {
                 $("p.setNewWork").hide();
             }
             ;
-
+            LoadName();
             InitHouseworkList();
             GetHousework();
-        });
+        })
+        ;
+        function LoadName() {
+            showName = sessionStorage.getItem("username");
+            if (showName) {
+                $(".stuName").text(showName);
+            }
+        }
         function InitHouseworkList() {
             $("div.col-xs-12.col-md-6.right").html('<p>作业名称</p><ul id="TaskName"></ul>');
             $("div.col-xs-12.col-md-4.right").html('<p>截止时间</p><ul id="deadline"></ul>');
@@ -171,7 +180,7 @@
                 for (var i = 0; i < TaskList.length; i++) {
                     if (usertype == 3) {
                         $("ul#TaskName").append('<li><a class="workName" index="' + TaskList[i].index + '" href="/eduadmin/homeWork.html?cID=' + TaskList[i].cid_id + '&index=' + TaskList[i].index + '" target="_blank">' + TaskList[i].name + '</a></li>');
-                    }else{
+                    } else {
                         $("ul#TaskName").append('<li><a class="workName" index="' + TaskList[i].index + '" href="/eduadmin/checkWork.html?cID=' + TaskList[i].cid_id + '&index=' + TaskList[i].index + '" target="_blank">' + TaskList[i].name + '</a></li>');
                     }
                     $("ul#deadline").append('<li><p class="deadline" index="' + TaskList[i].index + '">' + TaskList[i].deadline + '</p></li>');
@@ -185,7 +194,7 @@
 <body>
 <p class="welcome">
     您好，
-    <span class="stuName">林广艳</span> &nbsp;&nbsp;老师&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="stuName"></span> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
     <a href="/eduadmin/login.html">登出</a>
 </p>
 <div class="logo">
@@ -302,8 +311,6 @@
 </div>
 
 </body>
-
-
 
 
 </html>

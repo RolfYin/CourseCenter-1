@@ -148,9 +148,15 @@
         $(document).ready(function () {
 
             $('[name="key"]').attr("value", sessionStorage.getItem("key"));
-
+            LoadName();
 
         });
+        function LoadName() {
+            showName = sessionStorage.getItem("username");
+            if (showName) {
+                $(".stuName").text(showName);
+            }
+        }
         function AddNewTask() {
             var TaskInfo = {
                 "TaskName": $("input#TaskName").val(),
@@ -175,7 +181,7 @@
 <body>
 <p class="welcome">
     您好，
-    <span class="stuName">林广艳</span> &nbsp;&nbsp;老师&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="stuName"></span> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
     <a href="/eduadmin/login.html">登出</a>
 </p>
 <div class="logo">
