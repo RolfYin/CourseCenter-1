@@ -73,26 +73,8 @@
             color: red;
         }
 
-        #menu li p.active:hover {
+        p.courseCenter:hover {
             color: red;
-        }
-
-        p.workName:hover {
-            color: blue;
-        }
-
-        p.courseCenter:hover,
-        p.courseSource:hover {
-            color: red;
-        }
-
-        p.red {
-            color: red;
-        }
-
-        .workScore {
-            width: 100px;
-            height: 27px;
         }
 
         div div.course {
@@ -128,7 +110,7 @@
         }
 
         div.input-group {
-            width: 130px;
+            width: 150px;
         }
 
         div.scoring {
@@ -137,23 +119,14 @@
             margin-right: auto;
         }
 
-        .submitted {
-            color: green;
-        }
 
-        .submitting {
-            color: red;
-        }
-
-        #saveScore {
-            width: 200px;
-            background-color: pink;
-        }
     </style>
 
     <script type="text/javascript" src="/jquery.min.js"></script>
     <script>
         var AllData, TaskCID, TaskIndex, TaskKey;
+        var Url = parseUrlParam(window.location.href);
+        var cName = decodeURI(Url["cName"]);
         $(document).ready(function () {
             $("div.StudentScore").hide();
             LoadName();
@@ -169,12 +142,8 @@
         }
         ;
         function getAllData() {
-            var Url = window.location.href;
-            var indexofcID = Url.indexOf("cID") + 4;
-            TaskCID = Url.substring(indexofcID, indexofcID + 3);
-
-            var indexofindex = Url.indexOf("index") + 6;
-            TaskIndex = Url.substring(indexofindex);
+            TaskCID = Url["cID"];
+            TaskIndex = Url["index"];
             TaskKey = sessionStorage.getItem("key");
 
             $.post("/view/worksubmit", JSON.stringify({
@@ -187,9 +156,23 @@
             });
         }
         ;
+        function parseUrlParam(url) {
+            var params = {};
+            start = url.indexOf("?");
+            for (pos = start + 1; pos != 0; pos = url.indexOf("&") + 1) {
+                url = url.substring(pos);
+                var sep_pos = url.indexOf("=");
+                var end = url.indexOf("&");
+                if (end == -1) {
+                    end = url.length
+                }
+                params[url.substring(0, sep_pos)] = url.substring(sep_pos + 1, end);
+            }
+            return params;
+        }
         function InitStudentList() {
             $("tbody#norm").html("");
-            $("div.panel-heading").text('满分：' + AllData[0].maxgrade);
+            $("div.panel-heading").text('课程: ' + cName + " 满分: " + AllData[0].maxgrade);
             for (var i in AllData) {
                 if (AllData[i].grade == -1) {
                     AddUnscored(AllData[i]);
@@ -212,7 +195,8 @@
             $("div.StudentScore").find("td.sname").text(p.name);
             $("div.StudentScore").find("p.stutext").text(p.text);
             $("div.StudentScore").find("textarea").attr("sid", p.sid_id);
-
+            $("div.StudentScore").find(".CommentWriting").attr("data-target", "#" + p.sid_id);
+            $("div.StudentScore").find(".CommentBlog").attr("id", p.sid_id);
             $("div.StudentScore").find("input.grade").attr("sid", p.sid_id);
             $("div.StudentScore").find("input.grade").attr("max", p.maxgrade);
 
@@ -231,8 +215,8 @@
             $("div.StudentScore").find("textarea").attr("sid", "");
             $("div.StudentScore").find("textarea").attr("sid", p.sid_id);
             $("div.StudentScore").find("textarea").text(p.comment);
-            $("div.StudentScore").find(".CommentWriting").attr("data-target","#"+p.sid_id);
-            $("div.StudentScore").find(".CommentBlog").attr("id",p.sid_id);
+            $("div.StudentScore").find(".CommentWriting").attr("data-target", "#" + p.sid_id);
+            $("div.StudentScore").find(".CommentBlog").attr("id", p.sid_id);
             $("div.StudentScore").find("input.grade").attr("sid", p.sid_id);
             $("div.StudentScore").find("input.grade").attr("max", p.maxgrade);
             $("div.StudentScore").find("input.grade").attr("value", p.grade);
@@ -244,8 +228,10 @@
         }
         function SubmitGrade(t) {
             var sid = $(t).attr("sid");
-            var grades = $("input[sid=" + sid + "]").val();
-            if (grades) {
+            var grades = Number($("input[sid=" + sid + "]").val());
+            var max = Number($("input[sid=" + sid + "]").attr("max"));
+            min = Number($("input[sid=" + sid + "]").attr("min"));
+            if (grades && grades <= max && grades >= min) {
 
                 $.post("/score", JSON.stringify({
                     "key": TaskKey,
@@ -264,7 +250,8 @@
                 });
 
             } else {
-                alert("请输入分数！");
+                alert("请输入正确分数！");
+                $("input[sid=" + sid + "]").val("");
             }
         }
         ;

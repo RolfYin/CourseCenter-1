@@ -138,11 +138,9 @@
     </style>
     <script type="text/javascript">
         var ResourceList;
-        var Url=window.location.href;
-        var indexofcID = Url.indexOf("=") + 1;
-        var indexofcName = Url.indexOf("cName")
-        var cName = Url.substr(indexofcName+6)
-        var cID = Url.substring(indexofcID);
+        var Url=parseUrlParam(window.location.href);
+        var cName = decodeURI(Url["cName"]);
+        var cID = Url["cID"];
         $(document).ready(function () {
 
             InitResourceList();
@@ -159,7 +157,20 @@
                 $(".courseCenter").text(decodeURI(cName))
             }
         }
-
+         function parseUrlParam(url) {
+            var params = {};
+            start = url.indexOf("?");
+            for (pos = start + 1; pos != 0; pos = url.indexOf("&") + 1) {
+                url = url.substring(pos);
+                var sep_pos = url.indexOf("=");
+                var end = url.indexOf("&");
+                if (end == -1) {
+                    end = url.length
+                }
+                params[url.substring(0, sep_pos)] = url.substring(sep_pos + 1, end);
+            }
+            return params;
+        }
         function InitResourceList() {
             $("div.col-xs-12.col-md-6.right").html('<p>资源名称:</p>');
             $("div.col-xs-12.col-md-2.right").html('<p>资源类别:</p>');

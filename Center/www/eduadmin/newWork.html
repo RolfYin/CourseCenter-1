@@ -101,7 +101,7 @@
 
         #setNewWork {
             width: 250px;
-            background-color: orange !important;
+
             margin-left: 50px;
         }
 
@@ -140,8 +140,8 @@
     </style>
 
     <script type="text/javascript">
-        var index = window.location.href.indexOf("=") + 1;
-        var cNum = window.location.href.substring(index);
+        var url = parseUrlParam(window.location.href);
+        var cNum = url["cid"];
         var TaskCID = cNum;
         var TaskKey = sessionStorage.getItem("key");
         var DocSubmitInfo = {};
@@ -151,6 +151,20 @@
             LoadName();
 
         });
+         function parseUrlParam(url) {
+            var params = {};
+            start = url.indexOf("?");
+            for (pos = start + 1; pos != 0; pos = url.indexOf("&") + 1) {
+                url = url.substring(pos);
+                var sep_pos = url.indexOf("=");
+                var end = url.indexOf("&");
+                if (end == -1) {
+                    end = url.length
+                }
+                params[url.substring(0, sep_pos)] = url.substring(sep_pos + 1, end);
+            }
+            return params;
+        }
         function LoadName() {
             showName = sessionStorage.getItem("username");
             if (showName) {
@@ -238,7 +252,7 @@
                     <br> 作业截止日期:
                     <input type="datetime-local" name="user_date" required/>
 
-                    <input id="setNewWork" type="submit" value="确认发布新作业"/>
+                    <input id="setNewWork"class="btn btn-primary" type="submit" value="确认发布新作业"/>
                 </form>
             </div>
 

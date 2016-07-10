@@ -192,7 +192,7 @@
                     if (usertype == 3) {
                         $("ul#TaskName").append('<li><a class="workName" index="' + TaskList[i].index + '" href="/eduadmin/homeWork.html?cID=' + TaskList[i].cid_id + '&index=' + TaskList[i].index +'&cName='+parseUrlParam(window.location.href)["cName"]+ '" target="_blank">' + TaskList[i].name + '</a></li>');
                     } else {
-                        $("ul#TaskName").append('<li><a class="workName" index="' + TaskList[i].index + '" href="/eduadmin/homeworkList.html?cID=' + TaskList[i].cid_id + '&index=' + TaskList[i].index + '" target="_blank">' + TaskList[i].name + '</a></li>');
+                        $("ul#TaskName").append('<li><a class="workName" index="' + TaskList[i].index + '" href="/eduadmin/homeworkList.html?cID=' + TaskList[i].cid_id + '&index=' + TaskList[i].index +'&cName='+parseUrlParam(window.location.href)["cName"]+ '" target="_blank">' + TaskList[i].name + '</a></li>');
                     }
                     $("ul#deadline").append('<li><p class="deadline" index="' + TaskList[i].index + '">' + TaskList[i].deadline + '</p></li>');
                 }
@@ -206,7 +206,7 @@
 <p class="welcome">
     您好，
     <span class="stuName"></span> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="/eduadmin/login.html">登出</a>
+    <a href="/eduadmin/index.html">登出</a>
 </p>
 <div class="logo">
     <img class="logojpg" src="images/logo.jpg"></div>
