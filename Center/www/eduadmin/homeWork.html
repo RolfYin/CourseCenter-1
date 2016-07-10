@@ -113,7 +113,12 @@
             width: 70%;
             background-color: #4286d8;
         }
-
+        p.taskName{
+            display:block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
         div.footer {
             text-align: center;
         }
@@ -139,7 +144,14 @@
         $(document).ready(function () {
            $('[name="key"]').attr("value", sessionStorage.getItem("key"));
             InitTask();
+            LoadName();
         });
+        function LoadName() {
+            showName = sessionStorage.getItem("username");
+            if (showName) {
+                $(".stuName").text(showName);
+            }
+        }
         function InitTask() {
             var InitRequest={
                 "cID":TaskCID,
@@ -160,7 +172,7 @@
                     if(!(TaskInfo.grade==-1)){
                         $("span#submitOrNot").text('已于'+TaskInfo.submittime+'提交');
                         $("span#workScore").text(TaskInfo.grade);
-                        $("p#comment").text("教师评价"+TaskInfo.comment);
+                        $("p#comment").text("教师评价:"+TaskInfo.comment);
                     }
                 }
             })
@@ -172,7 +184,7 @@
                 "cID": TaskCID,
                 "index":TaskIndex,
             };
-            $.post('/add/task', JSON.stringify(TaskInfo), function (data) {
+            $.post('/submit/task', JSON.stringify(TaskInfo), function (data) {
                 DocSubmitInfo["index"] = TaskIndex;
                 DocSubmitInfo["key"] = TaskKey;
                 DocSubmitInfo["cID"] = TaskCID;
@@ -186,8 +198,8 @@
 <body>
 <p class="welcome">
     您好，
-    <span class="stuName">李甲辰</span> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="/eduadmin/login.html">登出</a>
+    <span class="stuName"></span> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="/eduadmin/index.html">登出</a>
 </p>
 <div class="logo">
     <img class="logojpg" src="images/logo.jpg"></div>
@@ -208,7 +220,7 @@
         <div class="row">
             <div class="col-xs-12 col-md-2 left">
                 <p class="courseCenter">软件工程过程</p>
-                <p class="taskName">计算机网络调查</p>
+                <p class="taskName"></p>
                 <p class="red courseWorks">作业详情</p>
 
             </div>
@@ -222,8 +234,7 @@
                 <p>作业描述如下：</p>
                 <p id="workDes">
                     7月4日，网上流传的截图信息显示，百度已对刘超参与外部讲演的不当言论和内外部影响进行联合调查，刘超未事先向公司报备参会信息，同时其行为及演讲内容给公司品牌造成严重影响，百度已决定将刘超从百度管理团队除名。</p>
-                <br>
-                <p id=><a id="workFile" href="">作业附件1</a></p>
+                <p id=><a id="workFile" href="" target="_blank">附件下载</a></p>
                 <p>提交作业：</p>
                 <div id="form">
                 <form action="" method="post" onsubmit="return AddNewTask();">
@@ -235,8 +246,7 @@
                     </p>
 
                     <input type="hidden" name="key" value="">
-                    <p>添加作业附件：</p>
-                    <input id="file_upload" name="file_upload" type="file" multiple="true">
+                    <p>添加作业附件：<input id="file_upload" name="file_upload" type="file" multiple="true">
 
                     <script type="text/javascript">
                         $(function () {
@@ -248,10 +258,9 @@
                             });
                         });
                     </script>
-                    <br> 作业截止日期:
-                    <input type="datetime-local" name="user_date" required/>
+                        </p>
 
-                    <input id="setNewWork" type="submit" value="确认发布新作业"/>
+                    <input id="setNewWork" type="submit" value="确认提交新作业"/>
                 </form>
                     </div>
                 <p id="comment"></p>
