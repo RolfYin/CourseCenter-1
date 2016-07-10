@@ -168,7 +168,7 @@
             $.post("/view/worksubmit", JSON.stringify({
                 "key": TaskKey,
                 "Index": TaskIndex,
-                "cID": TaskIndex
+                "cID": TaskCID,
             }), function (data) {
                 AllData = JSON.parse(data);
                 InitStudentList();
