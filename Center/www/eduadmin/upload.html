@@ -138,34 +138,30 @@
     </style>
     <script type="text/javascript">
         var ResourceList;
+        var Url=window.location.href;
+        var indexofcID = Url.indexOf("=") + 1;
+        var cID = Url.substring(indexofcID);
         $(document).ready(function () {
 
             InitResourceList();
-            $("#myCourses").click(function () {
-                window.location.href = "/eduadmin/tmyCourses.html";
-            });
-            $(".setWorks").click(function () {
-                window.location.href = "/eduadmin/setWorks.html";
-            });
-            $(".courseCenter").click(function () {
-                window.location.href = "/eduadmin/tcourseCenter.html";
-            });
-            $("#personalCenter").click(function () {
-                window.location.href = "/eduadmin/tpersonalCenter.html";
-            });
-            $("#myTeams").click(function () {
-                window.location.href = "/eduadmin/tmyTeams.html";
-            });
-            $("#setNewWork").click(function () {
-                window.location.href = "/eduadmin/newWork.html";
-            });
+            LoadName();
+
+
+
         });
+        function LoadName() {
+            showName = sessionStorage.getItem("username");
+            if (showName) {
+                $(".stuName").text(showName);
+            }
+        }
+
         function InitResourceList() {
             $("div.col-xs-12.col-md-6.right").html('<p>资源名称:</p>');
-            $("div.col-xs-12.col-md-2.right").html('<p>上传时间:</p>');
+            $("div.col-xs-12.col-md-2.right").html('<p>资源类别:</p>');
             $.post('/view/course_source', JSON.stringify({
                 "key": sessionStorage.getItem("key"),
-                "cID": sessionStorage.getItem("cID")
+                "cID": cID
             }), function (data) {
                 ResourceList = JSON.parse(data);
 
@@ -186,8 +182,8 @@
 <body>
 <p class="welcome">
     您好，
-    <span class="stuName">林广艳</span> &nbsp;&nbsp;老师&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="/eduadmin/login.html">登出</a>
+    <span class="stuName"></span> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="/eduadmin/index.html">登出</a>
 </p>
 <div class="logo">
     <img class="logojpg" src="images/logo.jpg"></div>
@@ -198,18 +194,7 @@
 <div>
     <div id="nav">
         <ul id="menu">
-            <li>
-                <p id="myCourses"></p>
-            </li>
-            <li>
-                <p id="personalCenter"></p>
-            </li>
-            <li>
-                <p id="myTeams"></p>
-            </li>
-            <li>
-                <p id="messages"></p>
-            </li>
+
 
         </ul>
     </div>
@@ -218,9 +203,8 @@
     <div class="course">
         <div class="row">
             <div class="col-xs-12 col-md-2">
-                <p class="courseCenter">软件工程过程</p>
-                <p class="setWorks">布置作业</p>
-                <P class="red">上传资源</P>
+                <p class="courseCenter">请重新登录</p>
+
             </div>
             <div class="col-xs-12 col-md-6 right">
                 <p>资源名称：</p>
@@ -230,7 +214,7 @@
 
 
             <div class="col-xs-12 col-md-2 right">
-                <p>上传时间：</p>
+                <p>资源类别：</p>
 
             </div>
 
@@ -248,7 +232,7 @@
                         $('#file_upload').uploadifive({
                             'formData': {
                                 "key": sessionStorage.getItem("key"),
-                                "cID": sessionStorage.getItem("cID"),
+                                "cID": cID,
                             },
                             'uploadScript': '/upload',
                             'onUploadComplete': function (file, data) {

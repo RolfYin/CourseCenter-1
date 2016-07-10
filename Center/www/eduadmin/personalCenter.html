@@ -163,6 +163,7 @@
         var Course;
         var Json;
         var t;
+        var c;
         $(document).ready(function () {
             $("#myCourses").click(function () {
                 $("#personalCenter").attr("class", "");
@@ -239,22 +240,15 @@
 
             }
 
-            InitDivContent('<div class="container"><div class="course"> <div class="row"> <div class="col-xs-12 col-md-2 left"> <p class="red"></p> <a class="courseWorks"   href="" target="_blank">课程作业</a><P class="courseSource" onclick="SelectResource(Json[t].cid)">课程资源</P> </div> <div class="col-xs-12 col-md-10 right"> <div class="up"> <p class="courseIntro">课程介绍</p> <p>课程名称：<span class="courseName"></span></p> <p>任课教师：<span class="teacherName"></span></p> <p>课程信息：<span class="courseInfo"></span></p> </div> <div class="down"> <p class="courseAr">课程安排</p> </div> </div> </div> </div> </div>');
+            InitDivContent('<div class="container"><div class="course"> <div class="row"> <div class="col-xs-12 col-md-2 left"> <p class="red"></p> <a class="courseWorks"   href="" target="_blank">课程作业</a><p><a class="courseSource" href="" target="_blank">课程资源</a></p> </div> <div class="col-xs-12 col-md-10 right"> <div class="up"> <p class="courseIntro">课程介绍</p> <p>课程名称：<span class="courseName"></span></p> <p>任课教师：<span class="teacherName"></span></p> <p>课程信息：<span class="courseInfo"></span></p> </div> <div class="down"> <p class="courseAr">课程安排</p> </div> </div> </div> </div> </div>');
             $("p.red").text(Json[t].cname);
             $("span.courseName").text(Json[t].cname);
             $("span.teacherName").text(Json[t].teacherid_id);
             $("span.courseInfo").text(Json[t].descripition);
             $("a.courseWorks").attr("href", "/eduadmin/setWorks.html?cID=" + Json[t].cid);
+            $("a.courseSource").attr("href","/eduadmin/upload.html?cID="+Json[t].cid);
         }
-        function SelectResource(c) {
-            console.log(c);
 
-
-            sessionStorage.setItem("cID", c);
-            window.open("/eduadmin/upload.html");
-
-
-        }
 
     </script>
 </head>
