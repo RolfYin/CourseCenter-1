@@ -142,24 +142,7 @@
 		var i = 0;
 
 		$(document).ready(function() {
-			$("#myCourses").click(function() {
-				window.location.href = "/eduadmin/tmyCourses.html";
-			});
-			$(".courseSource").click(function() {
-				window.location.href = "/eduadmin/upload.html";
-			});
-			$(".courseCenter").click(function() {
-				window.location.href = "/eduadmin/tcourseCenter.html";
-			});
-			$("#personalCenter").click(function() {
-				window.location.href = "/eduadmin/personalCenter.html";
-			});
-			$("#myTeams").click(function() {
-				window.location.href = "/eduadmin/tmyTeams.html";
-			});
-			$(".setWorks").click(function() {
-				window.location.href = "/eduadmin/setWorks.html";
-			});
+
 
 			for( i = 0 ; obj.groups[i] != null ; i++ )
 			{
@@ -199,7 +182,7 @@
        		GroupShowSubmit={
        		"key": sessionStorage.getItem("key"),
             "TaskIndex": "0",
-            "cId":"304";
+            "cId":"304"
        	}
 		
 		$.post('/show/groupsubmit', JSON.stringify(GroupShowSubmit), function (data)
@@ -209,9 +192,9 @@
             
         GroupAddGrade = {
         	"Grade": $("input").val(),
-            "teamID":
+            "teamID":"401",
            	"TaskIndex":"0",
-           	"cID":"304";
+           	"cID":"304"
         }
            
         $.post('/add/groupgrade', JSON.stringify(GroupAddGrade), function (data){		

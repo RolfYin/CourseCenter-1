@@ -181,7 +181,7 @@
                     if (usertype == 3) {
                         $("ul#TaskName").append('<li><a class="workName" index="' + TaskList[i].index + '" href="/eduadmin/homeWork.html?cID=' + TaskList[i].cid_id + '&index=' + TaskList[i].index + '" target="_blank">' + TaskList[i].name + '</a></li>');
                     } else {
-                        $("ul#TaskName").append('<li><a class="workName" index="' + TaskList[i].index + '" href="/eduadmin/checkWork.html?cID=' + TaskList[i].cid_id + '&index=' + TaskList[i].index + '" target="_blank">' + TaskList[i].name + '</a></li>');
+                        $("ul#TaskName").append('<li><a class="workName" index="' + TaskList[i].index + '" href="/eduadmin/homeworkList.html?cID=' + TaskList[i].cid_id + '&index=' + TaskList[i].index + '" target="_blank">' + TaskList[i].name + '</a></li>');
                     }
                     $("ul#deadline").append('<li><p class="deadline" index="' + TaskList[i].index + '">' + TaskList[i].deadline + '</p></li>');
                 }

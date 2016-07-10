@@ -2,348 +2,329 @@
 <html>
 
 <head>
-	<meta charset="UTF-8">
-	<title>作业列表</title>
-	<meta name="keywords" content="课程作业 所有课程 我的课程" />
-	<meta name="description" content="布置课程作业。" />
-	<meta name="author" content="ljc" />
-	<meta name="robots" content="all" />
+    <meta charset="UTF-8">
+    <title>作业列表</title>
+    <meta name="keywords" content="课程作业 所有课程 我的课程"/>
+    <meta name="description" content="布置课程作业。"/>
+    <meta name="author" content="ljc"/>
+    <meta name="robots" content="all"/>
 
-	<link href="/bootstrapdist/css/bootstrap.min.css" rel="stylesheet">
-	<style type="text/css">
-		body {
-			font-family: "Microsoft YaHei", 微软雅黑, "Microsoft JhengHei", 华文细黑, STHeiti, MingLiu;
-		}
-		
-		p.welcome {
-			position: absolute;
-			top: 80px;
-			left: 1000px;
-			font-size: 20px;
-		}
-		
-		img.logojpg {
-			height: 100px;
-		}
-		
-		div.firstPart {
-			height: 5px;
-			width: 70%;
-			margin-top: 10px;
-			background-color: #4286d8;
-		}
-		
-		div.anotherline {
-			margin-left: 400px;
-			background-color: gray;
-			height: 3px;
-		}
-		
-		div#nav {
-			margin-left: 400px;
-		}
-		
-		ul.menu {
-			float: left;
-			padding-left: 0px;
-			margin: 0 0 0 58px;
-		}
-		
-		#menu li {
-			display: inline-block;
-			margin: 0 15px 0 15px;
-		}
-		
-		#menu>li p {
-			color: gray;
-			text-decoration: none;
-			font-size: 24px;
-			padding: 0px 8px 4px 8px;
-			letter-spacing: 2px;
-			border-bottom: solid 2px transparent;
-		}
-		
-		#menu li p.active {
-			color: red;
-			border-bottom: solid 2px;
-			border-bottom-color: red;
-		}
-		
-		#menu li p:hover {
-			color: red;
-		}
-		
-		#menu li p.active:hover {
-			color: red;
-		}
-		
-		p.workName:hover {
-			color: blue;
-		}
-		
-		p.courseCenter:hover,
-		p.courseSource:hover {
-			color: red;
-		}
-		
-		p.red {
-			color: red;
-		}
-		.workScore{
-			width: 100px;
-			height: 27px;
-		}
-		
-		div div.course {
-			font-size: 20px;
-		}
-		
-		div div div div.col-xs-12.col-md-2.left {
-			height: 500px;
-			font-size: 20px;
-		}
-		
-		div div div div.col-xs-12.right p {
-			margin: 0px 0px 15px 0px;
-		}
-		
-		div.lastPart {
-			height: 5px;
-			margin-top: 50px;
-			width: 70%;
-			background-color: #4286d8;
-		}
-		
-		div.footer {
-			text-align: center;
-		}
-		
-		p.allRights {
-			margin-top: 10px;
-		}
-		
-		div.container.ljc.last {
-			margin-top: 10px;
-		}
-		.submitted{color: green;}
-		.submitting{color: red;}
-		#saveScore {
-			width: 200px;
-			background-color: pink;
-		}
-	</style>
-	
-	<script type="text/javascript" src="/jquery.min.js">
-		
-	</script>
-
-	<script type="text/javascript">
-		
-		var i = 0;
-
-		$(document).ready(function() {
-			$("#myCourses").click(function() {
-				window.location.href = "/eduadmin/tmyCourses.html";
-			});
-			$(".courseSource").click(function() {
-				window.location.href = "/eduadmin/upload.html";
-			});
-			$(".courseCenter").click(function() {
-				window.location.href = "/eduadmin/tcourseCenter.html";
-			});
-			$("#personalCenter").click(function() {
-				window.location.href = "/eduadmin/personalCenter.html";
-			});
-			$("#myTeams").click(function() {
-				window.location.href = "/eduadmin/tmyTeams.html";
-			});
-			$(".setWorks").click(function() {
-				window.location.href = "/eduadmin/setWorks.html";
-			});
-
-			for( i = 0 ; obj.students[i] != null ; i++ )
-			{
-				add(i);
-			}
-		});
-		function add(i){
-			$(".saveGrade").before('<div class="row">' +
-			'<div class="col-xs-12 col-md-2">' +
-			'</div>' +
-			'<div class="col-xs-6 col-md-2 right">' +
-			obj.students[i].sID +
-			'</div>' +
-			'<div class="col-xs-6 col-md-2 right">' +
-			obj.students[i].sName +
-			'</div>' +
-			'<div class="col-xs-6 col-md-2 right">' +
-			'<p class="submitted">已提交</p>' +
-			'</div>' +
-			'<div class="col-xs-6 col-md-2 right">' +
-			'<a href='+ obj.students[i].FPath+ '>下载</a>' +
-			'</div>' +
-			'<div class="col-xs-6 col-md-2 right">' +
-			'<p><input type="number" name="Grade" width="100px" min = 0 max = 10 value =' + obj.students[i].tgrade + ' /></p>' +
-			'</div>' +
-			'</div>'
-			);
-		};
-
-		var TaskSubmit;   
-     	var TaskGrade;
-      	$(document).ready(function () {
-     	   	$('[name="key"]').attr("value", sessionStorage.getItem("key"));
-       	});
-
-        function AddScore()  {
-       		ShowSubmit={
-       		"key": sessionStorage.getItem("key"),
-            "Index": "201",
-            "cId":"101";
-       	}
-		
-		$.post('/show/submit', JSON.stringify(ShowSubmit), function (data)
-		{
-			TaskSubmit= JSON.parse(data);
-		})
-            
-        AddGrade = {
-        	"Grade": $("input").val(),
-            "sID":
-           	"Index":"201",
-           	"cID":"101";
+    <link href="/bootstrapdist/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+        body {
+            font-family: "Microsoft YaHei", 微软雅黑, "Microsoft JhengHei", 华文细黑, STHeiti, MingLiu;
         }
-           
-        $.post('/add/grade', JSON.stringify(AddGrade), function (data){		
 
-		});
-          	return false;
-      	}
-		
-	</script>
-	
+        p.welcome {
+            position: absolute;
+            top: 80px;
+            left: 1000px;
+            font-size: 20px;
+        }
+
+        img.logojpg {
+            height: 100px;
+        }
+
+        div.firstPart {
+            height: 5px;
+            width: 70%;
+            margin-top: 10px;
+            background-color: #4286d8;
+        }
+
+        div.anotherline {
+            margin-left: 400px;
+            background-color: gray;
+            height: 3px;
+        }
+
+        div#nav {
+            margin-left: 400px;
+        }
+
+        ul.menu {
+            float: left;
+            padding-left: 0px;
+            margin: 0 0 0 58px;
+        }
+
+        #menu li {
+            display: inline-block;
+            margin: 0 15px 0 15px;
+        }
+
+        #menu > li p {
+            color: gray;
+            text-decoration: none;
+            font-size: 24px;
+            padding: 0px 8px 4px 8px;
+            letter-spacing: 2px;
+            border-bottom: solid 2px transparent;
+        }
+
+        #menu li p.active {
+            color: red;
+            border-bottom: solid 2px;
+            border-bottom-color: red;
+        }
+
+        #menu li p:hover {
+            color: red;
+        }
+
+        #menu li p.active:hover {
+            color: red;
+        }
+
+        p.workName:hover {
+            color: blue;
+        }
+
+        p.courseCenter:hover,
+        p.courseSource:hover {
+            color: red;
+        }
+
+        p.red {
+            color: red;
+        }
+
+        .workScore {
+            width: 100px;
+            height: 27px;
+        }
+
+        div div.course {
+            font-size: 20px;
+        }
+
+        div div div div.col-xs-12.col-md-2.left {
+            height: 500px;
+            font-size: 20px;
+        }
+
+        div div div div.col-xs-12.right p {
+            margin: 0px 0px 15px 0px;
+        }
+
+        div.lastPart {
+            height: 5px;
+            margin-top: 50px;
+            width: 70%;
+            background-color: #4286d8;
+        }
+
+        div.footer {
+            text-align: center;
+        }
+
+        p.allRights {
+            margin-top: 10px;
+        }
+
+        div.container.ljc.last {
+            margin-top: 10px;
+        }
+
+        .submitted {
+            color: green;
+        }
+
+        .submitting {
+            color: red;
+        }
+
+        #saveScore {
+            width: 200px;
+            background-color: pink;
+        }
+    </style>
+
+    <script type="text/javascript" src="/jquery.min.js"></script>
+    <script>
+        var AllData, TaskCID, TaskIndex, TaskKey;
+        $(document).ready(function () {
+            LoadName();
+        });
+        function LoadName() {
+            showName = sessionStorage.getItem("username");
+            if (showName) {
+                $(".stuName").text(showName);
+            }
+            ;
+            getAllData();
+        }
+        ;
+        function getAllData() {
+            var Url = window.location.href;
+            var indexofcID = Url.indexOf("cID") + 4;
+            TaskCID = Url.substring(indexofcID, indexofcID + 3);
+
+            var indexofindex = Url.indexOf("index") + 6;
+            TaskIndex = Url.substring(indexofindex);
+            TaskKey = sessionStorage.getItem("key");
+
+            $.post("/view/worksubmit", JSON.stringify({
+                "key": TaskKey,
+                "Index": TaskIndex,
+                "cID": TaskIndex
+            }), function (data) {
+                AllData = JSON.parse(data);
+                InitStudentList();
+            });
+        }
+        ;
+        function InitStudentList() {
+            for (var i in AllData) {
+                if (AllData[i].grade == -1) {
+                    var part1 = '<div class="' + AllData[i].sid + '"><p>学号：' + AllData[i].sid + '        姓名：' + AllData[i].name + '</p><p>提交内容：' + AllData[i].text + '</p><p><a href="/submitdownload?key="' + TaskKey + '&sID=' + AllData[i].sid + '&cID=' + AllData[i].cid + '&index=' + AllData[i].index + '">附件下载</a></p><p><textarea id="comment" rows="2" placeholder="Write down your comments..."' + 'sid="' + AllData[i].sid + '" >';
+                    var part2 = '</textarea></p><p><input id="grades" type="number" sid="' + AllData[i].sid + '"</input>/<a id="Maxpoints">' + AllData[i].maxgrade + '</a>         <button sid="' + AllData[i].sid + '" onclick="SubmitGrade(this)">提交</button></p></div>';
+                    $("div#TotalList").append(part1 + part2);
+                }
+                ;
+            }
+            ;
+            for (var i in AllData) {
+                if (!(AllData[i].grade == -1)) {
+                    var part1 = '<div class="' + AllData[i].sid + '"><p>学号：' + AllData[i].sid + '        姓名：' + AllData[i].name + '</p><p>提交内容：' + AllData[i].text + '</p><p><a href="/submitdownload?key="' + TaskKey + '&sID=' + AllData[i].sid + '&cID=' + AllData[i].cid + '&index=' + AllData[i].index + '">附件下载</a></p><p><textarea id="comment" rows="2" sid="' + AllData[i].sid + '" >' + AllData.comment + '</textarea>';
+                    var part2 = '</p><p><input id="grades" type="number" sid="' + AllData[i].sid + '">' + AllData[i].grade + '</input>/<a sid="' + AllData[i].sid + '">' + AllData[i].maxgrade + '</a>         <button sid="' + AllData[i].sid + '" onclick="EditGrade(this)">重评</button></p></div>';
+                    $("div#TotalList").append(part1 + part2);
+                }
+                ;
+            }
+            ;
+        }
+        ;
+        function SubmitGrade(t) {
+            var sid = $(t).attr("sid");
+            var grades = $("input[sid=" + t + "]").val();
+            if (grades) {
+                if (grades >= 0 && grades <= $("a[sid=" + t + "]").text) {
+                    $.post("/score", JSON.stringify({
+                        "key": TaskKey,
+                        "sid": sid,
+                        "cid": TaskCID,
+                        "index": TaskIndex,
+                        "comment": $("textarea[sid=" + sid + "]").val(),
+                        "grade": grades
+                    }), function (data) {
+                        if (data) {
+                            alert("提交成功！");
+                            getAllData();
+                        } else {
+                            alert("提交失败！请重新填写");
+                            getAllData();
+                        }
+                    });
+                }
+            } else {
+                alert("请输入分数！");
+            }
+        }
+        ;
+        function EditGrade(t) {
+             var sid = $(t).attr("sid");
+            $.post("/score", JSON.stringify({
+                        "key": TaskKey,
+                        "sid": sid,
+                        "cid": TaskCID,
+                        "index": TaskIndex,
+                        "comment": "",
+                        "grade": -1
+                    }), function (data) {
+                        if (data) {
+                            alert("撤销成功！");
+                            getAllData();
+                        } else {
+                            alert("撤销失败！请重试");
+                            getAllData();
+                        }
+                    });
+        }
+        ;
+    </script>
+
 </head>
 
 <body>
-	<script type="text/javascript">
-		var txt = '{ "students" : [' +
-		'{ "sID":"13211000" , "sName":"李敏捷" , "FPath":"http://dldir1.qq.com/qqfile/qq/QQ8.4/18357/QQ8.4.exe" , "tgrade":"0" },' +
-		'{ "sID":"13211002" , "sName":"王起飞" , "tgrade":"0"  },' +
-		'{ "sID":"13211003" , "sName":"萧老板" , "tgrade":"233"  }]}';
 
-		var obj = eval ("(" + txt + ")");
-	</script>
+<p class="welcome">
+    您好，
+    <span class="stuName"></span> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="/eduadmin/index.html">登出</a>
+</p>
+<div class="logo">
+    <img class="logojpg" src="images/logo.jpg"></div>
 
-	<p class="welcome">
-		您好，
-		<span class="stuName">林广艳</span> &nbsp;&nbsp;老师&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="/eduadmin/login.html">登出</a>
-	</p>
-	<div class="logo">
-		<img class="logojpg" src="images/logo.jpg"></div>
-
-	<div class="firstPart"></div>
-	<div class="anotherline"></div>
-	<br>
-	<div>
-		<div id="nav">
-			<ul id="menu">
-				<li>
-					<p id="myCourses">我的课程</p>
-				</li>
-				<li>
-					<p id="personalCenter">个人中心</p>
-				</li>
-				<li>
-					<p id="myTeams">我的团队</p>
-				</li>
-				<li>
-					<p id="messages">我的消息</p>
-				</li>
-
-			</ul>
-		</div>
-	</div>
-	<div class="container">
-		<div class="course">
-			<div class="row">
-				<div class="col-xs-12 col-md-2">
-					<p class="courseCenter">软件工程过程</p>
-					<p class="setWorks">作业列表</p>
-					<P class="courseSource">上传资源</P>
-				</div>
-				<div class="col-xs-12 col-md-10 right">
-					<p>作业名称：<span id="taskName"></span></p>
-					<p>满分：<span id="MaxGrade"></span></p>
-				</div>
-				<div class="col-xs-6 col-md-2 right">
-					<p id="ID"> <B>学号</B></p>
-					
-				</div>
-				<div class="col-xs-6 col-md-2 right">
-					<p id="stuName"> <B>姓名</B></p>
-					
-				</div>
-				<div class="col-xs-6 col-md-2 right">
-					<p id="submitCon"> <B>提交情况</B></p>
-					
-				</div>
-				<div class="col-xs-6 col-md-2 right">
-					<p id=""> <B>作业下载</B></p>
-					
-				</div>
-				<div class="col-xs-6 col-md-2 right">
-					<p id=""> <B>分数设置</B></p>
-				</div>
-			</div>
-						
-			<div class="saveGrade">
-				<div class="col-xs-12 col-md-2">
-				</div>
-				<div class="col-xs-6 col-md-10 right">
-				<br />
-				<button id="saveScore">保存成绩</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	
+<div class="firstPart"></div>
+<div class="anotherline"></div>
+<br>
+<div>
+    <div id="nav">
+        <ul id="menu">
 
 
-	<div class="footer">
-		<div class="lastPart"></div>
-		<div class="anotherline"></div>
-		<div class="container ljc last">
-			<div class="row">
-				<div class="col-xs-4">
-					<a>关于我们</a>
-				</div>
-				<div class="col-xs-4">
-					<a>客服中心</a>
-				</div>
-				<div class="col-xs-4">
-					<a>友情链接</a>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-4">
-					<a>版权声明</a>
-				</div>
-				<div class="col-xs-4">
-					<a>联系我们</a>
-				</div>
-				<div class="col-xs-4">
-					<a>新浪微博</a>
-				</div>
-			</div>
-		</div>
+        </ul>
+    </div>
+</div>
+<div class="container">
+    <div class="course">
+        <div class="row">
+            <div class="col-xs-12 col-md-2">
+                <p class="courseCenter"></p>
+                <p class="setWorks"></p>
+            </div>
+            <div id="TotalList">
 
-		<p class="allRights">
-			版权所有@北京航空航天大学软件学院二元一次方程组，保留一切权利 地址：北京市海淀区学院路37号 邮编：100191 电话：18811055530
-		</p>
-	</div>
+            </div>
 
-</body>
+            <div class="saveGrade">
+                <div class="col-xs-12 col-md-2">
+                </div>
+                <div class="col-xs-6 col-md-10 right">
+                    <br/>
+                    <button id="saveScore">保存成绩</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer">
+        <div class="lastPart"></div>
+        <div class="anotherline"></div>
+        <div class="container ljc last">
+            <div class="row">
+                <div class="col-xs-4">
+                    <a>关于我们</a>
+                </div>
+                <div class="col-xs-4">
+                    <a>客服中心</a>
+                </div>
+                <div class="col-xs-4">
+                    <a>友情链接</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4">
+                    <a>版权声明</a>
+                </div>
+                <div class="col-xs-4">
+                    <a>联系我们</a>
+                </div>
+                <div class="col-xs-4">
+                    <a>新浪微博</a>
+                </div>
+            </div>
+        </div>
+
+        <p class="allRights">
+            版权所有@北京航空航天大学软件学院二元一次方程组，保留一切权利 地址：北京市海淀区学院路37号 邮编：100191 电话：18811055530
+        </p>
+    </div>
+</div>
+
 
 <script language="javascript" type="text/javascript" src="/jquery.min.js"></script>
 <script src="/bootstrapdist/js/bootstrap.min.js"></script>
