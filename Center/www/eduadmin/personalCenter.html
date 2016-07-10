@@ -10,6 +10,8 @@
     <meta name="robots" content="all"/>
 
     <link href="/bootstrapdist/css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" src="/jquery.min.js"></script>
+    <script src="/bootstrapdist/js/bootstrap.min.js"></script>
     <style type="text/css">
         body {
             font-family: "Microsoft YaHei", 微软雅黑, "Microsoft JhengHei", 华文细黑, STHeiti, MingLiu;
@@ -37,44 +39,6 @@
             margin-left: 400px;
             background-color: gray;
             height: 3px;
-        }
-
-        div#nav {
-            margin-left: 400px;
-        }
-
-        ul.menu {
-            float: left;
-            padding-left: 0px;
-            margin: 0 0 0 58px;
-        }
-
-        #menu li {
-            display: inline-block;
-            margin: 0 15px 0 15px;
-        }
-
-        #menu > li p {
-            color: gray;
-            text-decoration: none;
-            font-size: 24px;
-            padding: 0px 8px 4px 8px;
-            letter-spacing: 2px;
-            border-bottom: solid 2px transparent;
-        }
-
-        #menu li p.active {
-            color: red;
-            border-bottom: solid 2px;
-            border-bottom-color: red;
-        }
-
-        #menu li p:hover {
-            color: black;
-        }
-
-        #menu li p.active:hover {
-            color: red;
         }
 
         p.courseSource:hover,
@@ -137,6 +101,24 @@
             font-size: 20px;
         }
 
+        .menu > li a {
+            text-decoration: none;
+            font-size: 24px;
+            padding: 0px 8px 4px 8px;
+            letter-spacing: 2px;
+            border-bottom: solid 2px transparent;
+        }
+
+        .nav {
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        div#nav {
+            margin: 0 auto;
+            align-self: center;
+        }
+
         div.lastPart {
             height: 5px;
             margin-top: 50px;
@@ -157,8 +139,7 @@
             margin-top: 10px;
         }
     </style>
-    <script type="text/javascript" src="/jquery.min.js"></script>
-    <script src="/bootstrapdist/js/bootstrap.min.js"></script>
+
     <script type="text/javascript">
         var Course;
         var Json;
@@ -166,33 +147,33 @@
         var c;
         $(document).ready(function () {
             $("#myCourses").click(function () {
-                $("#personalCenter").attr("class", "");
-                $("#myCourses").attr("class", "active");
-                $("#myTeams").attr("class", "");
-                $("#messages").attr("class", "");
+                $("li#personalCenter").attr("class", "");
+                $("li#myCourses").attr("class", "active");
+                $("li#myTeams").attr("class", "");
+                $("li#messages").attr("class", "");
                 SetCourseList();
 
             });
             $("#myTeams").click(function () {
-                $("#personalCenter").attr("class", "");
-                $("#myCourses").attr("class", "");
-                $("#myTeams").attr("class", "active");
-                $("#messages").attr("class", "");
+                $("li#personalCenter").attr("class", "");
+                $("li#myCourses").attr("class", "");
+                $("li#myTeams").attr("class", "active");
+                $("li#messages").attr("class", "");
                 InitDivContent("");
             });
             $("#personalCenter").click(function () {
-                $("#personalCenter").attr("class", "active");
-                $("#myCourses").attr("class", "");
-                $("#myTeams").attr("class", "");
-                $("#messages").attr("class", "");
+                $("li#personalCenter").attr("class", "active");
+                $("li#myCourses").attr("class", "");
+                $("li#myTeams").attr("class", "");
+                $("li#messages").attr("class", "");
                 InitDivContent('<div class="container"><div class="row"><div class="col-xs-12 col-md-12"></div></div></div>');
                 SetPersonInfo();
             });
             $("#messages").click(function () {
-                $("#personalCenter").attr("class", "");
-                $("#myCourses").attr("class", "");
-                $("#myTeams").attr("class", "");
-                $("#messages").attr("class", "active");
+                $("li#personalCenter").attr("class", "");
+                $("li#myCourses").attr("class", "");
+                $("li#myTeams").attr("class", "");
+                $("li#messages").attr("class", "active");
                 InitDivContent("");
             });
             LoadName();
@@ -268,18 +249,18 @@
 <br>
 <div>
     <div id="nav">
-        <ul id="menu">
-            <li>
-                <p id="myCourses" class="">我的课程</p>
+        <ul class="menu nav nav-pills">
+            <li id="myCourses" role="presentation">
+                <a id="myCourses" class="">我的课程</a>
             </li>
-            <li>
-                <p id="personalCenter" class="active">个人中心</p>
+            <li id="personalCenter" role="presentation">
+                <a id="personalCenter" class="active">个人中心</a>
             </li>
-            <li>
-                <p id="myTeams" class="">我的团队</p>
+            <li id="myTeams" role="presentation">
+                <a id="myTeams" class="">我的团队</a>
             </li>
-            <li>
-                <p id="messages" class="">我的消息</p>
+            <li id="messages" role="presentation">
+                <a id="messages" class="">我的消息</a>
             </li>
 
         </ul>

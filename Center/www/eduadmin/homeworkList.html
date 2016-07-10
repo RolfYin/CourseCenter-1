@@ -188,7 +188,7 @@
         }
         ;
         function InitStudentList() {
-            $("tbody").innerHTML = "";
+            $("tbody#norm").html("");
             $("div.panel-heading").text('满分：' + AllData[0].maxgrade);
             for (var i in AllData) {
                 if (AllData[i].grade == -1) {
@@ -207,54 +207,62 @@
         }
         ;
         function AddUnscored(p) {
-            $("div.StudentScore>td.sid").text(p.sid_id);
-            $("div.StudentScore>td.sname").text(p.name);
-            $("div.StudentScore>p.stutext").text(p.text);
-            $("div.StudentScore>textarea").attr("sid", p.sid_id);
-            $("div.StudentScore>textarea").val(p.comment);
-            $("div.StudentScore>input.grade").attr("sid", p.sid_id);
-            $("div.StudentScore>input.grade").attr("max", p.maxgrade);
-            $("div.StudentScore>input.grade").val(p.grade);
+            $("div.StudentScore").find("td.sid").text(p.sid_id);
 
-            $("div.StudentScore>button.download").attr("onclick", "window.open('" + "'/submit/download?key=" + TaskKey + "&sID=" + p.sid_id + "&cID=" + p.cid_id + "&index=" + p.taskindex_id + "')");
-            $("div.StudentScore>button.submit").attr("sid", p.sid_id);
-            $("div.StudentScore>button.submit").text("上传分数");
-            $("tbody").append($("div.StudentScore").html());
+            $("div.StudentScore").find("td.sname").text(p.name);
+            $("div.StudentScore").find("p.stutext").text(p.text);
+            $("div.StudentScore").find("textarea").attr("sid", p.sid_id);
+
+            $("div.StudentScore").find("input.grade").attr("sid", p.sid_id);
+            $("div.StudentScore").find("input.grade").attr("max", p.maxgrade);
+
+
+            $("div.StudentScore").find("button.download").attr("onclick", "window.open(" + "'/submit/download?key=" + TaskKey + "&sID=" + p.sid_id + "&cID=" + p.cid_id + "&index=" + p.taskindex_id + "')");
+            $("div.StudentScore").find("button.submit").attr("sid", p.sid_id);
+            $("div.StudentScore").find("button.submit").text("上传分数");
+
+            $("tbody#norm").append($("div.StudentScore").find("tbody").html());
         }
         ;
         function Addscored(p) {
-            $("div.StudentScore>td.sid").text(p.sid_id);
-            $("div.StudentScore>td.sname").text(p.name);
-            $("div.StudentScore>p.stutext").text(p.text);
-            $("div.StudentScore>textarea").attr("sid", p.sid_id);
-            $("div.StudentScore>input.grade").attr("sid", p.sid_id);
-            $("div.StudentScore>input.grade").attr("max", p.maxgrade);
-            $("div.StudentScore>button.download").attr("onclick", "window.open('" + "'/submit/download?key=" + TaskKey + "&sID=" + p.sid_id + "&cID=" + p.cid_id + "&index=" + p.taskindex_id + "')");
-            $("div.StudentScore>button.submit").attr("sid", p.sid_id);
-            $("div.StudentScore>button.submit").text("重新提交");
-            $("tbody").append($("div.StudentScore").html());
+            $("div.StudentScore").find("td.sid").text(p.sid_id);
+            $("div.StudentScore").find("td.sname").text(p.name);
+            $("div.StudentScore").find("p.stutext").text(p.text);
+            $("div.StudentScore").find("textarea").attr("sid", "");
+            $("div.StudentScore").find("textarea").attr("sid", p.sid_id);
+            $("div.StudentScore").find("textarea").text(p.comment);
+            $("div.StudentScore").find(".CommentWriting").attr("data-target","#"+p.sid_id);
+            $("div.StudentScore").find(".CommentBlog").attr("id",p.sid_id);
+            $("div.StudentScore").find("input.grade").attr("sid", p.sid_id);
+            $("div.StudentScore").find("input.grade").attr("max", p.maxgrade);
+            $("div.StudentScore").find("input.grade").attr("value", p.grade);
+
+            $("div.StudentScore").find("button.download").attr("onclick", "window.open(" + "'/submit/download?key=" + TaskKey + "&sID=" + p.sid_id + "&cID=" + p.cid_id + "&index=" + p.taskindex_id + "')");
+            $("div.StudentScore").find("button.submit").attr("sid", p.sid_id);
+            $("div.StudentScore").find("button.submit").text("重新提交");
+            $("tbody#norm").append($("div.StudentScore").find("tbody").html());
         }
         function SubmitGrade(t) {
             var sid = $(t).attr("sid");
             var grades = $("input[sid=" + sid + "]").val();
             if (grades) {
-                if (grades >= 0 && grades <= $("a[sid=" + sid + "]").text) {
-                    $.post("/score", JSON.stringify({
-                        "key": TaskKey,
-                        "sid": sid,
-                        "cid": TaskCID,
-                        "index": TaskIndex,
-                        "comment": $("textarea[sid=" + sid + "]").val(),
-                        "grade": grades
-                    }), function (data) {
-                        if (data) {
-                            getAllData();
-                        } else {
-                            alert("提交失败！请重新填写");
-                            getAllData();
-                        }
-                    });
-                }
+
+                $.post("/score", JSON.stringify({
+                    "key": TaskKey,
+                    "sid": sid,
+                    "cid": TaskCID,
+                    "index": TaskIndex,
+                    "comment": $("textarea[sid=" + sid + "]").val(),
+                    "grade": grades
+                }), function (data) {
+                    if (data) {
+                        getAllData();
+                    } else {
+                        alert("提交失败！请重新填写");
+                        getAllData();
+                    }
+                });
+
             } else {
                 alert("请输入分数！");
             }
@@ -305,7 +313,7 @@
                     <th>分数</th>
 
                     </thead>
-                    <tbody>
+                    <tbody id="norm">
 
                     </tbody>
                 </table>
@@ -324,52 +332,59 @@
     </div>
 </div>
 <div it="model" class="StudentScore">
-    <tr>
-        <td class="sid"></td>
-        <td class="sname"></td>
-        <td>
-            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">
-                查看
-            </button>
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-                 aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                    aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">文本作业</h4>
-                        </div>
-                        <div class="modal-body">
-                            <p class="stutext"></p>
-                            <hr>
-                            <div class="form-group">
-                                <label for="message-text" class="control-label">Comment:</label>
+    <table class="table ">
+        <thead>
+
+        </thead>
+        <tbody>
+        <tr id="test">
+            <td class="sid"></td>
+            <td class="sname"></td>
+            <td>
+                <button type="button" class="btn btn-default CommentWriting" data-toggle="modal" data-target="#myModal">
+                    查看
+                </button>
+                <div class="modal fade CommentBlog" id="myModal" tabindex="-1" role="dialog"
+                     aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">文本作业</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p class="stutext"></p>
+                                <hr>
+                                <div class="form-group">
+                                    <label for="message-text" class="control-label">Comment:</label>
                                     <textarea sid="" class="form-control" id="message-text"
                                               placeholder="Write down comments..."></textarea>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="modal-footer">
+                            <div class="modal-footer">
 
-                            <button type="button" class="btn btn-default" data-dismiss="modal">保存
-                            </button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">保存
+                                </button>
 
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <button type="button" class="download" class="btn btn-default" onclick="window.open('')">下载</button>
-        </td>
-        <td>
-            <div class="input-group">
-                <input type="number" sid="" min="0" max="" class="form-control grade">
+                <button type="button" class="download btn btn-default" onclick="window.open('')">下载</button>
+            </td>
+            <td>
+                <div class="input-group">
+                    <input type="number" sid="" min="0" max="" class="form-control grade">
       <span class="input-group-btn">
         <button class="btn btn-default submit" sid="" type="button" onclick="SubmitGrade(this)"></button>
       </span>
-            </div>
-        </td>
-    </tr>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 
 </div>
 
