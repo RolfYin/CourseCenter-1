@@ -30,7 +30,12 @@ urlpatterns = [
     url(r'^add/task$', views.add_task),
     url(r'^view/task$', views.view_task),
     url(r'^view/submit$', views.view_submit),
+    url(r'^view/worksubmit$', views.view_worksubmit),
     url(r'^view/taskinfo$', views.view_taskinfo),
-    url(r'^task/download$', views.view_taskinfo),
+    url(r'^task/download$', views.task_download),
+    url(r'^submit/upload$', views.submit_upload),
+    url(r'^submit/download', views.submit_download),
+    url(r'^submit/task$', views.submit_task),
+    url(r'^score$', views.score),
     url(r'^(?P<path>.*\.[\w]*)$', serve),
 ]
