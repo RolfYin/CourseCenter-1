@@ -318,7 +318,6 @@ def view_worksubmit(request):
 def submit_task(request):
     assert isinstance(request, HttpRequest)
     try:
-        print("submit_task")
         data = json.loads(request.body.decode())
         key = data["key"]
         s = SessionStore(session_key=key)
@@ -328,8 +327,8 @@ def submit_task(request):
         s.save()
         cursor = connection.cursor()
         cursor.execute(
-            "INSERT INTO worksubmit VALUES (%s,%s,%s,%s,%s,%s,%s)",
-            [int(s["ID"]), int(data["cID"]), int(data["index"]), "unknown",
+            "INSERT INTO worksubmit VALUES (%s,%s,%s,%s,%s,%s,%s,%s)",
+            [int(s["ID"]), int(data["cID"]), int(data["index"]), data["Description"], "unknown",
              datetime.datetime.now(), -1, ""])
         cursor.close()
         return HttpResponse("")
