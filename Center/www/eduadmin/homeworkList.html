@@ -171,6 +171,7 @@
                 "cID": TaskCID,
             }), function (data) {
                 AllData = JSON.parse(data);
+                $("div#TotalList").html("");
                 InitStudentList();
             });
         }
