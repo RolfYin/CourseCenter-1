@@ -178,7 +178,7 @@
         function InitStudentList() {
             for (var i in AllData) {
                 if (AllData[i].grade == -1) {
-                    var part1 = '<div class="' + AllData[i].sid_id + '"><p>学号：' + AllData[i].sid_id + '        姓名：' + AllData[i].name + '</p><p>提交内容：' + AllData[i].text + '</p><p><a href="/submitdownload?key=' + TaskKey + '&sID=' + AllData[i].sid_id + '&cID=' + AllData[i].cid_id + '&index=' + AllData[i].taskindex_id + '">附件下载</a></p><p><textarea id="comment" rows="2" placeholder="Write down your comments..."' + 'sid="' + AllData[i].sid_id + '" >';
+                    var part1 = '<div class="' + AllData[i].sid_id + '"><p>学号：' + AllData[i].sid_id + '        姓名：' + AllData[i].name + '</p><p>提交内容：' + AllData[i].text + '</p><p><a href="/submit/download?key=' + TaskKey + '&sID=' + AllData[i].sid_id + '&cID=' + AllData[i].cid_id + '&index=' + AllData[i].taskindex_id + '">附件下载</a></p><p><textarea id="comment" rows="2" placeholder="Write down your comments..."' + 'sid="' + AllData[i].sid_id + '" >';
                     var part2 = '</textarea></p><p><input id="grades" type="number" sid="' + AllData[i].sid_id + '"</input>/<a id="Maxpoints">' + AllData[i].maxgrade + '</a>         <button sid="' + AllData[i].sid_id + '" onclick="SubmitGrade(this)">提交</button></p></div>';
                     $("div#TotalList").append(part1 + part2);
                 }
@@ -187,7 +187,7 @@
             ;
             for (var i in AllData) {
                 if (!(AllData[i].grade == -1)) {
-                    var part1 = '<div class="' + AllData[i].sid_id + '"><p>学号：' + AllData[i].sid_id + '        姓名：' + AllData[i].name + '</p><p>提交内容：' + AllData[i].text + '</p><p><a href="/submitdownload?key=' + TaskKey + '&sID=' + AllData[i].sid_id + '&cID=' + AllData[i].cid_id + '&index=' + AllData[i].taskindex_id + '">附件下载</a></p><p><textarea id="comment" rows="2" sid="' + AllData[i].sid_id + '" >' + AllData.comment + '</textarea>';
+                    var part1 = '<div class="' + AllData[i].sid_id + '"><p>学号：' + AllData[i].sid_id + '        姓名：' + AllData[i].name + '</p><p>提交内容：' + AllData[i].text + '</p><p><a href="/submit/download?key=' + TaskKey + '&sID=' + AllData[i].sid_id + '&cID=' + AllData[i].cid_id + '&index=' + AllData[i].taskindex_id + '">附件下载</a></p><p><textarea id="comment" rows="2" sid="' + AllData[i].sid_id + '" >' + AllData.comment + '</textarea>';
                     var part2 = '</p><p><input id="grades" type="number" sid="' + AllData[i].sid_id + '">' + AllData[i].grade + '</input>/<a sid="' + AllData[i].sid_id + '">' + AllData[i].maxgrade + '</a>         <button sid="' + AllData[i].sid_id + '" onclick="EditGrade(this)">重评</button></p></div>';
                     $("div#TotalList").append(part1 + part2);
                 }
@@ -198,9 +198,9 @@
         ;
         function SubmitGrade(t) {
             var sid = $(t).attr("sid");
-            var grades = $("input[sid=" + t + "]").val();
+            var grades = $("input[sid=" + sid+ "]").val();
             if (grades) {
-                if (grades >= 0 && grades <= $("a[sid=" + t + "]").text) {
+                if (grades >= 0 && grades <= $("a[sid=" + sid+ "]").text) {
                     $.post("/score", JSON.stringify({
                         "key": TaskKey,
                         "sid": sid,
@@ -284,7 +284,7 @@
                 </div>
                 <div class="col-xs-6 col-md-10 right">
                     <br/>
-                    <button id="saveScore">保存成绩</button>
+
                 </div>
             </div>
         </div>
