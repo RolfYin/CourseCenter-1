@@ -127,12 +127,13 @@ def view_course(request):
                 c = Course.objects.filter(cid=course_id.cid.cid).values()[0]
                 c["endday"] = c["endday"].strftime("%Y-%m-%d-%H")
                 c["startday"] = c["startday"].strftime("%Y-%m-%d-%H")
-                print(c)
+                c["tname"] = Teacher.objects.filter(tid=c["teacherid_id"])[0].tname
                 courses.append(c)
         elif int(s["type"]) == 2:
             for course in Course.objects.filter(teacherid=int(s["ID"])).values():
                 course["endday"] = course["endday"].strftime("%Y-%m-%d-%H")
                 course["startday"] = course["startday"].strftime("%Y-%m-%d-%H")
+                course["tname"] = Teacher.objects.filter(tid=course["teacherid_id"])[0].tname
                 courses.append(course)
     except Exception as er:
         print("view_course", er.__class__, er)
