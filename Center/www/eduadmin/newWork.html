@@ -172,20 +172,22 @@
             }
         }
         function AddNewTask() {
-            var TaskInfo = {
-                "TaskName": $("input#TaskName").val(),
-                "Description": $("textarea#workDes").val(),
-                "MaxPoint": $("input#MaxPoints").val(),
-                "DeadLine": $('input[type="datetime-local"]').val(),
-                "key": sessionStorage.getItem("key"),
-                "cID": TaskCID
-            };
-            $.post('/add/task', JSON.stringify(TaskInfo), function (data) {
-                DocSubmitInfo["index"] = JSON.parse(data).index;
-                DocSubmitInfo["key"] = TaskKey;
-                DocSubmitInfo["cID"] = TaskCID;
-                $('#file_upload').uploadifive('upload');
-            });
+
+               var TaskInfo = {
+                   "TaskName": $("input#TaskName").val(),
+                   "Description": $("textarea#workDes").val(),
+                   "MaxPoint": $("input#MaxPoints").val(),
+                   "DeadLine": $('input[type="datetime-local"]').val(),
+                   "key": sessionStorage.getItem("key"),
+                   "cID": TaskCID
+               };
+               $.post('/add/task', JSON.stringify(TaskInfo), function (data) {
+                   DocSubmitInfo["index"] = JSON.parse(data).index;
+                   DocSubmitInfo["key"] = TaskKey;
+                   DocSubmitInfo["cID"] = TaskCID;
+                   $('#file_upload').uploadifive('upload');
+               });
+
             return false;
         }
 
@@ -224,7 +226,7 @@
                 <form action="" method="post" onsubmit="return AddNewTask();">
 
                     <p>
-                        <input id="TaskName" type="text" placeholder="Task Name..." required>
+                        <input id="TaskName" type="text" placeholder="Task Name..." required>     <input type="number" id="MaxPoints" min="0" placeholder="Max Points" required>
                     </p>
 
                     <p>
@@ -235,8 +237,8 @@
                     </p>
 
                     <input type="hidden" name="key" value="">
-                    <input type="number" id="MaxPoints" placeholder="Max Points" required>
-                    <p>添加附件：</p>
+
+                    <p></p>
                     <input id="file_upload" name="file_upload" type="file" multiple="true">
 
                     <script type="text/javascript">
