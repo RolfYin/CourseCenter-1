@@ -172,7 +172,7 @@
         }
         function InitStudentList() {
             $("tbody#norm").html("");
-            $("div.panel-heading").text('课程: ' + cName + " 满分: " + AllData[0].maxgrade);
+            $("div.panel-heading").text('课程: ' + cName + " 作业: "+decodeURI(Url["wName"]) + " 满分: " + AllData[0].maxgrade);
             for (var i in AllData) {
                 if (AllData[i].grade == -1) {
                     AddUnscored(AllData[i]);

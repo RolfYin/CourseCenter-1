@@ -229,8 +229,8 @@ def view_task(request):
         s.save()
         tasks = []
         for task in Task.objects.filter(cid__cid=int(data["cID"])).values():
-            task["release"] = task["release"].strftime("%Y-%m-%dT%H:%M")
-            task["deadline"] = task["deadline"].strftime("%Y-%m-%dT%H:%M")
+            task["release"] = task["release"].strftime("%Y-%m-%d %H:%M")
+            task["deadline"] = task["deadline"].strftime("%Y-%m-%d %H:%M")
             tasks.append(task)
         return HttpResponse(json.dumps(tasks))
     except Exception as er:
