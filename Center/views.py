@@ -37,7 +37,7 @@ def download(request):
     except Exception as er:
         print("upload", er.__class__, er)
         print(request.body)
-        return HttpResponse("")
+        return HttpResponse("", status=400)
 
 
 rlock = multiprocessing.RLock()
@@ -78,7 +78,7 @@ def upload(request):
     except Exception as er:
         rlock.release()
         print("upload", er.__class__, er)
-        return HttpResponse("[]")
+        return HttpResponse("",status=400)
 
 
 def login(request):
@@ -102,12 +102,12 @@ def login(request):
             return HttpResponse(json.dumps({"name": name, "key": s.session_key}))
     except Exception as er:
         print("login", er.__class__, er)
-        return HttpResponse("")
+        return HttpResponse("", status=400)
 
 
 def logout(request):
     assert isinstance(request, HttpRequest)
-    return HttpResponse("")
+    return HttpResponse("", status=400)
 
 
 def view_course(request):
@@ -138,7 +138,7 @@ def view_course(request):
     except Exception as er:
         print("view_course", er.__class__, er)
         print(request.body)
-        return HttpResponse("")
+        return HttpResponse("", status=400)
     return HttpResponse(json.dumps(courses))
 
 
@@ -155,7 +155,7 @@ def view_course_source(request):
         return HttpResponse(str(Resource.objects.filter(cid=int(data["cID"])).values()).replace("'", '"'))
     except Exception as er:
         print("view_course_source", er.__class__, er)
-        return HttpResponse("")
+        return HttpResponse("", status=400)
 
 
 def add_task(request):
@@ -214,7 +214,7 @@ def task_upload(request):
     except Exception as er:
         rlock.release()
         print("task_upload", er.__class__, er)
-        return HttpResponse("")
+        return HttpResponse("", status=400)
 
 
 def view_task(request):
@@ -235,7 +235,7 @@ def view_task(request):
         return HttpResponse(json.dumps(tasks))
     except Exception as er:
         print("view_task", er.__class__, er)
-        return HttpResponse("")
+        return HttpResponse("", status=400)
 
 
 def view_finished_task(request):
@@ -251,7 +251,7 @@ def view_finished_task(request):
         return HttpResponse(str(Resource.objects.filter(cid=int(data["cID"])).values()).replace("'", '"'))
     except Exception as er:
         print("view_finished_task", er.__class__, er)
-        return HttpResponse("")
+        return HttpResponse("", status=400)
 
 
 def view_taskinfo(request):
@@ -271,7 +271,7 @@ def view_taskinfo(request):
         return HttpResponse(json.dumps(task))
     except Exception as er:
         print("view_taskinfo", er.__class__, er)
-        return HttpResponse("")
+        return HttpResponse("", status=400)
 
 
 def view_submit(request):
@@ -292,7 +292,7 @@ def view_submit(request):
         return HttpResponse(submitted)
     except Exception as er:
         print("view_submit", er.__class__, er)
-        return HttpResponse("")
+        return HttpResponse("", status=400)
 
 
 def view_worksubmit(request):
@@ -313,7 +313,7 @@ def view_worksubmit(request):
         return HttpResponse(str(submitted_works).replace("'", '"'))
     except Exception as er:
         print("view_worksubmit", er.__class__, er)
-        return HttpResponse("")
+        return HttpResponse("", status=400)
 
 
 def submit_task(request):
@@ -326,16 +326,20 @@ def submit_task(request):
             pass
         s.set_expiry(globe_time)
         s.save()
+        submit_time = datetime.datetime.now()
+        deadline = Task.objects.filter(cid=int(data["cID"]),index=int(data["index"]))[0].deadline
+        if submit_time > deadline:
+            raise Exception("beyond deadline!")
         cursor = connection.cursor()
         cursor.execute(
             "INSERT INTO worksubmit VALUES (%s,%s,%s,%s,%s,%s,%s,%s)",
             [int(s["ID"]), int(data["cID"]), int(data["index"]), data["Description"], "unknown",
-             datetime.datetime.now(), -1, ""])
+             submit_time, -1, ""])
         cursor.close()
-        return HttpResponse("")
+        return HttpResponse("OK")
     except Exception as er:
         print("submit_task", er.__class__, er)
-        return HttpResponse("")
+        return HttpResponse("", status=400)
 
 
 def submit_upload(request):
@@ -353,6 +357,10 @@ def submit_upload(request):
         s.save()
         if int(s["type"]) != 3:
             raise Exception
+        submit_time = datetime.datetime.now()
+        deadline = Task.objects.filter(cid=int(cID),index=int(index_))[0].deadline
+        if submit_time > deadline:
+            raise Exception("beyond deadline!")
         filename = str(request.FILES["Filedata"])
         file_path = "Center/www/upload/" + filename
         with connection.cursor() as cur:
@@ -361,11 +369,11 @@ def submit_upload(request):
         with open(file_path, "w+b") as fd:
             fd.write(request.FILES["Filedata"].file.read())
         rlock.release()
-        return HttpResponse("")
+        return HttpResponse("OK")
     except Exception as er:
         rlock.release()
         print("submit_upload", er.__class__, er)
-        return HttpResponse("")
+        return HttpResponse("", status=400)
 
 
 def submit_download(request):
@@ -395,7 +403,7 @@ def submit_download(request):
     except Exception as er:
         rlock.release()
         print("submit_upload", er.__class__, er)
-        return HttpResponse("")
+        return HttpResponse("", status=400)
 
 
 def task_download(request):
@@ -417,7 +425,7 @@ def task_download(request):
         return response
     except Exception as er:
         print("task_download", er.__class__, er)
-        return HttpResponse("")
+        return HttpResponse("", status=400)
 
 
 def score(request):
@@ -436,4 +444,4 @@ def score(request):
         return HttpResponse("OK")
     except Exception as er:
         print("task_download", er.__class__, er)
-        return HttpResponse("")
+        return HttpResponse("", status=400)
