@@ -206,12 +206,12 @@
                 "index": TaskIndex,
             };
             $.post('/submit/task', JSON.stringify(TaskInfo), function (data) {
-                if(data)
-                {
+                if (data) {
                     DocSubmitInfo["index"] = TaskIndex;
-                DocSubmitInfo["key"] = TaskKey;
-                DocSubmitInfo["cID"] = TaskCID;
-                $('#file_upload').uploadifive('upload');
+                    DocSubmitInfo["key"] = TaskKey;
+                    DocSubmitInfo["cID"] = TaskCID;
+                    $('#file_upload').uploadifive('upload');
+                    alert("作业提交成功!");
                 }
                 else {
                     alert("作业已过期，提交失败！");

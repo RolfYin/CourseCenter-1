@@ -151,7 +151,7 @@
             LoadName();
 
         });
-         function parseUrlParam(url) {
+        function parseUrlParam(url) {
             var params = {};
             start = url.indexOf("?");
             for (pos = start + 1; pos != 0; pos = url.indexOf("&") + 1) {
@@ -170,23 +170,31 @@
             if (showName) {
                 $(".stuName").text(showName);
             }
+            $("p.courseCenter").text(decodeURI(url["cName"]));
         }
         function AddNewTask() {
 
-               var TaskInfo = {
-                   "TaskName": $("input#TaskName").val(),
-                   "Description": $("textarea#workDes").val(),
-                   "MaxPoint": $("input#MaxPoints").val(),
-                   "DeadLine": $('input[type="datetime-local"]').val(),
-                   "key": sessionStorage.getItem("key"),
-                   "cID": TaskCID
-               };
-               $.post('/add/task', JSON.stringify(TaskInfo), function (data) {
-                   DocSubmitInfo["index"] = JSON.parse(data).index;
-                   DocSubmitInfo["key"] = TaskKey;
-                   DocSubmitInfo["cID"] = TaskCID;
-                   $('#file_upload').uploadifive('upload');
-               });
+            var TaskInfo = {
+                "TaskName": $("input#TaskName").val(),
+                "Description": $("textarea#workDes").val(),
+                "MaxPoint": $("input#MaxPoints").val(),
+                "DeadLine": $('input[type="datetime-local"]').val(),
+                "key": sessionStorage.getItem("key"),
+                "cID": TaskCID
+            };
+            $.post('/add/task', JSON.stringify(TaskInfo), function (data) {
+                if (data) {
+                    DocSubmitInfo["index"] = JSON.parse(data).index;
+                    DocSubmitInfo["key"] = TaskKey;
+                    DocSubmitInfo["cID"] = TaskCID;
+                    $('#file_upload').uploadifive('upload');
+                    alert("添加作业成功!");
+                }
+                else {
+                    alert("添加作业失败!");
+                }
+
+            });
 
             return false;
         }
@@ -218,7 +226,7 @@
     <div class="course">
         <div class="row">
             <div class="col-xs-2 col-md-2 left">
-                <p class="courseCenter">软件工程过程</p>
+                <p class="courseCenter"></p>
 
             </div>
             <div class="col-xs-8 col-md-8">
@@ -226,7 +234,11 @@
                 <form action="" method="post" onsubmit="return AddNewTask();">
 
                     <p>
-                        <input id="TaskName" type="text" placeholder="Task Name..." required>     <input type="number" id="MaxPoints" min="0" placeholder="Max Points" required>
+                        <input id="TaskName" type="text" placeholder="Task Name..." required> <input type="number"
+                                                                                                     id="MaxPoints"
+                                                                                                     min="0"
+                                                                                                     placeholder="Max Points"
+                                                                                                     required>
                     </p>
 
                     <p>
@@ -254,7 +266,7 @@
                     <br> 作业截止日期:
                     <input type="datetime-local" name="user_date" required/>
 
-                    <input id="setNewWork"class="btn btn-primary" type="submit" value="确认发布新作业"/>
+                    <input id="setNewWork" class="btn btn-primary" type="submit" value="确认发布新作业"/>
                 </form>
             </div>
 

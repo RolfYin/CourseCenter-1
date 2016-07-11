@@ -138,7 +138,7 @@
     <script type="text/javascript">
         var TaskList;
         var usertype;
-
+        var Url = parseUrlParam(window.location.href);
         $(document).ready(function () {
             usertype = sessionStorage.getItem("usertype");
             if (usertype == 3) {
@@ -168,7 +168,7 @@
                 $(".stuName").text(showName);
 
             }
-            $(".courseCenter").text(decodeURI(parseUrlParam(window.location.href)["cName"]))
+            $(".courseCenter").text(decodeURI(Url["cName"]))
         }
         function InitHouseworkList() {
             $("div.col-xs-12.col-md-6.right").html('<p>作业名称</p><ul id="TaskName"></ul>');
@@ -176,23 +176,19 @@
         }
         ;
         function NewHousework() {
-            var index = window.location.href.indexOf("=") + 1;
-            var cNum = window.location.href.substring(index);
-            window.open("/eduadmin/newWork.html?cid=" + cNum);
+            window.open("/eduadmin/newWork.html?cid=" + Url["cID"]+'&cName='+Url["cName"]);
         }
         function GetHousework() {
-            var index = window.location.href.indexOf("=") + 1;
-            var cNum = window.location.href.substring(index);
-            $.get("/view/task?cID=" + cNum + "&key=" + sessionStorage.getItem("key"), function (data) {
+            $.get("/view/task?cID=" + Url["cID"] + "&key=" + sessionStorage.getItem("key"), function (data) {
 
 
                 TaskList = JSON.parse(data);
 
                 for (var i = 0; i < TaskList.length; i++) {
                     if (usertype == 3) {
-                        $("ul#TaskName").append('<li><a class="workName" index="' + TaskList[i].index + '" href="/eduadmin/homeWork.html?cID=' + TaskList[i].cid_id + '&index=' + TaskList[i].index +'&cName='+parseUrlParam(window.location.href)["cName"]+'&wName='+TaskList[i].name+ '" target="_blank">' + TaskList[i].name + '</a></li>');
+                        $("ul#TaskName").append('<li><a class="workName" index="' + TaskList[i].index + '" href="/eduadmin/homeWork.html?cID=' + TaskList[i].cid_id + '&index=' + TaskList[i].index +'&cName='+Url["cName"]+'&wName='+TaskList[i].name+ '" target="_blank">' + TaskList[i].name + '</a></li>');
                     } else {
-                        $("ul#TaskName").append('<li><a class="workName" index="' + TaskList[i].index + '" href="/eduadmin/homeworkList.html?cID=' + TaskList[i].cid_id + '&index=' + TaskList[i].index +'&cName='+parseUrlParam(window.location.href)["cName"]+'&wName='+TaskList[i].name+  '" target="_blank">' + TaskList[i].name + '</a></li>');
+                        $("ul#TaskName").append('<li><a class="workName" index="' + TaskList[i].index + '" href="/eduadmin/homeworkList.html?cID=' + TaskList[i].cid_id + '&index=' + TaskList[i].index +'&cName='+Url["cName"]+'&wName='+TaskList[i].name+  '" target="_blank">' + TaskList[i].name + '</a></li>');
                     }
                     $("ul#deadline").append('<li><p class="deadline" index="' + TaskList[i].index + '">' + TaskList[i].deadline + '</p></li>');
                 }

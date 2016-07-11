@@ -184,7 +184,7 @@ def add_task(request):
         return HttpResponse(json.dumps({"index": old_task.index}))
     except Exception as er:
         print("add_task", er.__class__, er)
-        return HttpResponse({"index": -1})
+        return HttpResponse("")
 
 
 def task_upload(request):
