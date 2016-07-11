@@ -5,6 +5,7 @@
     <title>Login In System</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="js/style.css" media="screen" type="text/css"/>
+       <script src="js/jquery.min.js"></script>
     <style>
         img.logojpg {
             height: 100px;
@@ -51,10 +52,49 @@
     <script>
         $(document).ready(function () {
             sessionStorage.clear();
-           // $('html, body').animate({scrollTop: $(document).height()});
+            // $('html, body').animate({scrollTop: $(document).height()});
 
         });
 
+        function UserLogin() {
+
+            var i;
+            if ($("#idNumber").val()[0] == '1') {
+                i = 3;
+            }
+            else {
+                i = 2;
+            }
+            ;
+
+            var UserLogin = {
+                "type": i,
+                "ID": $("#idNumber").val(),
+                "Password": $("#password").val(),
+            };
+
+            var datastring = JSON.stringify(UserLogin);
+           
+            $.post("/login", datastring, function (data) {
+
+                if (data) {
+
+                    sessionStorage.setItem('usertype', i);
+                    sessionStorage.setItem('key', JSON.parse(data).key);
+                    sessionStorage.setItem('username', eval("'" + JSON.parse(data).name + "'"));
+                    window.location.href = "/eduadmin/personalCenter.html";
+                    return true;
+                } else {
+                    alert("错误的用户名或密码！");
+                    return true;
+
+                }
+                ;
+                return true;
+            });
+
+
+        }
     </script>
 
 </head>
@@ -81,7 +121,7 @@
 
 </div>
 <div class="container">
-    <form id="contact" action="/eduadmin/personalCenter.html" method="post" onsubmit="return UserLogin()">
+    <form id="contact" action="/eduadmin/personalCenter.html" method="post" onsubmit="return UserLogin();">
         <h3></h3>
 
         <fieldset>
@@ -92,49 +132,12 @@
         </fieldset>
 
         <fieldset>
-            <button name="submit" type="submit" id="contact-submit"  >
+            <button name="submit" type="submit" id="contact-submit">
                 Submit
             </button>
         </fieldset>
     </form>
-    <script>
-         function UserLogin() {
 
-                var i;
-                if ($("#idNumber").val()[0] == '1') {
-                    i = 3;
-                }
-                else {
-                    i = 2;
-                };
-
-                var UserLogin = {
-                    "type": i,
-                    "ID": $("#idNumber").val(),
-                    "Password": $("#password").val(),
-                };
-                var datastring = JSON.stringify(UserLogin);
-                $.post("/login", datastring, function (data) {
-
-                    if (data) {
-
-                        sessionStorage.setItem('usertype', i);
-                        sessionStorage.setItem('key', JSON.parse(data).key);
-                        sessionStorage.setItem('username', eval("'" + JSON.parse(data).name + "'"));
-                        window.location.href = "/eduadmin/personalCenter.html";
-                        return true;
-                    } else {
-                        alert("错误的用户名或密码！");
-                        return true;
-
-                    };
-                    return true;
-                });
-
-
-
-        }
-        </script>
 
 </div>
 

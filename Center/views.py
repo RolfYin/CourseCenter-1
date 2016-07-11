@@ -102,7 +102,7 @@ def login(request):
             return HttpResponse(json.dumps({"name": name, "key": s.session_key}))
     except Exception as er:
         print("login", er.__class__, er)
-        return HttpResponse("", status=400)
+        return HttpResponse("")
 
 
 def logout(request):
