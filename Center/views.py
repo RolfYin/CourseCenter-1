@@ -329,7 +329,7 @@ def submit_task(request):
         submit_time = datetime.datetime.now()
         deadline = Task.objects.filter(cid=int(data["cID"]),index=int(data["index"]))[0].deadline
         if submit_time > deadline:
-            raise Exception("beyond deadline!")
+            raise Exception("KO")
         cursor = connection.cursor()
         cursor.execute(
             "INSERT INTO worksubmit VALUES (%s,%s,%s,%s,%s,%s,%s,%s)",
@@ -339,7 +339,7 @@ def submit_task(request):
         return HttpResponse("OK")
     except Exception as er:
         print("submit_task", er.__class__, er)
-        return HttpResponse("", status=400)
+        return HttpResponse("")
 
 
 def submit_upload(request):
